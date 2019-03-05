@@ -1,21 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ui;
 
 /**
  *
- * @author rober
+ * @author robert
  */
+
+import controllers.UsersController;
+import javax.swing.JOptionPane;
+
 public class Login extends javax.swing.JPanel {
 
     /**
      * Creates new form Login
      */
+    private UsersController user = null;
     public Login() {
         initComponents();
+        
+        user = new UsersController();
     }
 
     /**
@@ -27,19 +30,133 @@ public class Login extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        outterPanel = new javax.swing.JPanel();
+        passwordLabel = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        userNameLabel1 = new javax.swing.JLabel();
+        userNametxt = new javax.swing.JTextField();
+        passwordTxt = new javax.swing.JPasswordField();
+        loginBtn = new javax.swing.JButton();
+
+        outterPanel.setBackground(new java.awt.Color(0, 102, 51));
+
+        passwordLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        passwordLabel.setText("Password");
+
+        userNameLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        userNameLabel1.setText("Username");
+
+        userNametxt.setBackground(new java.awt.Color(51, 51, 51));
+
+        passwordTxt.setBackground(new java.awt.Color(51, 51, 51));
+
+        loginBtn.setBackground(new java.awt.Color(51, 51, 51));
+        loginBtn.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        loginBtn.setText("LOGIN");
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout outterPanelLayout = new javax.swing.GroupLayout(outterPanel);
+        outterPanel.setLayout(outterPanelLayout);
+        outterPanelLayout.setHorizontalGroup(
+            outterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(outterPanelLayout.createSequentialGroup()
+                .addGap(133, 133, 133)
+                .addGroup(outterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userNameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addGroup(outterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(userNametxt)
+                    .addComponent(passwordTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, outterPanelLayout.createSequentialGroup()
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addGroup(outterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, outterPanelLayout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, outterPanelLayout.createSequentialGroup()
+                        .addComponent(loginBtn)
+                        .addGap(125, 125, 125))))
+        );
+        outterPanelLayout.setVerticalGroup(
+            outterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(outterPanelLayout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(outterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(userNameLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(userNametxt))
+                .addGap(36, 36, 36)
+                .addGroup(outterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(passwordTxt)
+                    .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(loginBtn)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(outterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(outterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+       //pick the user data and validate it
+       
+       String userName;
+       String password;
+       
+       try{
+           userName = userNametxt.getText().trim();
+           //validate the username
+           if(userName.isEmpty()) {
+               JOptionPane.showMessageDialog(null, "Please provide the username");
+           }
+           else {
+               password = passwordTxt.getText().trim();
+               if(password.isEmpty()) {
+                  JOptionPane.showMessageDialog(null, "Please provide the username"); 
+               }
+               else {
+                   //now user has provided both username and password
+                   user.login(userName, password); //do login
+                   
+                   //clear the fields
+                   userNametxt.setText("");
+                   passwordTxt.setText("");
+                   
+                   new LoginUi().setVisible(true);
+                   
+                   //this.dispose();
+               }
+           }
+       }
+       catch(Exception e) {
+           //report the exeception
+       }
+    }//GEN-LAST:event_loginBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton loginBtn;
+    private javax.swing.JPanel outterPanel;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JPasswordField passwordTxt;
+    private javax.swing.JLabel userNameLabel1;
+    private javax.swing.JTextField userNametxt;
     // End of variables declaration//GEN-END:variables
 }
