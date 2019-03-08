@@ -28,16 +28,27 @@ public class Dashboard extends javax.swing.JFrame {
 
         MainPanel = new javax.swing.JPanel();
         MainSystemLabel = new javax.swing.JLabel();
+        configureDripTab = new javax.swing.JTabbedPane();
+        welcomeTab = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        configureNewSystemPanel = new javax.swing.JPanel();
-        activePanel = new javax.swing.JPanel();
-        configureDripSystemLable = new javax.swing.JLabel();
-        updatePanel = new javax.swing.JPanel();
-        activePanel1 = new javax.swing.JPanel();
-        updateLabel = new javax.swing.JLabel();
-        createPanel1 = new javax.swing.JPanel();
-        activePanel2 = new javax.swing.JPanel();
-        CreateLabel1 = new javax.swing.JLabel();
+        CcreateTab = new javax.swing.JPanel();
+        updateTab = new javax.swing.JPanel();
+        descriptionsTab = new javax.swing.JPanel();
+        usersTab = new javax.swing.JPanel();
+        footeCopyright = new javax.swing.JLabel();
+        footerYear = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        fileExit = new javax.swing.JMenuItem();
+        createMenu = new javax.swing.JMenu();
+        addSoilType = new javax.swing.JMenuItem();
+        addCropType = new javax.swing.JMenuItem();
+        addEmitterType = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
+        printMenu = new javax.swing.JMenu();
+        printDripSysInfo = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("User Dashboard");
@@ -50,181 +61,183 @@ public class Dashboard extends javax.swing.JFrame {
         MainSystemLabel.setForeground(new java.awt.Color(255, 255, 255));
         MainSystemLabel.setText("DripIrri Manager");
 
+        configureDripTab.setBackground(new java.awt.Color(0, 51, 51));
+        configureDripTab.setForeground(new java.awt.Color(255, 255, 255));
+        configureDripTab.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        configureDripTab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        configureDripTab.setName(""); // NOI18N
+        configureDripTab.setVerifyInputWhenFocusTarget(false);
+
+        javax.swing.GroupLayout welcomeTabLayout = new javax.swing.GroupLayout(welcomeTab);
+        welcomeTab.setLayout(welcomeTabLayout);
+        welcomeTabLayout.setHorizontalGroup(
+            welcomeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1185, Short.MAX_VALUE)
+        );
+        welcomeTabLayout.setVerticalGroup(
+            welcomeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 573, Short.MAX_VALUE)
+        );
+
+        configureDripTab.addTab("Welcome", welcomeTab);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
-
-        configureNewSystemPanel.setBackground(new java.awt.Color(255, 255, 255));
-        configureNewSystemPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        activePanel.setBackground(new java.awt.Color(0, 51, 51));
-
-        javax.swing.GroupLayout activePanelLayout = new javax.swing.GroupLayout(activePanel);
-        activePanel.setLayout(activePanelLayout);
-        activePanelLayout.setHorizontalGroup(
-            activePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        activePanelLayout.setVerticalGroup(
-            activePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        configureDripSystemLable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        configureDripSystemLable.setForeground(new java.awt.Color(0, 51, 51));
-        configureDripSystemLable.setText("Configure New Drip System");
-
-        javax.swing.GroupLayout configureNewSystemPanelLayout = new javax.swing.GroupLayout(configureNewSystemPanel);
-        configureNewSystemPanel.setLayout(configureNewSystemPanelLayout);
-        configureNewSystemPanelLayout.setHorizontalGroup(
-            configureNewSystemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(configureNewSystemPanelLayout.createSequentialGroup()
-                .addComponent(activePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(configureDripSystemLable)
-                .addGap(0, 22, Short.MAX_VALUE))
-        );
-        configureNewSystemPanelLayout.setVerticalGroup(
-            configureNewSystemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(activePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(configureNewSystemPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(configureDripSystemLable)
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-
-        updatePanel.setBackground(new java.awt.Color(255, 255, 255));
-        updatePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        activePanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout activePanel1Layout = new javax.swing.GroupLayout(activePanel1);
-        activePanel1.setLayout(activePanel1Layout);
-        activePanel1Layout.setHorizontalGroup(
-            activePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        activePanel1Layout.setVerticalGroup(
-            activePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        updateLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        updateLabel.setForeground(new java.awt.Color(0, 51, 51));
-        updateLabel.setText("Update");
-
-        javax.swing.GroupLayout updatePanelLayout = new javax.swing.GroupLayout(updatePanel);
-        updatePanel.setLayout(updatePanelLayout);
-        updatePanelLayout.setHorizontalGroup(
-            updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(updatePanelLayout.createSequentialGroup()
-                .addComponent(activePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(updateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        updatePanelLayout.setVerticalGroup(
-            updatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(activePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(updatePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(updateLabel)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        createPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        createPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        activePanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout activePanel2Layout = new javax.swing.GroupLayout(activePanel2);
-        activePanel2.setLayout(activePanel2Layout);
-        activePanel2Layout.setHorizontalGroup(
-            activePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        activePanel2Layout.setVerticalGroup(
-            activePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        CreateLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        CreateLabel1.setForeground(new java.awt.Color(0, 51, 51));
-        CreateLabel1.setText("Create");
-
-        javax.swing.GroupLayout createPanel1Layout = new javax.swing.GroupLayout(createPanel1);
-        createPanel1.setLayout(createPanel1Layout);
-        createPanel1Layout.setHorizontalGroup(
-            createPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(createPanel1Layout.createSequentialGroup()
-                .addComponent(activePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(CreateLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        createPanel1Layout.setVerticalGroup(
-            createPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(activePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(createPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(CreateLabel1)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(createPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(configureNewSystemPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(updatePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 1185, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(174, 174, 174)
-                .addComponent(configureNewSystemPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(createPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(updatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(339, Short.MAX_VALUE))
+            .addGap(0, 573, Short.MAX_VALUE)
         );
+
+        configureDripTab.addTab("Configure drip", jPanel1);
+
+        javax.swing.GroupLayout CcreateTabLayout = new javax.swing.GroupLayout(CcreateTab);
+        CcreateTab.setLayout(CcreateTabLayout);
+        CcreateTabLayout.setHorizontalGroup(
+            CcreateTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1185, Short.MAX_VALUE)
+        );
+        CcreateTabLayout.setVerticalGroup(
+            CcreateTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 573, Short.MAX_VALUE)
+        );
+
+        configureDripTab.addTab("Create", CcreateTab);
+
+        javax.swing.GroupLayout updateTabLayout = new javax.swing.GroupLayout(updateTab);
+        updateTab.setLayout(updateTabLayout);
+        updateTabLayout.setHorizontalGroup(
+            updateTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1185, Short.MAX_VALUE)
+        );
+        updateTabLayout.setVerticalGroup(
+            updateTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 573, Short.MAX_VALUE)
+        );
+
+        configureDripTab.addTab("Update", updateTab);
+
+        javax.swing.GroupLayout descriptionsTabLayout = new javax.swing.GroupLayout(descriptionsTab);
+        descriptionsTab.setLayout(descriptionsTabLayout);
+        descriptionsTabLayout.setHorizontalGroup(
+            descriptionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1185, Short.MAX_VALUE)
+        );
+        descriptionsTabLayout.setVerticalGroup(
+            descriptionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 573, Short.MAX_VALUE)
+        );
+
+        configureDripTab.addTab("Description", descriptionsTab);
+
+        javax.swing.GroupLayout usersTabLayout = new javax.swing.GroupLayout(usersTab);
+        usersTab.setLayout(usersTabLayout);
+        usersTabLayout.setHorizontalGroup(
+            usersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1185, Short.MAX_VALUE)
+        );
+        usersTabLayout.setVerticalGroup(
+            usersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 573, Short.MAX_VALUE)
+        );
+
+        configureDripTab.addTab("Users", usersTab);
+
+        footeCopyright.setText("copyright");
+
+        footerYear.setBackground(new java.awt.Color(0, 51, 51));
+        footerYear.setForeground(new java.awt.Color(255, 255, 255));
+        footerYear.setText("year");
+        footerYear.setBorder(null);
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(configureDripTab)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(MainSystemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(957, Short.MAX_VALUE))
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addGap(451, 451, 451)
+                                .addComponent(MainSystemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addGap(566, 566, 566)
+                                .addComponent(footeCopyright)
+                                .addGap(18, 18, 18)
+                                .addComponent(footerYear, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator1))
+                .addContainerGap())
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(MainSystemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(MainSystemLabel)
+                .addGap(2, 2, 2)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(configureDripTab, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(footerYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(footeCopyright))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jMenuBar1.setAutoscrolls(true);
+
+        jMenu1.setText("File");
+
+        fileExit.setText("Exit");
+        jMenu1.add(fileExit);
+
+        jMenuBar1.add(jMenu1);
+
+        createMenu.setText("Create");
+
+        addSoilType.setText("Add New Soil Type");
+        createMenu.add(addSoilType);
+
+        addCropType.setText("Add New Crop");
+        createMenu.add(addCropType);
+
+        addEmitterType.setText("Add New Emitter");
+        createMenu.add(addEmitterType);
+
+        jMenuBar1.add(createMenu);
+
+        editMenu.setText("Edit");
+        jMenuBar1.add(editMenu);
+
+        printMenu.setText("Print");
+
+        printDripSysInfo.setText("Print Drip System Information");
+        printMenu.add(printDripSysInfo);
+
+        jMenuBar1.add(printMenu);
+
+        helpMenu.setText("Help");
+        jMenuBar1.add(helpMenu);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -242,7 +255,7 @@ public class Dashboard extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -267,18 +280,29 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel CreateLabel1;
+    private javax.swing.JPanel CcreateTab;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JLabel MainSystemLabel;
-    private javax.swing.JPanel activePanel;
-    private javax.swing.JPanel activePanel1;
-    private javax.swing.JPanel activePanel2;
-    private javax.swing.JLabel configureDripSystemLable;
-    private javax.swing.JPanel configureNewSystemPanel;
-    private javax.swing.JPanel createPanel1;
+    private javax.swing.JMenuItem addCropType;
+    private javax.swing.JMenuItem addEmitterType;
+    private javax.swing.JMenuItem addSoilType;
+    private javax.swing.JTabbedPane configureDripTab;
+    private javax.swing.JMenu createMenu;
+    private javax.swing.JPanel descriptionsTab;
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenuItem fileExit;
+    private javax.swing.JLabel footeCopyright;
+    private javax.swing.JTextField footerYear;
+    private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel updateLabel;
-    private javax.swing.JPanel updatePanel;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JMenuItem printDripSysInfo;
+    private javax.swing.JMenu printMenu;
+    private javax.swing.JPanel updateTab;
+    private javax.swing.JPanel usersTab;
+    private javax.swing.JPanel welcomeTab;
     // End of variables declaration//GEN-END:variables
 
 }

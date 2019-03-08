@@ -155,7 +155,7 @@ public class LoginUi extends javax.swing.JFrame {
                     jTextField1.setText("");
                     jPasswordField1.setText("");
                     
-                    this.dispose();
+                    this.dispose(); //close the login UI
                     
                 }
                 else {
