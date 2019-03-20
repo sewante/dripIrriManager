@@ -1,0 +1,9 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}License
+${licensePrefix}This software is distributed under the license ${licensePrefix}
+${licensePrefix}Open to modification and redistribution${licensePrefix}
+<#if licenseLast??>
+${licenseLast}
+</#if>

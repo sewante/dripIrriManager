@@ -26,12 +26,74 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        soilType = new javax.swing.ButtonGroup();
+        waterSource = new javax.swing.ButtonGroup();
+        waterQuality = new javax.swing.ButtonGroup();
         MainPanel = new javax.swing.JPanel();
         MainSystemLabel = new javax.swing.JLabel();
-        configureDripTab = new javax.swing.JTabbedPane();
+        configureDripTabbedPanel = new javax.swing.JTabbedPane();
         welcomeTab = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        CcreateTab = new javax.swing.JPanel();
+        configureDripTab = new javax.swing.JPanel();
+        siteInfoPanel = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
+        siteInfoForm = new javax.swing.JPanel();
+        SiteInfoFormHeader = new javax.swing.JPanel();
+        siteInfoLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        siteNameLabel = new javax.swing.JLabel();
+        siteName = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
+        siteAddressLabel = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        siteAddress = new javax.swing.JTextField();
+        siteCityLabel = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
+        siteCity = new javax.swing.JTextField();
+        sitePersonLabel = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        siteOwner = new javax.swing.JTextField();
+        siteContactLabel = new javax.swing.JLabel();
+        jSeparator10 = new javax.swing.JSeparator();
+        siteContact = new javax.swing.JTextField();
+        sitesizeLabel = new javax.swing.JLabel();
+        siteLengthLabel = new javax.swing.JLabel();
+        siteWidthLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        soilForm = new javax.swing.JPanel();
+        soilFormHeader = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        soilTypeLabel = new javax.swing.JLabel();
+        coarseSoilButton = new javax.swing.JRadioButton();
+        mediumSoilButton = new javax.swing.JRadioButton();
+        fineSoilButton = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
+        waterSourceForm = new javax.swing.JPanel();
+        waterSourceFormHeader = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        waterQualityFair = new javax.swing.JRadioButton();
+        jSeparator11 = new javax.swing.JSeparator();
+        waterSourceSecction = new javax.swing.JLabel();
+        waterQualitySection = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        waterQualityPoor = new javax.swing.JRadioButton();
+        waterQualityGood = new javax.swing.JRadioButton();
+        siteNextBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        addTab = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        addingPanel = new javax.swing.JPanel();
+        addSoilBtn = new javax.swing.JButton();
+        jaddCropBtn = new javax.swing.JButton();
+        addEmitterBtn = new javax.swing.JButton();
+        addPipeBtn = new javax.swing.JButton();
         updateTab = new javax.swing.JPanel();
         descriptionsTab = new javax.swing.JPanel();
         usersTab = new javax.swing.JPanel();
@@ -53,6 +115,8 @@ public class Dashboard extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("User Dashboard");
         setBackground(new java.awt.Color(0, 51, 51));
+        setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        setForeground(new java.awt.Color(0, 0, 0));
 
         MainPanel.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -61,92 +125,724 @@ public class Dashboard extends javax.swing.JFrame {
         MainSystemLabel.setForeground(new java.awt.Color(255, 255, 255));
         MainSystemLabel.setText("DripIrri Manager");
 
-        configureDripTab.setBackground(new java.awt.Color(0, 51, 51));
-        configureDripTab.setForeground(new java.awt.Color(255, 255, 255));
-        configureDripTab.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        configureDripTab.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        configureDripTab.setName(""); // NOI18N
-        configureDripTab.setVerifyInputWhenFocusTarget(false);
+        configureDripTabbedPanel.setBackground(new java.awt.Color(0, 51, 51));
+        configureDripTabbedPanel.setForeground(new java.awt.Color(0, 0, 0));
+        configureDripTabbedPanel.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        configureDripTabbedPanel.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        configureDripTabbedPanel.setName(""); // NOI18N
+        configureDripTabbedPanel.setVerifyInputWhenFocusTarget(false);
+
+        welcomeTab.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout welcomeTabLayout = new javax.swing.GroupLayout(welcomeTab);
         welcomeTab.setLayout(welcomeTabLayout);
         welcomeTabLayout.setHorizontalGroup(
             welcomeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1185, Short.MAX_VALUE)
+            .addGap(0, 1220, Short.MAX_VALUE)
         );
         welcomeTabLayout.setVerticalGroup(
             welcomeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 617, Short.MAX_VALUE)
         );
 
-        configureDripTab.addTab("Welcome", welcomeTab);
+        configureDripTabbedPanel.addTab("Welcome", welcomeTab);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        configureDripTab.setBackground(new java.awt.Color(255, 255, 255));
+        configureDripTab.setForeground(new java.awt.Color(0, 0, 0));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1185, Short.MAX_VALUE)
+        siteInfoPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jSeparator2.setBackground(new java.awt.Color(0, 51, 51));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        siteInfoForm.setBackground(new java.awt.Color(255, 255, 255));
+        siteInfoForm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51), 2));
+
+        SiteInfoFormHeader.setBackground(new java.awt.Color(0, 51, 51));
+
+        siteInfoLabel.setBackground(new java.awt.Color(0, 51, 51));
+        siteInfoLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        siteInfoLabel.setForeground(new java.awt.Color(255, 255, 255));
+        siteInfoLabel.setText("Site Information");
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("1");
+
+        javax.swing.GroupLayout SiteInfoFormHeaderLayout = new javax.swing.GroupLayout(SiteInfoFormHeader);
+        SiteInfoFormHeader.setLayout(SiteInfoFormHeaderLayout);
+        SiteInfoFormHeaderLayout.setHorizontalGroup(
+            SiteInfoFormHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SiteInfoFormHeaderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(siteInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+        SiteInfoFormHeaderLayout.setVerticalGroup(
+            SiteInfoFormHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SiteInfoFormHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(siteInfoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3))
         );
 
-        configureDripTab.addTab("Configure drip", jPanel1);
+        siteNameLabel.setBackground(new java.awt.Color(255, 255, 255));
+        siteNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        siteNameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        siteNameLabel.setText("Site Name");
 
-        javax.swing.GroupLayout CcreateTabLayout = new javax.swing.GroupLayout(CcreateTab);
-        CcreateTab.setLayout(CcreateTabLayout);
-        CcreateTabLayout.setHorizontalGroup(
-            CcreateTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1185, Short.MAX_VALUE)
+        siteName.setBackground(new java.awt.Color(255, 255, 255));
+        siteName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        siteName.setForeground(new java.awt.Color(0, 51, 51));
+        siteName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        siteName.setBorder(null);
+
+        jSeparator4.setBackground(new java.awt.Color(0, 51, 51));
+
+        siteAddressLabel.setBackground(new java.awt.Color(255, 255, 255));
+        siteAddressLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        siteAddressLabel.setForeground(new java.awt.Color(0, 0, 0));
+        siteAddressLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        siteAddressLabel.setText("Address");
+
+        siteAddress.setBackground(new java.awt.Color(255, 255, 255));
+        siteAddress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        siteAddress.setForeground(new java.awt.Color(0, 51, 51));
+        siteAddress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        siteAddress.setBorder(null);
+
+        siteCityLabel.setBackground(new java.awt.Color(255, 255, 255));
+        siteCityLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        siteCityLabel.setForeground(new java.awt.Color(0, 0, 0));
+        siteCityLabel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        siteCityLabel.setText("City");
+        siteCityLabel.setBorder(null);
+        siteCityLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siteCityLabelActionPerformed(evt);
+            }
+        });
+
+        jSeparator5.setForeground(new java.awt.Color(0, 51, 51));
+
+        siteCity.setBackground(new java.awt.Color(255, 255, 255));
+        siteCity.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        siteCity.setForeground(new java.awt.Color(0, 51, 51));
+        siteCity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        siteCity.setBorder(null);
+
+        sitePersonLabel.setBackground(new java.awt.Color(255, 255, 255));
+        sitePersonLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        sitePersonLabel.setForeground(new java.awt.Color(0, 0, 0));
+        sitePersonLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sitePersonLabel.setText("Owner");
+
+        siteOwner.setBackground(new java.awt.Color(255, 255, 255));
+        siteOwner.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        siteOwner.setForeground(new java.awt.Color(0, 51, 51));
+        siteOwner.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        siteOwner.setBorder(null);
+
+        siteContactLabel.setBackground(new java.awt.Color(255, 255, 255));
+        siteContactLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        siteContactLabel.setForeground(new java.awt.Color(0, 0, 0));
+        siteContactLabel.setText("Contact");
+
+        siteContact.setBackground(new java.awt.Color(255, 255, 255));
+        siteContact.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        siteContact.setForeground(new java.awt.Color(0, 51, 51));
+        siteContact.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        siteContact.setBorder(null);
+
+        sitesizeLabel.setBackground(new java.awt.Color(255, 255, 255));
+        sitesizeLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        sitesizeLabel.setForeground(new java.awt.Color(0, 0, 0));
+        sitesizeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sitesizeLabel.setText("Site Size");
+
+        siteLengthLabel.setBackground(new java.awt.Color(255, 255, 255));
+        siteLengthLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        siteLengthLabel.setForeground(new java.awt.Color(0, 0, 0));
+        siteLengthLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        siteLengthLabel.setText("Length");
+
+        siteWidthLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        siteWidthLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        siteWidthLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        siteWidthLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        siteWidthLabel1.setText("Width");
+
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout siteInfoFormLayout = new javax.swing.GroupLayout(siteInfoForm);
+        siteInfoForm.setLayout(siteInfoFormLayout);
+        siteInfoFormLayout.setHorizontalGroup(
+            siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
+                        .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(siteAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(siteNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(siteCityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sitePersonLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(siteInfoFormLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(siteContactLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(siteLengthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(siteInfoFormLayout.createSequentialGroup()
+                                        .addComponent(siteWidthLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(5, 5, 5)))))
+                        .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(siteInfoFormLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                                    .addComponent(siteName)
+                                    .addComponent(siteCity)
+                                    .addComponent(siteOwner)
+                                    .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(siteAddress, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jSeparator8)
+                                    .addComponent(siteContact, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSeparator10)
+                                    .addComponent(jSeparator3)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1)
+                                    .addComponent(jTextField2))))
+                        .addGap(117, 117, 117))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(sitesizeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(137, 137, 137))))
+            .addGroup(siteInfoFormLayout.createSequentialGroup()
+                .addComponent(SiteInfoFormHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(62, 62, 62))
         );
-        CcreateTabLayout.setVerticalGroup(
-            CcreateTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+        siteInfoFormLayout.setVerticalGroup(
+            siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(siteInfoFormLayout.createSequentialGroup()
+                .addComponent(SiteInfoFormHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(siteName, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(siteNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(siteAddressLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(siteAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(siteCityLabel)
+                    .addComponent(siteCity, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sitePersonLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(siteOwner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(siteContactLabel)
+                    .addComponent(siteContact, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(sitesizeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(siteLengthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField1))
+                .addGap(18, 18, 18)
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(siteWidthLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField2))
+                .addGap(48, 48, 48))
         );
 
-        configureDripTab.addTab("Create", CcreateTab);
+        soilForm.setBackground(new java.awt.Color(255, 255, 255));
+        soilForm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51), 2));
+
+        soilFormHeader.setBackground(new java.awt.Color(0, 51, 51));
+
+        jLabel5.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("2");
+
+        soilTypeLabel.setBackground(new java.awt.Color(0, 51, 51));
+        soilTypeLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        soilTypeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        soilTypeLabel.setText("Soil Type");
+
+        javax.swing.GroupLayout soilFormHeaderLayout = new javax.swing.GroupLayout(soilFormHeader);
+        soilFormHeader.setLayout(soilFormHeaderLayout);
+        soilFormHeaderLayout.setHorizontalGroup(
+            soilFormHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, soilFormHeaderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(soilTypeLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        soilFormHeaderLayout.setVerticalGroup(
+            soilFormHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(soilFormHeaderLayout.createSequentialGroup()
+                .addGroup(soilFormHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(soilTypeLabel))
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
+
+        coarseSoilButton.setBackground(new java.awt.Color(255, 255, 255));
+        soilType.add(coarseSoilButton);
+        coarseSoilButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        coarseSoilButton.setForeground(new java.awt.Color(0, 0, 0));
+        coarseSoilButton.setText("Coarse Soil");
+
+        mediumSoilButton.setBackground(new java.awt.Color(255, 255, 255));
+        soilType.add(mediumSoilButton);
+        mediumSoilButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mediumSoilButton.setForeground(new java.awt.Color(0, 0, 0));
+        mediumSoilButton.setText("Medium Soil");
+
+        fineSoilButton.setBackground(new java.awt.Color(255, 255, 255));
+        soilType.add(fineSoilButton);
+        fineSoilButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        fineSoilButton.setForeground(new java.awt.Color(0, 0, 0));
+        fineSoilButton.setText("Fine Soil");
+        fineSoilButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fineSoilButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Choose the kind of soil identified in your field");
+
+        javax.swing.GroupLayout soilFormLayout = new javax.swing.GroupLayout(soilForm);
+        soilForm.setLayout(soilFormLayout);
+        soilFormLayout.setHorizontalGroup(
+            soilFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(soilFormHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(soilFormLayout.createSequentialGroup()
+                .addGroup(soilFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(soilFormLayout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addGroup(soilFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(coarseSoilButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(mediumSoilButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fineSoilButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(106, 106, 106))
+                    .addGroup(soilFormLayout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(253, 253, 253))
+        );
+        soilFormLayout.setVerticalGroup(
+            soilFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, soilFormLayout.createSequentialGroup()
+                .addComponent(soilFormHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(coarseSoilButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mediumSoilButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fineSoilButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(61, 61, 61))
+        );
+
+        waterSourceForm.setBackground(new java.awt.Color(255, 255, 255));
+        waterSourceForm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51), 2));
+
+        waterSourceFormHeader.setBackground(new java.awt.Color(0, 51, 51));
+        waterSourceFormHeader.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("3");
+
+        jLabel8.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Water Source");
+
+        javax.swing.GroupLayout waterSourceFormHeaderLayout = new javax.swing.GroupLayout(waterSourceFormHeader);
+        waterSourceFormHeader.setLayout(waterSourceFormHeaderLayout);
+        waterSourceFormHeaderLayout.setHorizontalGroup(
+            waterSourceFormHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, waterSourceFormHeaderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addContainerGap())
+        );
+        waterSourceFormHeaderLayout.setVerticalGroup(
+            waterSourceFormHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(waterSourceFormHeaderLayout.createSequentialGroup()
+                .addGroup(waterSourceFormHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addGap(0, 5, Short.MAX_VALUE))
+        );
+
+        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
+        waterSource.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButton1.setText("City Water");
+
+        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
+        waterSource.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButton2.setText("Well");
+
+        waterQualityFair.setBackground(new java.awt.Color(255, 255, 255));
+        waterQuality.add(waterQualityFair);
+        waterQualityFair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        waterQualityFair.setForeground(new java.awt.Color(0, 0, 0));
+        waterQualityFair.setText("Fair");
+        waterQualityFair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                waterQualityFairActionPerformed(evt);
+            }
+        });
+
+        jSeparator11.setBackground(new java.awt.Color(0, 51, 51));
+        jSeparator11.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        waterSourceSecction.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        waterSourceSecction.setForeground(new java.awt.Color(0, 0, 0));
+        waterSourceSecction.setText("Source");
+
+        waterQualitySection.setBackground(new java.awt.Color(255, 255, 255));
+        waterQualitySection.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        waterQualitySection.setForeground(new java.awt.Color(51, 51, 51));
+        waterQualitySection.setText("Water Quality");
+
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
+        waterSource.add(jRadioButton5);
+        jRadioButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jRadioButton5.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButton5.setText("Surface Water");
+
+        waterQualityPoor.setBackground(new java.awt.Color(255, 255, 255));
+        waterQuality.add(waterQualityPoor);
+        waterQualityPoor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        waterQualityPoor.setForeground(new java.awt.Color(0, 0, 0));
+        waterQualityPoor.setText("Poor");
+        waterQualityPoor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                waterQualityPoorActionPerformed(evt);
+            }
+        });
+
+        waterQualityGood.setBackground(new java.awt.Color(255, 255, 255));
+        waterQuality.add(waterQualityGood);
+        waterQualityGood.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        waterQualityGood.setForeground(new java.awt.Color(0, 0, 0));
+        waterQualityGood.setText("Good");
+        waterQualityGood.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                waterQualityGoodActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout waterSourceFormLayout = new javax.swing.GroupLayout(waterSourceForm);
+        waterSourceForm.setLayout(waterSourceFormLayout);
+        waterSourceFormLayout.setHorizontalGroup(
+            waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(waterSourceFormHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(waterSourceFormLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(waterSourceSecction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRadioButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(waterSourceFormLayout.createSequentialGroup()
+                        .addGroup(waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(waterQualityGood, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, waterSourceFormLayout.createSequentialGroup()
+                                .addGroup(waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(waterQualityFair, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                                    .addComponent(waterQualityPoor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(4, 4, 4)))
+                        .addContainerGap(178, Short.MAX_VALUE))
+                    .addGroup(waterSourceFormLayout.createSequentialGroup()
+                        .addComponent(waterQualitySection, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                        .addGap(148, 148, 148))))
+        );
+        waterSourceFormLayout.setVerticalGroup(
+            waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, waterSourceFormLayout.createSequentialGroup()
+                .addComponent(waterSourceFormHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(waterSourceSecction)
+                    .addComponent(waterQualitySection, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addGroup(waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(waterSourceFormLayout.createSequentialGroup()
+                        .addGroup(waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(waterSourceFormLayout.createSequentialGroup()
+                                .addComponent(jRadioButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jRadioButton2)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton5))
+                            .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(18, Short.MAX_VALUE))
+                    .addGroup(waterSourceFormLayout.createSequentialGroup()
+                        .addComponent(waterQualityGood, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(waterQualityFair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(waterQualityPoor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(27, 27, 27))))
+        );
+
+        siteNextBtn.setBackground(new java.awt.Color(0, 51, 51));
+        siteNextBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        siteNextBtn.setForeground(new java.awt.Color(255, 255, 255));
+        siteNextBtn.setText("Next");
+        siteNextBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
+        siteNextBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siteNextBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout siteInfoPanelLayout = new javax.swing.GroupLayout(siteInfoPanel);
+        siteInfoPanel.setLayout(siteInfoPanelLayout);
+        siteInfoPanelLayout.setHorizontalGroup(
+            siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(siteInfoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(siteInfoForm, javax.swing.GroupLayout.PREFERRED_SIZE, 446, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(siteInfoPanelLayout.createSequentialGroup()
+                        .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(soilForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(waterSourceForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(siteNextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
+        );
+        siteInfoPanelLayout.setVerticalGroup(
+            siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(siteInfoPanelLayout.createSequentialGroup()
+                        .addComponent(soilForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(waterSourceForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(siteInfoForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(siteNextBtn)
+                .addContainerGap())
+        );
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Fill in the necessary information");
+
+        javax.swing.GroupLayout configureDripTabLayout = new javax.swing.GroupLayout(configureDripTab);
+        configureDripTab.setLayout(configureDripTabLayout);
+        configureDripTabLayout.setHorizontalGroup(
+            configureDripTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configureDripTabLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(configureDripTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(siteInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(configureDripTabLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        configureDripTabLayout.setVerticalGroup(
+            configureDripTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configureDripTabLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(siteInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        configureDripTabbedPanel.addTab("Configure drip", configureDripTab);
+
+        addTab.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Choose the addition to make");
+
+        addingPanel.setBackground(new java.awt.Color(255, 255, 255));
+        addingPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
+        addingPanel.setForeground(new java.awt.Color(0, 0, 0));
+
+        addSoilBtn.setBackground(new java.awt.Color(0, 51, 51));
+        addSoilBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addSoilBtn.setText("Add New Soil Type");
+        addSoilBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSoilBtnActionPerformed(evt);
+            }
+        });
+
+        jaddCropBtn.setBackground(new java.awt.Color(0, 51, 51));
+        jaddCropBtn.setForeground(new java.awt.Color(255, 255, 255));
+        jaddCropBtn.setText("Add New Crop");
+
+        addEmitterBtn.setBackground(new java.awt.Color(0, 51, 51));
+        addEmitterBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addEmitterBtn.setText("Add New Emitter");
+
+        addPipeBtn.setBackground(new java.awt.Color(0, 51, 51));
+        addPipeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addPipeBtn.setText("Add New Pipe");
+
+        javax.swing.GroupLayout addingPanelLayout = new javax.swing.GroupLayout(addingPanel);
+        addingPanel.setLayout(addingPanelLayout);
+        addingPanelLayout.setHorizontalGroup(
+            addingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addingPanelLayout.createSequentialGroup()
+                .addGap(396, 396, 396)
+                .addGroup(addingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addSoilBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .addComponent(jaddCropBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addEmitterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addPipeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(507, Short.MAX_VALUE))
+        );
+        addingPanelLayout.setVerticalGroup(
+            addingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addingPanelLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(addSoilBtn)
+                .addGap(18, 18, 18)
+                .addComponent(jaddCropBtn)
+                .addGap(18, 18, 18)
+                .addComponent(addEmitterBtn)
+                .addGap(18, 18, 18)
+                .addComponent(addPipeBtn)
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout addTabLayout = new javax.swing.GroupLayout(addTab);
+        addTab.setLayout(addTabLayout);
+        addTabLayout.setHorizontalGroup(
+            addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addTabLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addTabLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                        .addGap(805, 805, 805))
+                    .addComponent(addingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
+        );
+        addTabLayout.setVerticalGroup(
+            addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addTabLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(122, 122, 122))
+        );
+
+        configureDripTabbedPanel.addTab("Add", addTab);
+
+        updateTab.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout updateTabLayout = new javax.swing.GroupLayout(updateTab);
         updateTab.setLayout(updateTabLayout);
         updateTabLayout.setHorizontalGroup(
             updateTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1185, Short.MAX_VALUE)
+            .addGap(0, 1220, Short.MAX_VALUE)
         );
         updateTabLayout.setVerticalGroup(
             updateTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 617, Short.MAX_VALUE)
         );
 
-        configureDripTab.addTab("Update", updateTab);
+        configureDripTabbedPanel.addTab("Update", updateTab);
+
+        descriptionsTab.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout descriptionsTabLayout = new javax.swing.GroupLayout(descriptionsTab);
         descriptionsTab.setLayout(descriptionsTabLayout);
         descriptionsTabLayout.setHorizontalGroup(
             descriptionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1185, Short.MAX_VALUE)
+            .addGap(0, 1220, Short.MAX_VALUE)
         );
         descriptionsTabLayout.setVerticalGroup(
             descriptionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 617, Short.MAX_VALUE)
         );
 
-        configureDripTab.addTab("Description", descriptionsTab);
+        configureDripTabbedPanel.addTab("Description", descriptionsTab);
+
+        usersTab.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout usersTabLayout = new javax.swing.GroupLayout(usersTab);
         usersTab.setLayout(usersTabLayout);
         usersTabLayout.setHorizontalGroup(
             usersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1185, Short.MAX_VALUE)
+            .addGap(0, 1220, Short.MAX_VALUE)
         );
         usersTabLayout.setVerticalGroup(
             usersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 617, Short.MAX_VALUE)
         );
 
-        configureDripTab.addTab("Users", usersTab);
+        configureDripTabbedPanel.addTab("Users", usersTab);
 
         footeCopyright.setText("copyright");
 
@@ -155,41 +851,41 @@ public class Dashboard extends javax.swing.JFrame {
         footerYear.setText("year");
         footerYear.setBorder(null);
 
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(configureDripTab)
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(MainPanelLayout.createSequentialGroup()
-                                .addGap(451, 451, 451)
-                                .addComponent(MainSystemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(MainPanelLayout.createSequentialGroup()
-                                .addGap(566, 566, 566)
-                                .addComponent(footeCopyright)
-                                .addGap(18, 18, 18)
-                                .addComponent(footerYear, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(configureDripTabbedPanel, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
+                .addGap(614, 614, 614)
+                .addComponent(MainSystemLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(510, 510, 510))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainPanelLayout.createSequentialGroup()
+                .addGap(662, 662, 662)
+                .addComponent(footeCopyright)
+                .addGap(18, 18, 18)
+                .addComponent(footerYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(MainSystemLabel)
-                .addGap(2, 2, 2)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MainSystemLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(configureDripTab, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(configureDripTabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(footerYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(footeCopyright))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(footeCopyright, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(footerYear))
+                .addGap(23, 23, 23))
         );
 
         jMenuBar1.setAutoscrolls(true);
@@ -233,16 +929,52 @@ public class Dashboard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addSoilBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSoilBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addSoilBtnActionPerformed
+
+    private void siteCityLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siteCityLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_siteCityLabelActionPerformed
+
+    private void siteNextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siteNextBtnActionPerformed
+        // TODO add your handling code here:
+        
+        //confirm all the data has been entered
+        //get all the data from the forms
+        //save the data into an object:Object
+        //save the object as xml
+        //load the next interface to get data about plant water requirement
+    }//GEN-LAST:event_siteNextBtnActionPerformed
+
+    private void waterQualityFairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waterQualityFairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_waterQualityFairActionPerformed
+
+    private void waterQualityPoorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waterQualityPoorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_waterQualityPoorActionPerformed
+
+    private void waterQualityGoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waterQualityGoodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_waterQualityGoodActionPerformed
+
+    private void fineSoilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fineSoilButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fineSoilButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,28 +1012,90 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel CcreateTab;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JLabel MainSystemLabel;
+    private javax.swing.JPanel SiteInfoFormHeader;
     private javax.swing.JMenuItem addCropType;
+    private javax.swing.JButton addEmitterBtn;
     private javax.swing.JMenuItem addEmitterType;
+    private javax.swing.JButton addPipeBtn;
+    private javax.swing.JButton addSoilBtn;
     private javax.swing.JMenuItem addSoilType;
-    private javax.swing.JTabbedPane configureDripTab;
+    private javax.swing.JPanel addTab;
+    private javax.swing.JPanel addingPanel;
+    private javax.swing.JRadioButton coarseSoilButton;
+    private javax.swing.JPanel configureDripTab;
+    private javax.swing.JTabbedPane configureDripTabbedPanel;
     private javax.swing.JMenu createMenu;
     private javax.swing.JPanel descriptionsTab;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem fileExit;
+    private javax.swing.JRadioButton fineSoilButton;
     private javax.swing.JLabel footeCopyright;
     private javax.swing.JTextField footerYear;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton jaddCropBtn;
+    private javax.swing.JRadioButton mediumSoilButton;
     private javax.swing.JMenuItem printDripSysInfo;
     private javax.swing.JMenu printMenu;
+    private javax.swing.JTextField siteAddress;
+    private javax.swing.JLabel siteAddressLabel;
+    private javax.swing.JTextField siteCity;
+    private javax.swing.JTextField siteCityLabel;
+    private javax.swing.JTextField siteContact;
+    private javax.swing.JLabel siteContactLabel;
+    private javax.swing.JPanel siteInfoForm;
+    private javax.swing.JLabel siteInfoLabel;
+    private javax.swing.JPanel siteInfoPanel;
+    private javax.swing.JLabel siteLengthLabel;
+    private javax.swing.JTextField siteName;
+    private javax.swing.JLabel siteNameLabel;
+    private javax.swing.JButton siteNextBtn;
+    private javax.swing.JTextField siteOwner;
+    private javax.swing.JLabel sitePersonLabel;
+    private javax.swing.JLabel siteWidthLabel1;
+    private javax.swing.JLabel sitesizeLabel;
+    private javax.swing.JPanel soilForm;
+    private javax.swing.JPanel soilFormHeader;
+    private javax.swing.ButtonGroup soilType;
+    private javax.swing.JLabel soilTypeLabel;
     private javax.swing.JPanel updateTab;
     private javax.swing.JPanel usersTab;
+    private javax.swing.ButtonGroup waterQuality;
+    private javax.swing.JRadioButton waterQualityFair;
+    private javax.swing.JRadioButton waterQualityGood;
+    private javax.swing.JRadioButton waterQualityPoor;
+    private javax.swing.JLabel waterQualitySection;
+    private javax.swing.ButtonGroup waterSource;
+    private javax.swing.JPanel waterSourceForm;
+    private javax.swing.JPanel waterSourceFormHeader;
+    private javax.swing.JLabel waterSourceSecction;
     private javax.swing.JPanel welcomeTab;
     // End of variables declaration//GEN-END:variables
 
