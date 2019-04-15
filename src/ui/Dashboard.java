@@ -6,6 +6,10 @@
 
 package ui;
 
+import java.awt.Color;
+import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+
 /**
  *
  * @author rober
@@ -14,7 +18,10 @@ public class Dashboard extends javax.swing.JFrame {
 
     /** Creates new form Dashboard */
     public Dashboard() {
+        
         initComponents();
+        
+        
     }
 
     /** This method is called from within the constructor to
@@ -61,8 +68,9 @@ public class Dashboard extends javax.swing.JFrame {
         sitesizeLabel = new javax.swing.JLabel();
         siteLengthLabel = new javax.swing.JLabel();
         siteWidthLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        siteLength = new javax.swing.JTextField();
+        siteWidth = new javax.swing.JTextField();
+        unknownSiteSize = new javax.swing.JCheckBox();
         soilForm = new javax.swing.JPanel();
         soilFormHeader = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -88,12 +96,62 @@ public class Dashboard extends javax.swing.JFrame {
         siteNextBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         addTab = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        addingPanel = new javax.swing.JPanel();
-        addSoilBtn = new javax.swing.JButton();
-        jaddCropBtn = new javax.swing.JButton();
-        addEmitterBtn = new javax.swing.JButton();
-        addPipeBtn = new javax.swing.JButton();
+        addTabbedPanel = new javax.swing.JTabbedPane();
+        addCropPanel = new javax.swing.JPanel();
+        addCropForm = new javax.swing.JPanel();
+        cropHedingPanel = new javax.swing.JPanel();
+        addCropHeading = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        saveCropForm = new javax.swing.JButton();
+        cropCoefficient = new javax.swing.JTextField();
+        cropName = new javax.swing.JTextField();
+        cropCategory = new javax.swing.JComboBox<>();
+        cropPlantingScheme = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        rootDepthHigh = new javax.swing.JTextField();
+        cropSpacing = new javax.swing.JTextField();
+        cropRowSpacing = new javax.swing.JTextField();
+        rootDepthLow = new javax.swing.JTextField();
+        createCropCategory = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        addCropTitle = new javax.swing.JLabel();
+        addPipePanel = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        addPipeForm = new javax.swing.JPanel();
+        pipeHedingPanel1 = new javax.swing.JPanel();
+        addPipeHeading = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        pipeNextBtn = new javax.swing.JButton();
+        cropCategory1 = new javax.swing.JComboBox<>();
+        addEmitterPanel = new javax.swing.JPanel();
+        addEmitterTitle = new javax.swing.JLabel();
+        addEmitterForm = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        addEmitterHeading = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        flowRate = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        inletType = new javax.swing.JTextField();
+        emitterModel = new javax.swing.JTextField();
+        filtration = new javax.swing.JTextField();
+        emitterCost = new javax.swing.JTextField();
+        emitterColour = new javax.swing.JComboBox<>();
+        saveBtn = new javax.swing.JButton();
+        saveBtn1 = new javax.swing.JButton();
+        emitterCategory = new javax.swing.JComboBox<>();
         updateTab = new javax.swing.JPanel();
         descriptionsTab = new javax.swing.JPanel();
         usersTab = new javax.swing.JPanel();
@@ -113,7 +171,7 @@ public class Dashboard extends javax.swing.JFrame {
         helpMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("User Dashboard");
+        setTitle("dripIrri Manager - User Dashboard");
         setBackground(new java.awt.Color(0, 51, 51));
         setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         setForeground(new java.awt.Color(0, 0, 0));
@@ -274,9 +332,18 @@ public class Dashboard extends javax.swing.JFrame {
         siteWidthLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         siteWidthLabel1.setText("Width");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        siteLength.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        siteWidth.setBackground(new java.awt.Color(255, 255, 255));
+
+        unknownSiteSize.setBackground(new java.awt.Color(255, 255, 255));
+        unknownSiteSize.setForeground(new java.awt.Color(0, 0, 0));
+        unknownSiteSize.setText("Don't know!");
+        unknownSiteSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unknownSiteSizeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout siteInfoFormLayout = new javax.swing.GroupLayout(siteInfoForm);
         siteInfoForm.setLayout(siteInfoFormLayout);
@@ -315,11 +382,14 @@ public class Dashboard extends javax.swing.JFrame {
                                     .addComponent(siteContact, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jSeparator10)
                                     .addComponent(jSeparator3)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
+                            .addGroup(siteInfoFormLayout.createSequentialGroup()
                                 .addGap(71, 71, 71)
                                 .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2))))
+                                    .addGroup(siteInfoFormLayout.createSequentialGroup()
+                                        .addComponent(unknownSiteSize)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(siteLength)
+                                    .addComponent(siteWidth))))
                         .addGap(117, 117, 117))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
                         .addGap(179, 179, 179)
@@ -368,12 +438,14 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(siteLengthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(siteLength))
                 .addGap(18, 18, 18)
                 .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(siteWidthLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
-                .addGap(48, 48, 48))
+                    .addComponent(siteWidth))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(unknownSiteSize)
+                .addGap(12, 12, 12))
         );
 
         soilForm.setBackground(new java.awt.Color(255, 255, 255));
@@ -642,7 +714,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         siteNextBtn.setBackground(new java.awt.Color(0, 51, 51));
         siteNextBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        siteNextBtn.setForeground(new java.awt.Color(255, 255, 255));
+        siteNextBtn.setForeground(new java.awt.Color(0, 0, 0));
         siteNextBtn.setText("Next");
         siteNextBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
         siteNextBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -718,83 +790,607 @@ public class Dashboard extends javax.swing.JFrame {
 
         addTab.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Choose the addition to make");
+        addTabbedPanel.setBackground(new java.awt.Color(255, 255, 255));
+        addTabbedPanel.setForeground(new java.awt.Color(0, 0, 0));
+        addTabbedPanel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        addingPanel.setBackground(new java.awt.Color(255, 255, 255));
-        addingPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
-        addingPanel.setForeground(new java.awt.Color(0, 0, 0));
+        addCropPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        addSoilBtn.setBackground(new java.awt.Color(0, 51, 51));
-        addSoilBtn.setForeground(new java.awt.Color(255, 255, 255));
-        addSoilBtn.setText("Add New Soil Type");
-        addSoilBtn.addActionListener(new java.awt.event.ActionListener() {
+        addCropForm.setBackground(new java.awt.Color(255, 255, 255));
+        addCropForm.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
+
+        cropHedingPanel.setBackground(new java.awt.Color(0, 51, 51));
+
+        addCropHeading.setBackground(new java.awt.Color(255, 255, 255));
+        addCropHeading.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addCropHeading.setForeground(new java.awt.Color(255, 255, 255));
+        addCropHeading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addCropHeading.setText("Enter the crop details and Click save to add a new crop into the system");
+
+        javax.swing.GroupLayout cropHedingPanelLayout = new javax.swing.GroupLayout(cropHedingPanel);
+        cropHedingPanel.setLayout(cropHedingPanelLayout);
+        cropHedingPanelLayout.setHorizontalGroup(
+            cropHedingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cropHedingPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(addCropHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(675, 675, 675))
+        );
+        cropHedingPanelLayout.setVerticalGroup(
+            cropHedingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cropHedingPanelLayout.createSequentialGroup()
+                .addComponent(addCropHeading, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Crop Name :");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Crop Category :");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Planting Scheme :");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Crop Coefficient :");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Row spacing :");
+
+        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel14.setText("If Crop Category Does not exist, Add the crop Category");
+
+        saveCropForm.setBackground(new java.awt.Color(0, 51, 51));
+        saveCropForm.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        saveCropForm.setForeground(new java.awt.Color(0, 0, 0));
+        saveCropForm.setText("Save");
+        saveCropForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addSoilBtnActionPerformed(evt);
+                saveCropFormActionPerformed(evt);
             }
         });
 
-        jaddCropBtn.setBackground(new java.awt.Color(0, 51, 51));
-        jaddCropBtn.setForeground(new java.awt.Color(255, 255, 255));
-        jaddCropBtn.setText("Add New Crop");
+        cropCoefficient.setBackground(new java.awt.Color(255, 255, 255));
+        cropCoefficient.setForeground(new java.awt.Color(0, 0, 0));
 
-        addEmitterBtn.setBackground(new java.awt.Color(0, 51, 51));
-        addEmitterBtn.setForeground(new java.awt.Color(255, 255, 255));
-        addEmitterBtn.setText("Add New Emitter");
+        cropName.setBackground(new java.awt.Color(255, 255, 255));
+        cropName.setForeground(new java.awt.Color(0, 0, 0));
 
-        addPipeBtn.setBackground(new java.awt.Color(0, 51, 51));
-        addPipeBtn.setForeground(new java.awt.Color(255, 255, 255));
-        addPipeBtn.setText("Add New Pipe");
+        cropCategory.setBackground(new java.awt.Color(255, 255, 255));
+        cropCategory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cropCategory.setForeground(new java.awt.Color(0, 0, 0));
+        cropCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        javax.swing.GroupLayout addingPanelLayout = new javax.swing.GroupLayout(addingPanel);
-        addingPanel.setLayout(addingPanelLayout);
-        addingPanelLayout.setHorizontalGroup(
-            addingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addingPanelLayout.createSequentialGroup()
-                .addGap(396, 396, 396)
-                .addGroup(addingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(addSoilBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(jaddCropBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addEmitterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addPipeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(507, Short.MAX_VALUE))
+        cropPlantingScheme.setBackground(new java.awt.Color(255, 255, 255));
+        cropPlantingScheme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cropPlantingScheme.setForeground(new java.awt.Color(0, 0, 0));
+        cropPlantingScheme.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Crop Spacing:");
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Crop Root Depth :");
+
+        rootDepthHigh.setBackground(new java.awt.Color(255, 255, 255));
+        rootDepthHigh.setForeground(new java.awt.Color(0, 0, 0));
+
+        cropSpacing.setBackground(new java.awt.Color(255, 255, 255));
+        cropSpacing.setForeground(new java.awt.Color(0, 0, 0));
+
+        cropRowSpacing.setBackground(new java.awt.Color(255, 255, 255));
+        cropRowSpacing.setForeground(new java.awt.Color(0, 0, 0));
+
+        rootDepthLow.setBackground(new java.awt.Color(255, 255, 255));
+        rootDepthLow.setForeground(new java.awt.Color(0, 0, 0));
+
+        createCropCategory.setBackground(new java.awt.Color(0, 51, 51));
+        createCropCategory.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        createCropCategory.setText("Create New Crop Category");
+        createCropCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createCropCategoryActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("to");
+
+        javax.swing.GroupLayout addCropFormLayout = new javax.swing.GroupLayout(addCropForm);
+        addCropForm.setLayout(addCropFormLayout);
+        addCropFormLayout.setHorizontalGroup(
+            addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(cropHedingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(addCropFormLayout.createSequentialGroup()
+                .addGap(122, 122, 122)
+                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel13))
+                .addGap(94, 94, 94)
+                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addCropFormLayout.createSequentialGroup()
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cropCoefficient, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cropCategory, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cropSpacing, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(addCropFormLayout.createSequentialGroup()
+                                .addComponent(rootDepthLow, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(rootDepthHigh)))
+                        .addGap(3, 3, 3))
+                    .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(saveCropForm, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cropRowSpacing, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cropName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cropPlantingScheme, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(232, 232, 232)
+                .addComponent(jLabel14)
+                .addGap(30, 30, 30))
+            .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addCropFormLayout.createSequentialGroup()
+                    .addContainerGap(963, Short.MAX_VALUE)
+                    .addComponent(createCropCategory)
+                    .addGap(20, 20, 20)))
         );
-        addingPanelLayout.setVerticalGroup(
-            addingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addingPanelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(addSoilBtn)
+        addCropFormLayout.setVerticalGroup(
+            addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addCropFormLayout.createSequentialGroup()
+                .addComponent(cropHedingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jaddCropBtn)
+                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cropName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addCropFormLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cropCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cropCoefficient, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cropSpacing, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rootDepthHigh, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rootDepthLow, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cropRowSpacing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addCropFormLayout.createSequentialGroup()
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addComponent(addEmitterBtn)
-                .addGap(18, 18, 18)
-                .addComponent(addPipeBtn)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cropPlantingScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saveCropForm)
+                .addContainerGap())
+            .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addCropFormLayout.createSequentialGroup()
+                    .addGap(131, 131, 131)
+                    .addComponent(createCropCategory)
+                    .addContainerGap(293, Short.MAX_VALUE)))
         );
+
+        addCropTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        addCropTitle.setForeground(new java.awt.Color(0, 0, 0));
+        addCropTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addCropTitle.setText("Add a new Crop");
+
+        javax.swing.GroupLayout addCropPanelLayout = new javax.swing.GroupLayout(addCropPanel);
+        addCropPanel.setLayout(addCropPanelLayout);
+        addCropPanelLayout.setHorizontalGroup(
+            addCropPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addCropPanelLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(addCropForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
+            .addGroup(addCropPanelLayout.createSequentialGroup()
+                .addGap(412, 412, 412)
+                .addComponent(addCropTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addCropPanelLayout.setVerticalGroup(
+            addCropPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addCropPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(addCropTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(addCropForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+        );
+
+        addTabbedPanel.addTab("Add New Crop", addCropPanel);
+
+        addPipePanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Add a New Pipe");
+
+        addPipeForm.setBackground(new java.awt.Color(255, 255, 255));
+        addPipeForm.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
+
+        pipeHedingPanel1.setBackground(new java.awt.Color(0, 51, 51));
+
+        addPipeHeading.setBackground(new java.awt.Color(255, 255, 255));
+        addPipeHeading.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addPipeHeading.setForeground(new java.awt.Color(255, 255, 255));
+        addPipeHeading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addPipeHeading.setText("Choose the Type of Pipe to add and Click Next");
+
+        javax.swing.GroupLayout pipeHedingPanel1Layout = new javax.swing.GroupLayout(pipeHedingPanel1);
+        pipeHedingPanel1.setLayout(pipeHedingPanel1Layout);
+        pipeHedingPanel1Layout.setHorizontalGroup(
+            pipeHedingPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pipeHedingPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addPipeHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(675, 675, 675))
+        );
+        pipeHedingPanel1Layout.setVerticalGroup(
+            pipeHedingPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pipeHedingPanel1Layout.createSequentialGroup()
+                .addComponent(addPipeHeading, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("Pipe Type");
+
+        jLabel24.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel24.setText("If Pipe Category Does not exist, Add the pipe Category");
+
+        pipeNextBtn.setBackground(new java.awt.Color(0, 51, 51));
+        pipeNextBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        pipeNextBtn.setForeground(new java.awt.Color(0, 0, 0));
+        pipeNextBtn.setText("Next");
+        pipeNextBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pipeNextBtnActionPerformed(evt);
+            }
+        });
+
+        cropCategory1.setBackground(new java.awt.Color(255, 255, 255));
+        cropCategory1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cropCategory1.setForeground(new java.awt.Color(0, 0, 0));
+        cropCategory1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout addPipeFormLayout = new javax.swing.GroupLayout(addPipeForm);
+        addPipeForm.setLayout(addPipeFormLayout);
+        addPipeFormLayout.setHorizontalGroup(
+            addPipeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pipeHedingPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(addPipeFormLayout.createSequentialGroup()
+                .addGroup(addPipeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(addPipeFormLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(pipeNextBtn))
+                    .addGroup(addPipeFormLayout.createSequentialGroup()
+                        .addGap(304, 304, 304)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addComponent(cropCategory1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(189, 189, 189))
+            .addGroup(addPipeFormLayout.createSequentialGroup()
+                .addGap(416, 416, 416)
+                .addComponent(jLabel24)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addPipeFormLayout.setVerticalGroup(
+            addPipeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addPipeFormLayout.createSequentialGroup()
+                .addComponent(pipeHedingPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
+                .addGroup(addPipeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cropCategory1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(pipeNextBtn)
+                .addContainerGap(171, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout addPipePanelLayout = new javax.swing.GroupLayout(addPipePanel);
+        addPipePanel.setLayout(addPipePanelLayout);
+        addPipePanelLayout.setHorizontalGroup(
+            addPipePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPipePanelLayout.createSequentialGroup()
+                .addContainerGap(545, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(407, 407, 407))
+            .addGroup(addPipePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addPipePanelLayout.createSequentialGroup()
+                    .addGap(23, 23, 23)
+                    .addComponent(addPipeForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(24, 24, 24)))
+        );
+        addPipePanelLayout.setVerticalGroup(
+            addPipePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addPipePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addContainerGap(517, Short.MAX_VALUE))
+            .addGroup(addPipePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addPipePanelLayout.createSequentialGroup()
+                    .addGap(39, 39, 39)
+                    .addComponent(addPipeForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(40, 40, 40)))
+        );
+
+        addTabbedPanel.addTab("Add New Pipe", addPipePanel);
+
+        addEmitterPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        addEmitterTitle.setBackground(new java.awt.Color(255, 255, 255));
+        addEmitterTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        addEmitterTitle.setForeground(new java.awt.Color(0, 0, 0));
+        addEmitterTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addEmitterTitle.setText("Add New Emitter");
+
+        addEmitterForm.setBackground(new java.awt.Color(255, 255, 255));
+        addEmitterForm.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
+
+        jPanel3.setBackground(new java.awt.Color(0, 51, 51));
+
+        addEmitterHeading.setBackground(new java.awt.Color(255, 255, 255));
+        addEmitterHeading.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addEmitterHeading.setForeground(new java.awt.Color(255, 255, 255));
+        addEmitterHeading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addEmitterHeading.setText("Enter the crop details and Click save to add a new crop into the system");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(addEmitterHeading)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(addEmitterHeading, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+        );
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setText("Category :");
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Flow rate :");
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("Inlet Type :");
+
+        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("Model Name :");
+
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Colour :");
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("Cost UGx :");
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("Filtration :");
+
+        flowRate.setBackground(new java.awt.Color(255, 255, 255));
+        flowRate.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        flowRate.setForeground(new java.awt.Color(0, 0, 0));
+
+        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        inletType.setBackground(new java.awt.Color(255, 255, 255));
+        inletType.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        inletType.setForeground(new java.awt.Color(0, 0, 0));
+
+        emitterModel.setBackground(new java.awt.Color(255, 255, 255));
+        emitterModel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        emitterModel.setForeground(new java.awt.Color(0, 0, 0));
+
+        filtration.setBackground(new java.awt.Color(255, 255, 255));
+        filtration.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        filtration.setForeground(new java.awt.Color(0, 0, 0));
+
+        emitterCost.setBackground(new java.awt.Color(255, 255, 255));
+        emitterCost.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        emitterCost.setForeground(new java.awt.Color(0, 0, 0));
+
+        emitterColour.setBackground(new java.awt.Color(255, 255, 255));
+        emitterColour.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        emitterColour.setForeground(new java.awt.Color(0, 0, 0));
+        emitterColour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        saveBtn.setBackground(new java.awt.Color(0, 51, 51));
+        saveBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        saveBtn.setForeground(new java.awt.Color(0, 0, 0));
+        saveBtn.setText("Clear");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
+
+        saveBtn1.setBackground(new java.awt.Color(0, 51, 51));
+        saveBtn1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        saveBtn1.setForeground(new java.awt.Color(0, 0, 0));
+        saveBtn1.setText("Save");
+
+        emitterCategory.setBackground(new java.awt.Color(255, 255, 255));
+        emitterCategory.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        emitterCategory.setForeground(new java.awt.Color(0, 0, 0));
+        emitterCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout addEmitterFormLayout = new javax.swing.GroupLayout(addEmitterForm);
+        addEmitterForm.setLayout(addEmitterFormLayout);
+        addEmitterFormLayout.setHorizontalGroup(
+            addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(addEmitterFormLayout.createSequentialGroup()
+                .addGap(225, 225, 225)
+                .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(50, 50, 50)
+                .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(addEmitterFormLayout.createSequentialGroup()
+                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emitterCost, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                    .addComponent(flowRate)
+                    .addComponent(inletType, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                    .addComponent(filtration, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                    .addComponent(emitterModel, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                    .addComponent(emitterColour, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emitterCategory, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        addEmitterFormLayout.setVerticalGroup(
+            addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addEmitterFormLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addEmitterFormLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addEmitterFormLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(emitterModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emitterCategory))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addEmitterFormLayout.createSequentialGroup()
+                        .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(inletType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(emitterColour))
+                        .addGap(18, 18, 18)
+                        .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(filtration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addEmitterFormLayout.createSequentialGroup()
+                        .addComponent(flowRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emitterCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBtn)
+                    .addComponent(saveBtn1))
+                .addGap(70, 70, 70))
+        );
+
+        javax.swing.GroupLayout addEmitterPanelLayout = new javax.swing.GroupLayout(addEmitterPanel);
+        addEmitterPanel.setLayout(addEmitterPanelLayout);
+        addEmitterPanelLayout.setHorizontalGroup(
+            addEmitterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addEmitterPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(addEmitterForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addEmitterPanelLayout.createSequentialGroup()
+                .addContainerGap(569, Short.MAX_VALUE)
+                .addComponent(addEmitterTitle)
+                .addGap(498, 498, 498))
+        );
+        addEmitterPanelLayout.setVerticalGroup(
+            addEmitterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addEmitterPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addEmitterTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addEmitterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        addTabbedPanel.addTab("Add New Emitter", addEmitterPanel);
 
         javax.swing.GroupLayout addTabLayout = new javax.swing.GroupLayout(addTab);
         addTab.setLayout(addTabLayout);
         addTabLayout.setHorizontalGroup(
             addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addTabLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addTabLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-                        .addGap(805, 805, 805))
-                    .addComponent(addingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(43, 43, 43))
+                .addContainerGap()
+                .addComponent(addTabbedPanel))
         );
         addTabLayout.setVerticalGroup(
             addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addTabLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(122, 122, 122))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTabLayout.createSequentialGroup()
+                .addGap(0, 39, Short.MAX_VALUE)
+                .addComponent(addTabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         configureDripTabbedPanel.addTab("Add", addTab);
@@ -903,6 +1499,15 @@ public class Dashboard extends javax.swing.JFrame {
         createMenu.add(addSoilType);
 
         addCropType.setText("Add New Crop");
+        addCropType.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
+            public void menuKeyPressed(javax.swing.event.MenuKeyEvent evt) {
+                addCropTypeMenuKeyPressed(evt);
+            }
+            public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
+            }
+            public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
+            }
+        });
         createMenu.add(addCropType);
 
         addEmitterType.setText("Add New Emitter");
@@ -938,13 +1543,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1396, 785));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void addSoilBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSoilBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addSoilBtnActionPerformed
 
     private void siteCityLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siteCityLabelActionPerformed
         // TODO add your handling code here:
@@ -957,7 +1558,8 @@ public class Dashboard extends javax.swing.JFrame {
         //get all the data from the forms
         //save the data into an object:Object
         //save the object as xml
-        //load the next interface to get data about plant water requirement
+        //load the next interface to get data about crop PET and pipe choice
+        new ConfigureDripSystem().setVisible(true);
     }//GEN-LAST:event_siteNextBtnActionPerformed
 
     private void waterQualityFairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waterQualityFairActionPerformed
@@ -975,6 +1577,44 @@ public class Dashboard extends javax.swing.JFrame {
     private void fineSoilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fineSoilButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fineSoilButtonActionPerformed
+
+    private void unknownSiteSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unknownSiteSizeActionPerformed
+        //when the user does not know about the actual size of the site then 
+        //assume that he has not entered anything in the length and width boxes
+        
+        //clear the fields then
+        siteWidth.setText("");
+        siteLength.setText("");
+    }//GEN-LAST:event_unknownSiteSizeActionPerformed
+
+    private void addCropTypeMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_addCropTypeMenuKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addCropTypeMenuKeyPressed
+
+    private void saveCropFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCropFormActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveCropFormActionPerformed
+
+    private void createCropCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCropCategoryActionPerformed
+        //open the Add crop Category Interface
+        new AddCropCategory().setVisible(true);
+    }//GEN-LAST:event_createCropCategoryActionPerformed
+
+    private void pipeNextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pipeNextBtnActionPerformed
+        //check for what is submitted from the comb box and load the appropriate interface
+        
+        //to be changed
+        new AddBlankTubing().setVisible(true);
+    }//GEN-LAST:event_pipeNextBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // Clear the fields in case someone doesn't want to save the file
+        emitterModel.setText("");
+        flowRate.setText("");
+        inletType.setText("");
+        filtration.setText("");
+        emitterCost.setText("");
+    }//GEN-LAST:event_saveBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1015,35 +1655,78 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel MainPanel;
     private javax.swing.JLabel MainSystemLabel;
     private javax.swing.JPanel SiteInfoFormHeader;
+    private javax.swing.JPanel addCropForm;
+    private javax.swing.JLabel addCropHeading;
+    private javax.swing.JPanel addCropPanel;
+    private javax.swing.JLabel addCropTitle;
     private javax.swing.JMenuItem addCropType;
-    private javax.swing.JButton addEmitterBtn;
+    private javax.swing.JPanel addEmitterForm;
+    private javax.swing.JLabel addEmitterHeading;
+    private javax.swing.JPanel addEmitterPanel;
+    private javax.swing.JLabel addEmitterTitle;
     private javax.swing.JMenuItem addEmitterType;
-    private javax.swing.JButton addPipeBtn;
-    private javax.swing.JButton addSoilBtn;
+    private javax.swing.JPanel addPipeForm;
+    private javax.swing.JLabel addPipeHeading;
+    private javax.swing.JPanel addPipePanel;
     private javax.swing.JMenuItem addSoilType;
     private javax.swing.JPanel addTab;
-    private javax.swing.JPanel addingPanel;
+    private javax.swing.JTabbedPane addTabbedPanel;
     private javax.swing.JRadioButton coarseSoilButton;
     private javax.swing.JPanel configureDripTab;
     private javax.swing.JTabbedPane configureDripTabbedPanel;
+    private javax.swing.JButton createCropCategory;
     private javax.swing.JMenu createMenu;
+    private javax.swing.JComboBox<String> cropCategory;
+    private javax.swing.JComboBox<String> cropCategory1;
+    private javax.swing.JTextField cropCoefficient;
+    private javax.swing.JPanel cropHedingPanel;
+    private javax.swing.JTextField cropName;
+    private javax.swing.JComboBox<String> cropPlantingScheme;
+    private javax.swing.JTextField cropRowSpacing;
+    private javax.swing.JTextField cropSpacing;
     private javax.swing.JPanel descriptionsTab;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JComboBox<String> emitterCategory;
+    private javax.swing.JComboBox<String> emitterColour;
+    private javax.swing.JTextField emitterCost;
+    private javax.swing.JTextField emitterModel;
     private javax.swing.JMenuItem fileExit;
+    private javax.swing.JTextField filtration;
     private javax.swing.JRadioButton fineSoilButton;
+    private javax.swing.JTextField flowRate;
     private javax.swing.JLabel footeCopyright;
     private javax.swing.JTextField footerYear;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JTextField inletType;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton5;
@@ -1058,12 +1741,17 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton jaddCropBtn;
     private javax.swing.JRadioButton mediumSoilButton;
+    private javax.swing.JPanel pipeHedingPanel1;
+    private javax.swing.JButton pipeNextBtn;
     private javax.swing.JMenuItem printDripSysInfo;
     private javax.swing.JMenu printMenu;
+    private javax.swing.JTextField rootDepthHigh;
+    private javax.swing.JTextField rootDepthLow;
+    private javax.swing.JButton saveBtn;
+    private javax.swing.JButton saveBtn1;
+    private javax.swing.JButton saveCropForm;
     private javax.swing.JTextField siteAddress;
     private javax.swing.JLabel siteAddressLabel;
     private javax.swing.JTextField siteCity;
@@ -1073,18 +1761,21 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel siteInfoForm;
     private javax.swing.JLabel siteInfoLabel;
     private javax.swing.JPanel siteInfoPanel;
+    private javax.swing.JTextField siteLength;
     private javax.swing.JLabel siteLengthLabel;
     private javax.swing.JTextField siteName;
     private javax.swing.JLabel siteNameLabel;
     private javax.swing.JButton siteNextBtn;
     private javax.swing.JTextField siteOwner;
     private javax.swing.JLabel sitePersonLabel;
+    private javax.swing.JTextField siteWidth;
     private javax.swing.JLabel siteWidthLabel1;
     private javax.swing.JLabel sitesizeLabel;
     private javax.swing.JPanel soilForm;
     private javax.swing.JPanel soilFormHeader;
     private javax.swing.ButtonGroup soilType;
     private javax.swing.JLabel soilTypeLabel;
+    private javax.swing.JCheckBox unknownSiteSize;
     private javax.swing.JPanel updateTab;
     private javax.swing.JPanel usersTab;
     private javax.swing.ButtonGroup waterQuality;

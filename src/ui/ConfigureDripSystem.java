@@ -9,12 +9,12 @@ package ui;
  *
  * @author rober
  */
-public class ChooseCrop extends javax.swing.JFrame {
+public class ConfigureDripSystem extends javax.swing.JFrame {
 
     /**
      * Creates new form ChooseCrop
      */
-    public ChooseCrop() {
+    public ConfigureDripSystem() {
         initComponents();
     }
 
@@ -34,6 +34,7 @@ public class ChooseCrop extends javax.swing.JFrame {
         climateAndPETPanel = new javax.swing.JPanel();
         climateAndPETHeader = new javax.swing.JPanel();
         climateAndPETLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         coolHumidPET = new javax.swing.JRadioButton();
         coolDryPET = new javax.swing.JRadioButton();
         warmHumidPET = new javax.swing.JRadioButton();
@@ -47,11 +48,24 @@ public class ChooseCrop extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         chooseCropPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        cropHeading = new javax.swing.JPanel();
         chooseCropLabel = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        cropSelect = new javax.swing.JComboBox<>();
+        cropLabel = new javax.swing.JLabel();
+        pipeAndEmiterPanel = new javax.swing.JPanel();
+        pipeEmitterHeading = new javax.swing.JPanel();
+        pipeEmitterLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        pipeLabel = new javax.swing.JLabel();
+        emitterSelect = new javax.swing.JComboBox<>();
+        emitterLable = new javax.swing.JLabel();
+        pipeSelect1 = new javax.swing.JComboBox<>();
+        backToConfigure = new javax.swing.JButton();
+        configure = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("dripIrri Manager - Configure Drip Irrigation System");
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setForeground(new java.awt.Color(0, 51, 51));
@@ -87,6 +101,12 @@ public class ChooseCrop extends javax.swing.JFrame {
         climateAndPETLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         climateAndPETLabel.setText("Climate and PET");
 
+        jLabel1.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("4");
+
         javax.swing.GroupLayout climateAndPETHeaderLayout = new javax.swing.GroupLayout(climateAndPETHeader);
         climateAndPETHeader.setLayout(climateAndPETHeaderLayout);
         climateAndPETHeaderLayout.setHorizontalGroup(
@@ -94,11 +114,16 @@ public class ChooseCrop extends javax.swing.JFrame {
             .addGroup(climateAndPETHeaderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(climateAndPETLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
         climateAndPETHeaderLayout.setVerticalGroup(
             climateAndPETHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(climateAndPETLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(climateAndPETLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(climateAndPETHeaderLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         coolHumidPET.setBackground(new java.awt.Color(255, 255, 255));
@@ -202,7 +227,7 @@ public class ChooseCrop extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, climateAndPETPanelLayout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(climateAndPETPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                     .addGroup(climateAndPETPanelLayout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(21, 21, 21)))
@@ -210,11 +235,11 @@ public class ChooseCrop extends javax.swing.JFrame {
                 .addGroup(climateAndPETPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2)
                     .addGroup(climateAndPETPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                         .addGap(142, 142, 142)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                         .addGap(74, 74, 74)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                         .addGap(49, 49, 49))
                     .addGroup(climateAndPETPanelLayout.createSequentialGroup()
                         .addGroup(climateAndPETPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,13 +280,14 @@ public class ChooseCrop extends javax.swing.JFrame {
                             .addComponent(coolHumidPET, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(warmHumidPET, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(climateAndPETPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(coolDryPET, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(hotDryPET, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(warmDryPET, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(climateAndPETPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(climateAndPETPanelLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(climateAndPETPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(coolDryPET, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(hotDryPET, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(warmDryPET, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(climateAndPETPanelLayout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(48, 48, 48)))
@@ -272,8 +298,8 @@ public class ChooseCrop extends javax.swing.JFrame {
         chooseCropPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51), 2));
         chooseCropPanel.setForeground(new java.awt.Color(0, 0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        cropHeading.setBackground(new java.awt.Color(0, 51, 51));
+        cropHeading.setForeground(new java.awt.Color(255, 255, 255));
 
         chooseCropLabel.setBackground(new java.awt.Color(0, 51, 51));
         chooseCropLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -281,67 +307,206 @@ public class ChooseCrop extends javax.swing.JFrame {
         chooseCropLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         chooseCropLabel.setText("Choose the Crop to Grow");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jLabel2.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("5");
+
+        javax.swing.GroupLayout cropHeadingLayout = new javax.swing.GroupLayout(cropHeading);
+        cropHeading.setLayout(cropHeadingLayout);
+        cropHeadingLayout.setHorizontalGroup(
+            cropHeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cropHeadingLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(chooseCropLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(chooseCropLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+        cropHeadingLayout.setVerticalGroup(
+            cropHeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cropHeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(chooseCropLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cropSelect.setBackground(new java.awt.Color(255, 255, 255));
+        cropSelect.setForeground(new java.awt.Color(0, 0, 0));
+        cropSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cropLabel.setBackground(new java.awt.Color(255, 255, 255));
+        cropLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cropLabel.setForeground(new java.awt.Color(0, 0, 0));
+        cropLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cropLabel.setText("Crop:");
 
         javax.swing.GroupLayout chooseCropPanelLayout = new javax.swing.GroupLayout(chooseCropPanel);
         chooseCropPanel.setLayout(chooseCropPanelLayout);
         chooseCropPanelLayout.setHorizontalGroup(
             chooseCropPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cropHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(chooseCropPanelLayout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(29, 29, 29))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cropLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cropSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
         chooseCropPanelLayout.setVerticalGroup(
             chooseCropPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(chooseCropPanelLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cropHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(47, 47, 47)
-                .addComponent(jComboBox1)
-                .addGap(126, 126, 126))
+                .addGroup(chooseCropPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(chooseCropPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(cropLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cropSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91))
         );
+
+        pipeAndEmiterPanel.setBackground(new java.awt.Color(255, 255, 255));
+        pipeAndEmiterPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 51), 2));
+
+        pipeEmitterHeading.setBackground(new java.awt.Color(0, 51, 51));
+
+        pipeEmitterLabel.setBackground(new java.awt.Color(0, 51, 51));
+        pipeEmitterLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        pipeEmitterLabel.setForeground(new java.awt.Color(255, 255, 255));
+        pipeEmitterLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pipeEmitterLabel.setText("Pipe And Emitter Selection");
+
+        jLabel3.setBackground(new java.awt.Color(0, 51, 51));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("6");
+
+        javax.swing.GroupLayout pipeEmitterHeadingLayout = new javax.swing.GroupLayout(pipeEmitterHeading);
+        pipeEmitterHeading.setLayout(pipeEmitterHeadingLayout);
+        pipeEmitterHeadingLayout.setHorizontalGroup(
+            pipeEmitterHeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pipeEmitterHeadingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pipeEmitterLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pipeEmitterHeadingLayout.setVerticalGroup(
+            pipeEmitterHeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pipeEmitterHeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(pipeEmitterLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pipeLabel.setBackground(new java.awt.Color(255, 255, 255));
+        pipeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        pipeLabel.setForeground(new java.awt.Color(0, 0, 0));
+        pipeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pipeLabel.setText("Pipe:");
+
+        emitterSelect.setBackground(new java.awt.Color(255, 255, 255));
+        emitterSelect.setForeground(new java.awt.Color(0, 0, 0));
+        emitterSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        emitterLable.setBackground(new java.awt.Color(255, 255, 255));
+        emitterLable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        emitterLable.setForeground(new java.awt.Color(0, 0, 0));
+        emitterLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        emitterLable.setText("Emitter:");
+
+        pipeSelect1.setBackground(new java.awt.Color(255, 255, 255));
+        pipeSelect1.setForeground(new java.awt.Color(0, 0, 0));
+        pipeSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pipeAndEmiterPanelLayout = new javax.swing.GroupLayout(pipeAndEmiterPanel);
+        pipeAndEmiterPanel.setLayout(pipeAndEmiterPanelLayout);
+        pipeAndEmiterPanelLayout.setHorizontalGroup(
+            pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pipeEmitterHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
+                        .addComponent(emitterLable)
+                        .addGap(18, 18, 18)
+                        .addComponent(emitterSelect, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
+                        .addComponent(pipeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pipeSelect1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        pipeAndEmiterPanelLayout.setVerticalGroup(
+            pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
+                .addComponent(pipeEmitterHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(98, 98, 98)
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pipeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pipeSelect1))
+                .addGap(51, 51, 51)
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emitterLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emitterSelect))
+                .addGap(246, 246, 246))
+        );
+
+        backToConfigure.setBackground(new java.awt.Color(0, 51, 51));
+        backToConfigure.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        backToConfigure.setForeground(new java.awt.Color(0, 0, 0));
+        backToConfigure.setText("Back");
+        backToConfigure.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
+        backToConfigure.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backToConfigureActionPerformed(evt);
+            }
+        });
+
+        configure.setBackground(new java.awt.Color(0, 51, 51));
+        configure.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        configure.setForeground(new java.awt.Color(0, 0, 0));
+        configure.setText("Save");
+        configure.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(footerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(chooseCropPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(climateAndPETPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(534, 534, 534))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pipeAndEmiterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(footerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(backToConfigure, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(configure, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(climateAndPETPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(chooseCropPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chooseCropPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pipeAndEmiterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backToConfigure)
+                    .addComponent(configure))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(footerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -356,7 +521,8 @@ public class ChooseCrop extends javax.swing.JFrame {
             .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1155, 624));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void coolHumidPETActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coolHumidPETActionPerformed
@@ -383,6 +549,13 @@ public class ChooseCrop extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_hotDryPETActionPerformed
 
+    private void backToConfigureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToConfigureActionPerformed
+        //ask the user if he really wants to go back
+        //load the back interface (donfigure drip tab
+        //dispose this tab
+        this.dispose();
+    }//GEN-LAST:event_backToConfigureActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -400,62 +573,60 @@ public class ChooseCrop extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChooseCrop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfigureDripSystem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChooseCrop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfigureDripSystem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChooseCrop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfigureDripSystem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChooseCrop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfigureDripSystem.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChooseCrop().setVisible(true);
+                new ConfigureDripSystem().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backToConfigure;
     private javax.swing.JLabel chooseCropLabel;
     private javax.swing.JPanel chooseCropPanel;
     private javax.swing.ButtonGroup climateAndPET;
     private javax.swing.JPanel climateAndPETHeader;
     private javax.swing.JLabel climateAndPETLabel;
     private javax.swing.JPanel climateAndPETPanel;
-    private javax.swing.JPanel climatePETForm;
-    private javax.swing.JPanel climatePETForm1;
-    private javax.swing.JPanel climatePETForm2;
-    private javax.swing.JPanel climatePETForm3;
-    private javax.swing.JPanel climatePETFormHeadr;
-    private javax.swing.JPanel climatePETFormHeadr1;
-    private javax.swing.JPanel climatePETFormHeadr2;
-    private javax.swing.JPanel climatePETFormHeadr3;
-    private javax.swing.JLabel climatePETLable;
-    private javax.swing.JLabel climatePETLable1;
-    private javax.swing.JLabel climatePETLable2;
-    private javax.swing.JLabel climatePETLable3;
+    private javax.swing.JButton configure;
     private javax.swing.JRadioButton coolDryPET;
     private javax.swing.JRadioButton coolHumidPET;
+    private javax.swing.JPanel cropHeading;
+    private javax.swing.JLabel cropLabel;
+    private javax.swing.JComboBox<String> cropSelect;
+    private javax.swing.JLabel emitterLable;
+    private javax.swing.JComboBox<String> emitterSelect;
     private javax.swing.JPanel footerPanel;
     private javax.swing.JRadioButton hotDryPET;
     private javax.swing.JRadioButton hotHumidPET;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel pipeAndEmiterPanel;
+    private javax.swing.JPanel pipeEmitterHeading;
+    private javax.swing.JLabel pipeEmitterLabel;
+    private javax.swing.JLabel pipeLabel;
+    private javax.swing.JComboBox<String> pipeSelect1;
     private javax.swing.JRadioButton warmDryPET;
     private javax.swing.JRadioButton warmHumidPET;
     // End of variables declaration//GEN-END:variables
