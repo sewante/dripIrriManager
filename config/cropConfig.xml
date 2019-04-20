@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<density-factor> 
+	<trees>
+		<low>0.5</low>
+		<medium>1.0</medium>
+		<high>1.3</high>
+	</trees> 
+	<shrubs>
+		<low>0.5</low>
+		<medium>1.0</medium>
+		<high>1.1</high>
+	</shrubs> 
+	<ground-cover>
+		<low>0.5</low>
+		<medium>1.0</medium>
+		<high>1.1</high>
+	</ground-cover> 
+	<mixed>
+	<!-- Mixture of trees, shrubs, and ground-cover-->
+		<low>0.6</low>
+		<medium>1.0</medium>
+		<high>1.3</high>
+	</mixed>
+</density-factor>
+<microclimate-factor> 
+	<trees>
+		<low>0.5</low>
+		<medium>1.0</medium>
+		<high>1.4</high>
+	</trees> 
+	<shrubs>
+		<low>0.5</low>
+		<medium>1.0</medium>
+		<high>1.3</high>
+	</shrubs> 
+	<ground-cover>
+		<low>0.5</low>
+		<medium>1.0</medium>
+		<high>1.2</high>
+	</ground-cover> 
+	<mixed>
+	<!-- Mixture of trees, shrubs, and ground-cover-->
+		<low>0.6</low>
+		<medium>1.0</medium>
+		<high>1.4</high>
+	</mixed>
+</microclimate-factor>
+<species-factor> 
+	<trees>
+		<low>0.2</low>
+		<medium>0.5</medium>
+		<high>0.9</high>
+	</trees> 
+	<shrubs>
+		<low>0.2</low>
+		<medium>0.5</medium>
+		<high>0.7</high>
+	</shrubs> 
+	<ground-cover>
+		<low>0.2</low>
+		<medium>0.5</medium>
+		<high>0.7</high>
+	</ground-cover> 
+	<mixed>
+	<!-- Mixture of trees, shrubs, and ground-cover-->
+		<low>0.2</low>
+		<medium>0.5</medium>
+		<high>0.9</high>
+	</mixed>
+</species-factor>

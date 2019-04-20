@@ -3,6 +3,11 @@
  * This software is distributed under the license  * 
  * Open to modification and redistribution * 
  */
+
+/**
+ * PURPOSE:
+ *      This file is used to add a new pipe to the system (either the main, manifold or sub-main or lateral pipe)
+ */
 package ui;
 
 /**
@@ -28,7 +33,7 @@ public class AddBlankTubing extends javax.swing.JFrame {
     private void initComponents() {
 
         addBlankipePanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        footerPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         andBlankTubingHeading = new javax.swing.JLabel();
@@ -66,16 +71,16 @@ public class AddBlankTubing extends javax.swing.JFrame {
         addBlankipePanel.setForeground(new java.awt.Color(0, 0, 0));
         addBlankipePanel.setPreferredSize(new java.awt.Dimension(1113, 560));
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        footerPanel.setBackground(new java.awt.Color(0, 51, 51));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout footerPanelLayout = new javax.swing.GroupLayout(footerPanel);
+        footerPanel.setLayout(footerPanelLayout);
+        footerPanelLayout.setHorizontalGroup(
+            footerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        footerPanelLayout.setVerticalGroup(
+            footerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 27, Short.MAX_VALUE)
         );
 
@@ -338,7 +343,7 @@ public class AddBlankTubing extends javax.swing.JFrame {
         addBlankipePanel.setLayout(addBlankipePanelLayout);
         addBlankipePanelLayout.setHorizontalGroup(
             addBlankipePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(footerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(addBlankipePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -356,7 +361,7 @@ public class AddBlankTubing extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(footerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -422,6 +427,7 @@ public class AddBlankTubing extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> color;
     private javax.swing.JTextField externalDiameter;
     private javax.swing.JTextField flowRate;
+    private javax.swing.JPanel footerPanel;
     private javax.swing.JTextField internalDiameter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -437,7 +443,6 @@ public class AddBlankTubing extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JComboBox<String> material;

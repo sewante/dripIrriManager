@@ -41,7 +41,6 @@ public class LoginUi extends javax.swing.JFrame {
         loginLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 102, 51));
         setName("login"); // NOI18N
 

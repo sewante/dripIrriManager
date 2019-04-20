@@ -5,17 +5,25 @@
  */
 package ui;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import controllers.Crops;
+import java.util.ArrayList;
+
 /**
  *
  * @author rober
  */
 public class AddCropCategory extends javax.swing.JFrame {
-
+    
+    //create the crop model ob ject
+    private Crops crop = null;
     /**
      * Creates new form addCropCategory
      */
     public AddCropCategory() {
         initComponents();
+        crop = new Crops();     //initialize the Crops Controller
     }
 
     /**
@@ -38,10 +46,20 @@ public class AddCropCategory extends javax.swing.JFrame {
         cropRootDepthLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         cropCategory = new javax.swing.JTextField();
-        cropCoefficient = new javax.swing.JTextField();
+        soilWaterFraction = new javax.swing.JTextField();
         cropRootDepth = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        soilWaterFractionLable = new javax.swing.JLabel();
+        cropCoefficientMid = new javax.swing.JTextField();
+        cropCoefficientError = new javax.swing.JLabel();
+        soilwaterError = new javax.swing.JLabel();
+        rootDepthError = new javax.swing.JLabel();
+        cropCoefficientLate = new javax.swing.JTextField();
+        cropCoefficientInitial = new javax.swing.JTextField();
+        midKcLabel = new javax.swing.JLabel();
+        lateKcLabel = new javax.swing.JLabel();
+        initialKcLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1139, 585));
@@ -101,7 +119,7 @@ public class AddCropCategory extends javax.swing.JFrame {
         cropCoefficientLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cropCoefficientLabel.setForeground(new java.awt.Color(0, 0, 0));
         cropCoefficientLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cropCoefficientLabel.setText("Average Crop Coefficient :");
+        cropCoefficientLabel.setText("Crop Coefficient :");
 
         cropCategoryLabel.setBackground(new java.awt.Color(255, 255, 255));
         cropCategoryLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -113,7 +131,7 @@ public class AddCropCategory extends javax.swing.JFrame {
         cropRootDepthLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cropRootDepthLabel.setForeground(new java.awt.Color(0, 0, 0));
         cropRootDepthLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cropRootDepthLabel.setText("Average Root Depth :");
+        cropRootDepthLabel.setText("Average Root Depth (m):");
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(0, 51, 51));
@@ -122,21 +140,51 @@ public class AddCropCategory extends javax.swing.JFrame {
         cropCategory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cropCategory.setForeground(new java.awt.Color(0, 0, 0));
         cropCategory.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 1, true));
+        cropCategory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cropCategoryMouseClicked(evt);
+            }
+        });
 
-        cropCoefficient.setBackground(new java.awt.Color(255, 255, 255));
-        cropCoefficient.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cropCoefficient.setForeground(new java.awt.Color(0, 0, 0));
-        cropCoefficient.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 1, true));
+        soilWaterFraction.setBackground(new java.awt.Color(255, 255, 255));
+        soilWaterFraction.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        soilWaterFraction.setForeground(new java.awt.Color(0, 0, 0));
+        soilWaterFraction.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 1, true));
+        soilWaterFraction.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                soilWaterFractionMouseClicked(evt);
+            }
+        });
+        soilWaterFraction.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                soilWaterFractionKeyPressed(evt);
+            }
+        });
 
         cropRootDepth.setBackground(new java.awt.Color(255, 255, 255));
         cropRootDepth.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cropRootDepth.setForeground(new java.awt.Color(0, 0, 0));
         cropRootDepth.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 1, true));
+        cropRootDepth.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cropRootDepthMouseClicked(evt);
+            }
+        });
+        cropRootDepth.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cropRootDepthKeyPressed(evt);
+            }
+        });
 
         saveButton.setBackground(new java.awt.Color(0, 51, 51));
         saveButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saveButton.setForeground(new java.awt.Color(0, 0, 0));
         saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         backButton.setBackground(new java.awt.Color(0, 51, 51));
         backButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -148,49 +196,176 @@ public class AddCropCategory extends javax.swing.JFrame {
             }
         });
 
+        soilWaterFractionLable.setBackground(new java.awt.Color(255, 255, 255));
+        soilWaterFractionLable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        soilWaterFractionLable.setForeground(new java.awt.Color(0, 0, 0));
+        soilWaterFractionLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        soilWaterFractionLable.setText("Soil Water Fraction Available :");
+
+        cropCoefficientMid.setBackground(new java.awt.Color(255, 255, 255));
+        cropCoefficientMid.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cropCoefficientMid.setForeground(new java.awt.Color(0, 0, 0));
+        cropCoefficientMid.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 1, true));
+        cropCoefficientMid.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cropCoefficientMidMouseClicked(evt);
+            }
+        });
+        cropCoefficientMid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cropCoefficientMidKeyPressed(evt);
+            }
+        });
+
+        cropCoefficientError.setBackground(new java.awt.Color(255, 255, 255));
+        cropCoefficientError.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        cropCoefficientError.setForeground(new java.awt.Color(153, 0, 0));
+
+        soilwaterError.setBackground(new java.awt.Color(255, 255, 255));
+        soilwaterError.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        soilwaterError.setForeground(new java.awt.Color(153, 0, 0));
+
+        rootDepthError.setBackground(new java.awt.Color(255, 255, 255));
+        rootDepthError.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        rootDepthError.setForeground(new java.awt.Color(153, 0, 0));
+        rootDepthError.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rootDepthErrorKeyPressed(evt);
+            }
+        });
+
+        cropCoefficientLate.setBackground(new java.awt.Color(255, 255, 255));
+        cropCoefficientLate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cropCoefficientLate.setForeground(new java.awt.Color(0, 0, 0));
+        cropCoefficientLate.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 1, true));
+        cropCoefficientLate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cropCoefficientLateMouseClicked(evt);
+            }
+        });
+        cropCoefficientLate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cropCoefficientLateKeyPressed(evt);
+            }
+        });
+
+        cropCoefficientInitial.setBackground(new java.awt.Color(255, 255, 255));
+        cropCoefficientInitial.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cropCoefficientInitial.setForeground(new java.awt.Color(0, 0, 0));
+        cropCoefficientInitial.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 1, true));
+        cropCoefficientInitial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cropCoefficientInitialMouseClicked(evt);
+            }
+        });
+        cropCoefficientInitial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cropCoefficientInitialKeyPressed(evt);
+            }
+        });
+
+        midKcLabel.setBackground(new java.awt.Color(255, 255, 255));
+        midKcLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        midKcLabel.setForeground(new java.awt.Color(0, 0, 0));
+        midKcLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        midKcLabel.setText("Mid");
+
+        lateKcLabel.setBackground(new java.awt.Color(255, 255, 255));
+        lateKcLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lateKcLabel.setForeground(new java.awt.Color(0, 0, 0));
+        lateKcLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lateKcLabel.setText("Late");
+
+        initialKcLabel.setBackground(new java.awt.Color(255, 255, 255));
+        initialKcLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        initialKcLabel.setForeground(new java.awt.Color(0, 0, 0));
+        initialKcLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        initialKcLabel.setText("Initial");
+
         javax.swing.GroupLayout cropCategoryDataPanelLayout = new javax.swing.GroupLayout(cropCategoryDataPanel);
         cropCategoryDataPanel.setLayout(cropCategoryDataPanelLayout);
         cropCategoryDataPanelLayout.setHorizontalGroup(
             cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(cropCategoryDataHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cropCategoryDataPanelLayout.createSequentialGroup()
+            .addGroup(cropCategoryDataPanelLayout.createSequentialGroup()
                 .addGap(244, 244, 244)
                 .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(cropCategoryDataPanelLayout.createSequentialGroup()
-                        .addComponent(backButton)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saveButton))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, cropCategoryDataPanelLayout.createSequentialGroup()
-                        .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cropRootDepthLabel)
-                            .addComponent(cropCoefficientLabel)
-                            .addComponent(cropCategoryLabel))
-                        .addGap(93, 93, 93)
-                        .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cropCategory)
-                            .addComponent(cropCoefficient)
-                            .addComponent(cropRootDepth))
-                        .addGap(135, 135, 135)))
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(71, 71, 71))
+            .addGroup(cropCategoryDataPanelLayout.createSequentialGroup()
+                .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cropCategoryDataPanelLayout.createSequentialGroup()
+                        .addGap(244, 244, 244)
+                        .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cropRootDepthLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cropCategoryLabel, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cropCategoryDataPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(soilWaterFractionLable, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cropCoefficientLabel, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGap(93, 93, 93)
+                .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cropCategory)
+                    .addComponent(soilWaterFraction)
+                    .addComponent(cropRootDepth)
+                    .addGroup(cropCategoryDataPanelLayout.createSequentialGroup()
+                        .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(initialKcLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cropCoefficientInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52)
+                        .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cropCoefficientMid, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(midKcLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cropCoefficientLate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lateKcLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(soilwaterError, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rootDepthError, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cropCoefficientError, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
         cropCategoryDataPanelLayout.setVerticalGroup(
             cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cropCategoryDataPanelLayout.createSequentialGroup()
                 .addComponent(cropCategoryDataHeading, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(18, 18, 18)
                 .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cropCategoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cropCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
+                .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rootDepthError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cropRootDepthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cropRootDepth, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)))
+                .addGap(26, 26, 26)
                 .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cropRootDepthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cropRootDepth, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
-                .addGap(49, 49, 49)
-                .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cropCoefficientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cropCoefficient, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addGap(33, 33, 33)
+                    .addComponent(midKcLabel)
+                    .addComponent(lateKcLabel)
+                    .addComponent(initialKcLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cropCoefficientError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cropCoefficientLate, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                        .addComponent(cropCoefficientMid, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cropCoefficientInitial, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                        .addComponent(cropCoefficientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38)
+                .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(soilwaterError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(soilWaterFractionLable, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(soilWaterFraction, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE)
                 .addGap(36, 36, 36)
                 .addGroup(cropCategoryDataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -245,6 +420,229 @@ public class AddCropCategory extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        
+        String category;
+        Float avgRootDepth, midCropCoefficient,initialCropCoefficient, lateCropCoefficient, fractSoilWater;
+        ArrayList<Float> cropCoefficients = new ArrayList<Float>();
+        String message = "";
+        
+        /* Validate the input */
+        
+        //validate crop category name
+        if(cropCategory.getText().isEmpty()) {
+           
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Crop Category Name.", "Empty Crop Category Name!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the crop category lable to yellow
+           cropCategoryLabel.setForeground(Color.red);
+           return;
+        }
+        //validate the Late crop coefficient
+        if(cropCoefficientLate.getText().isEmpty()){
+           //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the late season crop coefficient.", "Empty Late-season Crop Coefficinet!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the late crop coefficient lable to 
+           cropCoefficientLabel.setForeground(Color.red);
+           return;
+        }
+        //validate the Mid crop coefficient
+        if(cropCoefficientMid.getText().isEmpty()){
+           //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the mid season crop coefficient.", "Empty Mid-season Crop Coefficinet!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the mid crop coefficient lable to 
+           cropCoefficientLabel.setForeground(Color.red);
+           return;
+        }
+        //validate the Initial crop coefficient
+        if(cropCoefficientInitial.getText().isEmpty()){
+           //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the initial season crop coefficient.", "Empty Initial-season Crop Coefficinet!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the mid crop coefficient lable to 
+           cropCoefficientLabel.setForeground(Color.red);
+           return;
+        }
+        
+        //validate the crop root depth
+        if(cropRootDepth.getText().isEmpty()) {
+            
+            //show a dialog box with the error message 
+            JOptionPane.showMessageDialog(rootPane,"Provide the average crop root depth.", "Empty Crop Root depth!", JOptionPane.ERROR_MESSAGE);
+            
+            //set the color of the crop coefficient labe to red
+            cropRootDepthLabel.setForeground(Color.red);
+            return;
+        }
+        //validate the available soil water fraction
+        if(soilWaterFraction.getText().isEmpty()) {
+            
+            //show a dialog box with the error message 
+            JOptionPane.showMessageDialog(rootPane,"Provide fraction of available soil water.", "Empty Available Soil water fraction!", JOptionPane.ERROR_MESSAGE);
+            
+            //set the color of the crop coefficient labe to red
+            soilWaterFractionLable.setForeground(Color.red);
+            return;
+        }
+        
+        /* Pick the valid data */
+        try {
+            category = cropCategory.getText().trim();   //get the crop category name
+            avgRootDepth = Float.parseFloat(cropRootDepth.getText().trim());
+            initialCropCoefficient = Float.parseFloat(cropCoefficientInitial.getText().trim());
+            midCropCoefficient = Float.parseFloat(cropCoefficientMid.getText().trim());
+            lateCropCoefficient = Float.parseFloat(cropCoefficientLate.getText().trim());
+            fractSoilWater = Float.parseFloat(soilWaterFraction.getText().trim());
+            
+            /* add the crop coefficients to the Arrylist */
+            cropCoefficients.add(initialCropCoefficient);
+            cropCoefficients.add(midCropCoefficient);
+            cropCoefficients.add(lateCropCoefficient);
+            
+            /* Send the crop category data to the controller*/
+            message = message + crop.getCropCategoryData(category, avgRootDepth, fractSoilWater, cropCoefficients);
+            
+            if(message.startsWith("Error:")) {
+                JOptionPane.showMessageDialog(rootPane, message, "Failure!", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(rootPane, message, "Success", JOptionPane.INFORMATION_MESSAGE);
+                
+                //clear the fields
+                cropCategory.setText("");
+                cropRootDepth.setText("");
+                cropCoefficientInitial.setText("");
+                cropCoefficientMid.setText("");
+                cropCoefficientLate.setText("");
+                soilWaterFraction.setText("");
+            }
+        }
+        catch(NumberFormatException nfe) {
+            //show a dialog box with the error message 
+            JOptionPane.showMessageDialog(rootPane,"Soil Water fraction, Average Root Depth"
+                    + "and Average Crop Coefficient \n should be decimal point numbers", "Invalid Entry!", JOptionPane.WARNING_MESSAGE);
+            
+        }
+        
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void cropCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cropCategoryMouseClicked
+        //set the color of the crop category lable to balck
+        cropCategoryLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_cropCategoryMouseClicked
+
+    private void cropRootDepthMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cropRootDepthMouseClicked
+        //set the color of the crop root depth lable to balck
+        cropRootDepthLabel.setForeground(Color.BLACK);
+        rootDepthError.setText("");
+    }//GEN-LAST:event_cropRootDepthMouseClicked
+
+    private void soilWaterFractionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_soilWaterFractionMouseClicked
+        //set the color of soil water fraction to black
+        soilWaterFractionLable.setForeground(Color.BLACK);
+        soilwaterError.setText("");
+    }//GEN-LAST:event_soilWaterFractionMouseClicked
+
+    private void cropCoefficientMidMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cropCoefficientMidMouseClicked
+       // set the color of crop coefficient to black
+       cropCoefficientLabel.setForeground(Color.BLACK);
+       cropCoefficientError.setText("");
+    }//GEN-LAST:event_cropCoefficientMidMouseClicked
+
+    private void cropRootDepthKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cropRootDepthKeyPressed
+        //ensure that the typed in keys are digits not letters
+        
+        char pressedKey = evt.getKeyChar();
+        
+        if(Character.isLetter(pressedKey)) {
+            cropRootDepth.setEditable(false);
+            rootDepthError.setText("fill in a number");
+        }
+        else {
+            cropRootDepth.setEditable(true);
+            rootDepthError.setText("");
+        }
+    }//GEN-LAST:event_cropRootDepthKeyPressed
+
+    private void rootDepthErrorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rootDepthErrorKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rootDepthErrorKeyPressed
+
+    private void cropCoefficientMidKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cropCoefficientMidKeyPressed
+        //ensure that the typed in keys are digits not letters
+        
+        char pressedKey = evt.getKeyChar();
+        
+        if(Character.isLetter(pressedKey)) {
+            cropCoefficientMid.setEditable(false);
+            cropCoefficientError.setText("fill in a number");
+        }
+        else {
+            cropCoefficientMid.setEditable(true);
+            cropCoefficientError.setText("");
+        }
+    }//GEN-LAST:event_cropCoefficientMidKeyPressed
+
+    private void soilWaterFractionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_soilWaterFractionKeyPressed
+        //ensure that the typed in keys are digits not letters
+        
+        char pressedKey = evt.getKeyChar();
+        
+        if(Character.isLetter(pressedKey)) {
+            soilWaterFraction.setEditable(false);
+            soilwaterError.setText("fill in a number");
+        }
+        else {
+            soilWaterFraction.setEditable(true);
+            soilwaterError.setText("");
+        }
+    }//GEN-LAST:event_soilWaterFractionKeyPressed
+
+    private void cropCoefficientLateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cropCoefficientLateMouseClicked
+        // set the color of crop coefficient to black
+       cropCoefficientLabel.setForeground(Color.BLACK);
+       cropCoefficientError.setText("");
+    }//GEN-LAST:event_cropCoefficientLateMouseClicked
+
+    private void cropCoefficientLateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cropCoefficientLateKeyPressed
+         //ensure that the typed in keys are digits not letters
+        
+        char pressedKey = evt.getKeyChar();
+        
+        if(Character.isLetter(pressedKey)) {
+            cropCoefficientLate.setEditable(false);
+            cropCoefficientError.setText("fill in a number");
+        }
+        else {
+            cropCoefficientLate.setEditable(true);
+            cropCoefficientError.setText("");
+        }
+    }//GEN-LAST:event_cropCoefficientLateKeyPressed
+
+    private void cropCoefficientInitialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cropCoefficientInitialMouseClicked
+        // set the color of crop coefficient to black
+       cropCoefficientLabel.setForeground(Color.BLACK);
+       cropCoefficientError.setText("");
+    }//GEN-LAST:event_cropCoefficientInitialMouseClicked
+
+    private void cropCoefficientInitialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cropCoefficientInitialKeyPressed
+         //ensure that the typed in keys are digits not letters
+        
+        char pressedKey = evt.getKeyChar();
+        
+        if(Character.isLetter(pressedKey)) {
+            cropCoefficientInitial.setEditable(false);
+            cropCoefficientError.setText("fill in a number");
+        }
+        else {
+            cropCoefficientInitial.setEditable(true);
+            cropCoefficientError.setText("");
+        }
+    }//GEN-LAST:event_cropCoefficientInitialKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -287,15 +685,25 @@ public class AddCropCategory extends javax.swing.JFrame {
     private javax.swing.JPanel cropCategoryDataHeading;
     private javax.swing.JPanel cropCategoryDataPanel;
     private javax.swing.JLabel cropCategoryLabel;
-    private javax.swing.JTextField cropCoefficient;
+    private javax.swing.JLabel cropCoefficientError;
+    private javax.swing.JTextField cropCoefficientInitial;
     private javax.swing.JLabel cropCoefficientLabel;
+    private javax.swing.JTextField cropCoefficientLate;
+    private javax.swing.JTextField cropCoefficientMid;
     private javax.swing.JTextField cropRootDepth;
     private javax.swing.JLabel cropRootDepthLabel;
     private javax.swing.JPanel footerPanel;
     private javax.swing.JLabel headingLabel;
+    private javax.swing.JLabel initialKcLabel;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lateKcLabel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel mainTitle;
+    private javax.swing.JLabel midKcLabel;
+    private javax.swing.JLabel rootDepthError;
     private javax.swing.JButton saveButton;
+    private javax.swing.JTextField soilWaterFraction;
+    private javax.swing.JLabel soilWaterFractionLable;
+    private javax.swing.JLabel soilwaterError;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<pipe>
+	<!-- PIPE CATEGORY -->
+	<pipe-categories>
+		<lateral>Lateral pipe</lateral>
+		<manifold>Manifold pipe</manifold>
+		<main>Main pipe</main>
+		<sub-main>Sub-main pipe</sub-main>
+	</pipe-categories>
+	
+	<!-- PIPE COLOURS -->
+	<colors>
+		<blue>Blue</blue>
+		<purple>Purple</purple>
+		<black>Black</black>
+		<red>Red</red>
+		<yellow>Yellow</yellow>
+	</colors>
+	
+	<!-- PIPE MATERIAL -->
+	<materials>
+		<pvc>PVC</pvc>
+		<polypropene>Polypropene</polypropene>
+	</materials>
+	
+	<!-- EMITTER SPACING inches -->
+	<emitter-spacing>
+		<six-inch>6.0</six-inch>
+		<nine-inch>9.0</nine-inch>
+		<tweleve-inch>12.0</tweleve-inch>
+		<eighteen-inch>18.0</eighteen-inch>
+		
+	</emitter-spacing>
+</pipe>
+
+
+

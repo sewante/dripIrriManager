@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- All the emitter-spacings in this file are in inches -->
+<!-- All the flow-rates  in this file are in gallons per hour -->
+<landscape>
+	<soil-type type="soil">
+		<fine>
+			<emitter-spacing>24</emitter-spacing>
+			<flow-rate>0.6</flow-rate>
+		</fine>
+		<coarse>
+			<emitter-spacing>12</emitter-spacing>
+			<flow-rate>0.9</flow-rate>
+		</coarse>
+		<medium>
+			<emitter-spacing>18</emitter-spacing>
+			<flow-rate>0.9</flow-rate>
+		</medium>
+	</soil-type>
+</landscape>
