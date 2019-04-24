@@ -9,18 +9,28 @@ package ui;
 import java.awt.Color;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
+import controllers.Crops;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author rober
+ * @author robert
  */
 public class Dashboard extends javax.swing.JFrame {
-
+    
+    private Crops crop;
+    private ArrayList<String> pipeCategories;
+    private ArrayList<Float> cropCoefficients;
+    
     /** Creates new form Dashboard */
     public Dashboard() {
         
         initComponents();
         
+        crop = new Crops();     //initialize the crops controller
+        pipeCategories = null;
+        cropCoefficients = null;
         
     }
 
@@ -101,25 +111,34 @@ public class Dashboard extends javax.swing.JFrame {
         addCropForm = new javax.swing.JPanel();
         cropHedingPanel = new javax.swing.JPanel();
         addCropHeading = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        cropNameLabel = new javax.swing.JLabel();
+        cropCategorylabel = new javax.swing.JLabel();
+        plantingSchemeLabel = new javax.swing.JLabel();
+        cropCoefficientLabel = new javax.swing.JLabel();
+        rowSpacingLabel = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         saveCropForm = new javax.swing.JButton();
-        cropCoefficient = new javax.swing.JTextField();
+        intialKc = new javax.swing.JTextField();
         cropName = new javax.swing.JTextField();
         cropCategory = new javax.swing.JComboBox<>();
         cropPlantingScheme = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        cropSpacingLabel = new javax.swing.JLabel();
+        cropRootDepthLabel = new javax.swing.JLabel();
         rootDepthHigh = new javax.swing.JTextField();
         cropSpacing = new javax.swing.JTextField();
         cropRowSpacing = new javax.swing.JTextField();
         rootDepthLow = new javax.swing.JTextField();
         createCropCategory = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
+        lateKc = new javax.swing.JTextField();
+        midKc = new javax.swing.JTextField();
+        initialKcLabel = new javax.swing.JLabel();
+        midKcLabel = new javax.swing.JLabel();
+        lateKcLabel = new javax.swing.JLabel();
+        _to = new javax.swing.JLabel();
+        cropCoefficientError = new javax.swing.JLabel();
+        rowSpacingError = new javax.swing.JLabel();
+        rootDepthError = new javax.swing.JLabel();
+        cropSpacingError = new javax.swing.JLabel();
         addCropTitle = new javax.swing.JLabel();
         addPipePanel = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -823,30 +842,30 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Crop Name :");
+        cropNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cropNameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        cropNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cropNameLabel.setText("Crop Name :");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Crop Category :");
+        cropCategorylabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cropCategorylabel.setForeground(new java.awt.Color(0, 0, 0));
+        cropCategorylabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cropCategorylabel.setText("Crop Category :");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Planting Scheme :");
+        plantingSchemeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        plantingSchemeLabel.setForeground(new java.awt.Color(0, 0, 0));
+        plantingSchemeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        plantingSchemeLabel.setText("Planting Scheme :");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Crop Coefficient :");
+        cropCoefficientLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cropCoefficientLabel.setForeground(new java.awt.Color(0, 0, 0));
+        cropCoefficientLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cropCoefficientLabel.setText("Crop Coefficient :");
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Row spacing :");
+        rowSpacingLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rowSpacingLabel.setForeground(new java.awt.Color(0, 0, 0));
+        rowSpacingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rowSpacingLabel.setText("Row spacing :");
 
         jLabel14.setForeground(new java.awt.Color(102, 102, 102));
         jLabel14.setText("If Crop Category Does not exist, Add the crop Category");
@@ -861,11 +880,26 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        cropCoefficient.setBackground(new java.awt.Color(255, 255, 255));
-        cropCoefficient.setForeground(new java.awt.Color(0, 0, 0));
+        intialKc.setBackground(new java.awt.Color(255, 255, 255));
+        intialKc.setForeground(new java.awt.Color(0, 0, 0));
+        intialKc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                intialKcMouseClicked(evt);
+            }
+        });
+        intialKc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                intialKcKeyPressed(evt);
+            }
+        });
 
         cropName.setBackground(new java.awt.Color(255, 255, 255));
         cropName.setForeground(new java.awt.Color(0, 0, 0));
+        cropName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cropNameMouseClicked(evt);
+            }
+        });
 
         cropCategory.setBackground(new java.awt.Color(255, 255, 255));
         cropCategory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -877,27 +911,67 @@ public class Dashboard extends javax.swing.JFrame {
         cropPlantingScheme.setForeground(new java.awt.Color(0, 0, 0));
         cropPlantingScheme.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Crop Spacing:");
+        cropSpacingLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cropSpacingLabel.setForeground(new java.awt.Color(0, 0, 0));
+        cropSpacingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cropSpacingLabel.setText("Crop Spacing:");
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Crop Root Depth :");
+        cropRootDepthLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cropRootDepthLabel.setForeground(new java.awt.Color(0, 0, 0));
+        cropRootDepthLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cropRootDepthLabel.setText("Crop Root Depth :");
 
         rootDepthHigh.setBackground(new java.awt.Color(255, 255, 255));
         rootDepthHigh.setForeground(new java.awt.Color(0, 0, 0));
+        rootDepthHigh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rootDepthHighMouseClicked(evt);
+            }
+        });
+        rootDepthHigh.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rootDepthHighKeyPressed(evt);
+            }
+        });
 
         cropSpacing.setBackground(new java.awt.Color(255, 255, 255));
         cropSpacing.setForeground(new java.awt.Color(0, 0, 0));
+        cropSpacing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cropSpacingMouseClicked(evt);
+            }
+        });
+        cropSpacing.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cropSpacingKeyPressed(evt);
+            }
+        });
 
         cropRowSpacing.setBackground(new java.awt.Color(255, 255, 255));
         cropRowSpacing.setForeground(new java.awt.Color(0, 0, 0));
+        cropRowSpacing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cropRowSpacingMouseClicked(evt);
+            }
+        });
+        cropRowSpacing.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cropRowSpacingKeyPressed(evt);
+            }
+        });
 
         rootDepthLow.setBackground(new java.awt.Color(255, 255, 255));
         rootDepthLow.setForeground(new java.awt.Color(0, 0, 0));
+        rootDepthLow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rootDepthLowMouseClicked(evt);
+            }
+        });
+        rootDepthLow.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                rootDepthLowKeyPressed(evt);
+            }
+        });
 
         createCropCategory.setBackground(new java.awt.Color(0, 51, 51));
         createCropCategory.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -908,10 +982,68 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("to");
+        lateKc.setBackground(new java.awt.Color(255, 255, 255));
+        lateKc.setForeground(new java.awt.Color(0, 0, 0));
+        lateKc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lateKcMouseClicked(evt);
+            }
+        });
+        lateKc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lateKcKeyPressed(evt);
+            }
+        });
+
+        midKc.setBackground(new java.awt.Color(255, 255, 255));
+        midKc.setForeground(new java.awt.Color(0, 0, 0));
+        midKc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                midKcMouseClicked(evt);
+            }
+        });
+        midKc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                midKcKeyPressed(evt);
+            }
+        });
+
+        initialKcLabel.setBackground(new java.awt.Color(255, 255, 255));
+        initialKcLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        initialKcLabel.setForeground(new java.awt.Color(0, 0, 0));
+        initialKcLabel.setText("Intial");
+
+        midKcLabel.setBackground(new java.awt.Color(255, 255, 255));
+        midKcLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        midKcLabel.setForeground(new java.awt.Color(0, 0, 0));
+        midKcLabel.setText("Mid");
+
+        lateKcLabel.setBackground(new java.awt.Color(255, 255, 255));
+        lateKcLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lateKcLabel.setForeground(new java.awt.Color(0, 0, 0));
+        lateKcLabel.setText("Late");
+
+        _to.setBackground(new java.awt.Color(255, 255, 255));
+        _to.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        _to.setForeground(new java.awt.Color(0, 0, 0));
+        _to.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        _to.setText("to");
+
+        cropCoefficientError.setBackground(new java.awt.Color(255, 255, 255));
+        cropCoefficientError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cropCoefficientError.setForeground(new java.awt.Color(153, 0, 0));
+
+        rowSpacingError.setBackground(new java.awt.Color(255, 255, 255));
+        rowSpacingError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rowSpacingError.setForeground(new java.awt.Color(153, 0, 0));
+
+        rootDepthError.setBackground(new java.awt.Color(255, 255, 255));
+        rootDepthError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rootDepthError.setForeground(new java.awt.Color(153, 0, 0));
+
+        cropSpacingError.setBackground(new java.awt.Color(255, 255, 255));
+        cropSpacingError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cropSpacingError.setForeground(new java.awt.Color(153, 0, 0));
 
         javax.swing.GroupLayout addCropFormLayout = new javax.swing.GroupLayout(addCropForm);
         addCropForm.setLayout(addCropFormLayout);
@@ -921,39 +1053,55 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(addCropFormLayout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(saveCropForm, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(plantingSchemeLabel)
+                    .addComponent(cropCategorylabel)
+                    .addComponent(cropCoefficientLabel)
+                    .addComponent(cropNameLabel)
+                    .addComponent(cropSpacingLabel)
+                    .addComponent(cropRootDepthLabel)
+                    .addComponent(rowSpacingLabel))
+                .addGap(94, 94, 94)
+                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cropRowSpacing)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addCropFormLayout.createSequentialGroup()
+                        .addComponent(rootDepthLow, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(_to)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(rootDepthHigh, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cropSpacing)
+                    .addComponent(cropPlantingScheme, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cropCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cropName)
                     .addGroup(addCropFormLayout.createSequentialGroup()
-                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel13))
                         .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addCropFormLayout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cropRowSpacing)
-                                    .addGroup(addCropFormLayout.createSequentialGroup()
-                                        .addComponent(rootDepthLow, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                                        .addComponent(rootDepthHigh, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(cropSpacing)
-                                    .addComponent(cropCoefficient)
-                                    .addComponent(cropCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cropName)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addCropFormLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cropPlantingScheme, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(intialKc, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(initialKcLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(midKc, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(midKcLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lateKcLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lateKc, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(createCropCategory, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(103, 103, 103))
+                    .addGroup(addCropFormLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saveCropForm, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(createCropCategory, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(103, 103, 103))
+                    .addGroup(addCropFormLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rowSpacingError, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                            .addComponent(rootDepthError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cropSpacingError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cropCoefficientError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         addCropFormLayout.setVerticalGroup(
             addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -962,36 +1110,56 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cropName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cropNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cropCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cropCategorylabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(createCropCategory))
-                .addGap(18, 18, 18)
-                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cropCoefficient, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cropSpacing, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(38, 38, 38)
                 .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(addCropFormLayout.createSequentialGroup()
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addCropFormLayout.createSequentialGroup()
+                                .addGap(116, 116, 116)
+                                .addComponent(cropSpacingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(27, 27, 27))
+                            .addGroup(addCropFormLayout.createSequentialGroup()
+                                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(initialKcLabel)
+                                    .addComponent(midKcLabel)
+                                    .addComponent(lateKcLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(intialKc, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(midKc, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lateKc, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cropCoefficientLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cropCoefficientError, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cropSpacing, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cropSpacingError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cropRootDepthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rootDepthLow, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rootDepthHigh, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(_to)))
+                    .addGroup(addCropFormLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rootDepthError, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rootDepthHigh, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rootDepthLow, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31)
-                .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cropRowSpacing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(cropRowSpacing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rowSpacingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rowSpacingError, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(addCropFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cropPlantingScheme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(plantingSchemeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveCropForm)
                 .addContainerGap())
@@ -1576,9 +1744,25 @@ public class Dashboard extends javax.swing.JFrame {
         //when the user does not know about the actual size of the site then 
         //assume that he has not entered anything in the length and width boxes
         
-        //clear the fields then
-        siteWidth.setText("");
-        siteLength.setText("");
+        if(unknownSiteSize.isSelected()) {
+            
+            //clear the fields then
+            siteWidth.setText("");
+            siteLength.setText("");
+            
+            //disable the fields
+            siteWidth.setEditable(false);
+            siteLength.setEditable(false);
+            
+            //pick the checkbox value
+        }
+        else {
+            //reenable the fields
+            siteWidth.setEditable(true);
+            siteLength.setEditable(true); 
+            
+            //pick the fields value
+        }
     }//GEN-LAST:event_unknownSiteSizeActionPerformed
 
     private void addCropTypeMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_addCropTypeMenuKeyPressed
@@ -1586,7 +1770,119 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_addCropTypeMenuKeyPressed
 
     private void saveCropFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCropFormActionPerformed
-        // TODO add your handling code here:
+        
+        String name, category, scheme;
+        float KcInitial, KcMid, KcLate, spacingCrop, spacingRow, shallowDepth, deepDepth;
+        
+        /* Validate the Entered data*/
+        //validate crop category name
+        if(cropName.getText().isEmpty()) {
+           
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Crop Name.", "Empty Crop Name!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the crop name lable to red
+           cropNameLabel.setForeground(Color.red);
+           return;
+        }
+        //validate initial season crop coefficient
+        else if(intialKc.getText().isEmpty()) {
+           
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the initial crop coefficient.", "Empty initial-season Kc!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the crop coefficient lable to red
+           cropCoefficientLabel.setForeground(Color.red);
+           initialKcLabel.setForeground(Color.red);
+           
+           return;
+        }
+        //validate mid season crop coefficient
+        else if(midKc.getText().isEmpty()) {
+           
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the mid crop coefficient.", "Empty mid-season Kc!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the crop coefficient lable to red
+           cropCoefficientLabel.setForeground(Color.red);
+           midKcLabel.setForeground(Color.red);
+           
+           return;
+        }
+        //validate late season crop coefficient
+        else if(lateKc.getText().isEmpty()) {
+           
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the late crop coefficient.", "Empty late-season Kc!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the crop coefficient lable to red
+           cropCoefficientLabel.setForeground(Color.red);
+           lateKcLabel.setForeground(Color.red);
+           
+           return;
+        }
+        //validate the crop spacing
+        else if(cropSpacing.getText().isEmpty()) {
+           
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the crop spacing.", "Empty Crop spacing!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the crop spacing lable to red
+           cropSpacingLabel.setForeground(Color.red);
+           
+           return;
+        }
+        //validate the crop root depth low value
+        else if(rootDepthLow.getText().isEmpty()) {
+           
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the lower limit.", "Empty lowest crop root depth!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the crop root depth to red
+           cropRootDepthLabel.setForeground(Color.red);
+           
+           return;
+        }
+        //validate the crop root depth high value
+        else if(rootDepthHigh.getText().isEmpty()) {
+           
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Higher limit.", "Empty Highest crop root depth!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the crop root depth to red
+           cropRootDepthLabel.setForeground(Color.red);
+           
+           return;
+        }
+        //validate the crop row spacing
+        else if(cropRowSpacing.getText().isEmpty()) {
+           
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Row spacing.", "Empty Row spacing!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the crop row spacing lable to red
+           rowSpacingLabel.setForeground(Color.red);
+           
+           return;
+        }
+        
+        //get the data now
+        try {
+            name = cropName.getText().trim();
+            
+            KcInitial = Float.parseFloat(intialKc.getText().trim());
+            KcMid = Float.parseFloat(midKc.getText().trim());
+            KcLate = Float.parseFloat(lateKc.getText().trim());
+            
+            spacingCrop = Float.parseFloat(cropSpacing.getText().trim());
+            spacingRow = Float.parseFloat(cropRowSpacing.getText().trim());
+        }
+        catch(NumberFormatException nfe) {
+            //handle the Exception
+        }
+        //send the data to the controller to manipulate it
+        
+        //show a success message or a failure message
     }//GEN-LAST:event_saveCropFormActionPerformed
 
     private void createCropCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCropCategoryActionPerformed
@@ -1614,6 +1910,171 @@ public class Dashboard extends javax.swing.JFrame {
         //close down the entire applicattion
         System.exit(0);
     }//GEN-LAST:event_fileExitActionPerformed
+
+    private void cropNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cropNameMouseClicked
+        
+        //Restore the original blcak color of the lable when it is clicked into
+        cropNameLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_cropNameMouseClicked
+
+    private void intialKcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intialKcMouseClicked
+        
+        //Restore the original blcak color of the lable when it is clicked into
+        initialKcLabel.setForeground(Color.BLACK);
+        cropCoefficientLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_intialKcMouseClicked
+
+    private void midKcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_midKcMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        midKcLabel.setForeground(Color.BLACK);
+        cropCoefficientLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_midKcMouseClicked
+
+    private void lateKcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lateKcMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        lateKcLabel.setForeground(Color.BLACK);
+        cropCoefficientLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lateKcMouseClicked
+
+    private void cropSpacingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cropSpacingMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        cropSpacingLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_cropSpacingMouseClicked
+
+    private void rootDepthLowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rootDepthLowMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        cropRootDepthLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_rootDepthLowMouseClicked
+
+    private void rootDepthHighMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rootDepthHighMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        cropRootDepthLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_rootDepthHighMouseClicked
+
+    private void cropRowSpacingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cropRowSpacingMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        rowSpacingLabel.setForeground(Color.BLACK);
+        cropRowSpacing.setEditable(true);
+    }//GEN-LAST:event_cropRowSpacingMouseClicked
+
+    private void intialKcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_intialKcKeyPressed
+        // Ensure that the typed in keys are numbers
+        char keyPressed = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable typing iin the field
+            intialKc.setEditable(false);
+            //set the error on the interface
+            cropCoefficientError.setText("Fill in numbers");
+            //ring bell
+        }
+        else {
+            intialKc.setEditable(true);
+            cropCoefficientError.setText("");
+        }
+    }//GEN-LAST:event_intialKcKeyPressed
+
+    private void midKcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_midKcKeyPressed
+        // Ensure that the typed in keys are numbers
+        char keyPressed = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable typing iin the field
+            midKc.setEditable(false);
+            //set the error on the interface
+            cropCoefficientError.setText("Fill in numbers");
+            //ring bell
+        }
+        else {
+            midKc.setEditable(true);
+            cropCoefficientError.setText("");
+        }
+    }//GEN-LAST:event_midKcKeyPressed
+
+    private void lateKcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lateKcKeyPressed
+        // Ensure that the typed in keys are numbers
+        char keyPressed = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable typing iin the field
+            lateKc.setEditable(false);
+            //set the error on the interface
+            cropCoefficientError.setText("Fill in numbers");
+            //ring bell
+        }
+        else {
+            lateKc.setEditable(true);
+            cropCoefficientError.setText("");
+        }
+    }//GEN-LAST:event_lateKcKeyPressed
+
+    private void cropSpacingKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cropSpacingKeyPressed
+        // Ensure that the typed in keys are numbers
+        char keyPressed = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable typing iin the field
+            cropSpacing.setEditable(false);
+            //set the error on the interface
+            cropSpacingError.setText("Fill in numbers");
+            //ring bell
+        }
+        else {
+            cropSpacing.setEditable(true);
+            cropSpacingError.setText("");
+        }
+    }//GEN-LAST:event_cropSpacingKeyPressed
+
+    private void rootDepthLowKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rootDepthLowKeyPressed
+        // Ensure that the typed in keys are numbers
+        char keyPressed = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable typing iin the field
+            rootDepthLow.setEditable(false);
+            //set the error on the interface
+            rootDepthError.setText("Fill in numbers");
+            //ring bell
+        }
+        else {
+            rootDepthLow.setEditable(true);
+            rootDepthError.setText("");
+        }
+    }//GEN-LAST:event_rootDepthLowKeyPressed
+
+    private void rootDepthHighKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rootDepthHighKeyPressed
+        // Ensure that the typed in keys are numbers
+        char keyPressed = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable typing iin the field
+            rootDepthHigh.setEditable(false);
+            //set the error on the interface
+            rootDepthError.setText("Fill in numbers");
+            //ring bell
+        }
+        else {
+            rootDepthHigh.setEditable(true);
+            rootDepthError.setText("");
+        }
+    }//GEN-LAST:event_rootDepthHighKeyPressed
+
+    private void cropRowSpacingKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cropRowSpacingKeyPressed
+        // Ensure that the typed in keys are numbers
+        char keyPressed = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable typing iin the field
+            cropRowSpacing.setEditable(false);
+            //set the error on the interface
+            rowSpacingError.setText("Fill in numbers");
+            //ring bell
+        }
+        else {
+            cropRowSpacing.setEditable(true);
+            rowSpacingError.setText("");
+        }
+    }//GEN-LAST:event_cropRowSpacingKeyPressed
 
     /**
      * @param args the command line arguments
@@ -1654,6 +2115,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel MainPanel;
     private javax.swing.JLabel MainSystemLabel;
     private javax.swing.JPanel SiteInfoFormHeader;
+    private javax.swing.JLabel _to;
     private javax.swing.JPanel addCropForm;
     private javax.swing.JLabel addCropHeading;
     private javax.swing.JPanel addCropPanel;
@@ -1677,12 +2139,18 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenu createMenu;
     private javax.swing.JComboBox<String> cropCategory;
     private javax.swing.JComboBox<String> cropCategory1;
-    private javax.swing.JTextField cropCoefficient;
+    private javax.swing.JLabel cropCategorylabel;
+    private javax.swing.JLabel cropCoefficientError;
+    private javax.swing.JLabel cropCoefficientLabel;
     private javax.swing.JPanel cropHedingPanel;
     private javax.swing.JTextField cropName;
+    private javax.swing.JLabel cropNameLabel;
     private javax.swing.JComboBox<String> cropPlantingScheme;
+    private javax.swing.JLabel cropRootDepthLabel;
     private javax.swing.JTextField cropRowSpacing;
     private javax.swing.JTextField cropSpacing;
+    private javax.swing.JLabel cropSpacingError;
+    private javax.swing.JLabel cropSpacingLabel;
     private javax.swing.JPanel descriptionsTab;
     private javax.swing.JMenu editMenu;
     private javax.swing.JComboBox<String> emitterCategory;
@@ -1696,17 +2164,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel footeCopyright;
     private javax.swing.JTextField footerYear;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JLabel initialKcLabel;
     private javax.swing.JTextField inletType;
+    private javax.swing.JTextField intialKc;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
@@ -1717,7 +2180,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1741,13 +2203,21 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField lateKc;
+    private javax.swing.JLabel lateKcLabel;
     private javax.swing.JRadioButton mediumSoilButton;
+    private javax.swing.JTextField midKc;
+    private javax.swing.JLabel midKcLabel;
     private javax.swing.JPanel pipeHedingPanel1;
     private javax.swing.JButton pipeNextBtn;
+    private javax.swing.JLabel plantingSchemeLabel;
     private javax.swing.JMenuItem printDripSysInfo;
     private javax.swing.JMenu printMenu;
+    private javax.swing.JLabel rootDepthError;
     private javax.swing.JTextField rootDepthHigh;
     private javax.swing.JTextField rootDepthLow;
+    private javax.swing.JLabel rowSpacingError;
+    private javax.swing.JLabel rowSpacingLabel;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton saveBtn1;
     private javax.swing.JButton saveCropForm;

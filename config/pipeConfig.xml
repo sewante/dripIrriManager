@@ -3,33 +3,33 @@
 <pipe>
 	<!-- PIPE CATEGORY -->
 	<pipe-categories>
-		<lateral>Lateral pipe</lateral>
-		<manifold>Manifold pipe</manifold>
-		<main>Main pipe</main>
-		<sub-main>Sub-main pipe</sub-main>
+		<lateral title="lateral">Lateral pipe</lateral>
+		<manifold title="manifold">Manifold pipe</manifold>
+		<main title="mainpipe">Main pipe</main>
+		<submain title="submain">Sub-main pipe</submain>
 	</pipe-categories>
 	
 	<!-- PIPE COLOURS -->
 	<colors>
-		<blue>Blue</blue>
-		<purple>Purple</purple>
-		<black>Black</black>
-		<red>Red</red>
-		<yellow>Yellow</yellow>
+		<blue title="blue">Blue</blue>
+		<purple title="purple">Purple</purple>
+		<black title="black">Black</black>
+		<red title="red">Red</red>
+		<yellow title="yellow">Yellow</yellow>
 	</colors>
 	
 	<!-- PIPE MATERIAL -->
 	<materials>
-		<pvc>PVC</pvc>
+		<pvc title="pvc">PVC</pvc>
 		<polypropene>Polypropene</polypropene>
 	</materials>
 	
 	<!-- EMITTER SPACING inches -->
 	<emitter-spacing>
-		<six-inch>6.0</six-inch>
-		<nine-inch>9.0</nine-inch>
-		<tweleve-inch>12.0</tweleve-inch>
-		<eighteen-inch>18.0</eighteen-inch>
+		<sixinch>6.0</sixinch>
+		<nineinch>9.0</nineinch>
+		<tweleveinch>12.0</tweleveinch>
+		<eighteeninch>18.0</eighteeninch>
 		
 	</emitter-spacing>
 </pipe>

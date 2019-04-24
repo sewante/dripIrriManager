@@ -1478,48 +1478,67 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="saveCropForm" min="-2" pref="81" max="-2" attributes="0"/>
+                                          <Component id="plantingSchemeLabel" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cropCategorylabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cropCoefficientLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cropNameLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cropSpacingLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cropRootDepthLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="rowSpacingLabel" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="cropRowSpacing" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="rootDepthLow" min="-2" pref="93" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                              <Component id="_to" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace pref="28" max="32767" attributes="0"/>
+                                              <Component id="rootDepthHigh" min="-2" pref="101" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="cropSpacing" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cropPlantingScheme" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="cropCategory" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cropName" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel10" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel15" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel16" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                              </Group>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="cropRowSpacing" max="32767" attributes="0"/>
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="rootDepthLow" min="-2" pref="87" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                                              <Component id="jLabel17" min="-2" pref="30" max="-2" attributes="0"/>
-                                                              <EmptySpace pref="45" max="32767" attributes="0"/>
-                                                              <Component id="rootDepthHigh" min="-2" pref="77" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Component id="cropSpacing" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="cropCoefficient" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="cropCategory" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="cropName" alignment="0" max="32767" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="cropPlantingScheme" min="-2" pref="269" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="intialKc" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                                                  <Component id="initialKcLabel" alignment="0" min="-2" pref="36" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="midKc" min="-2" pref="61" max="-2" attributes="0"/>
+                                                  <Component id="midKcLabel" min="-2" pref="36" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lateKcLabel" min="-2" pref="36" max="-2" attributes="0"/>
+                                                  <Component id="lateKc" min="-2" pref="57" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel14" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="createCropCategory" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="saveCropForm" min="-2" pref="81" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel14" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="createCropCategory" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="rowSpacingError" alignment="0" pref="153" max="32767" attributes="0"/>
+                                                  <Component id="rootDepthError" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="cropSpacingError" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="cropCoefficientError" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -1530,43 +1549,71 @@
                                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="cropName" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Component id="cropNameLabel" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                           <Component id="jLabel14" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="cropCategory" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jLabel10" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="cropCategorylabel" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                           <Component id="createCropCategory" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="cropCoefficient" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jLabel12" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="cropSpacing" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jLabel15" alignment="3" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel16" min="-2" pref="31" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="rootDepthHigh" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                              <Component id="rootDepthLow" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                              <Component id="jLabel17" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                                                      <Component id="cropSpacingLabel" max="32767" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="3" attributes="0">
+                                                          <Component id="initialKcLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="midKcLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="lateKcLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="3" attributes="0">
+                                                              <Component id="intialKc" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                                              <Component id="midKc" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                                              <Component id="lateKc" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                                              <Component id="cropCoefficientLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <Component id="cropCoefficientError" min="-2" pref="32" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="cropSpacing" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                                                          <Component id="cropSpacingError" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="cropRootDepthLabel" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="rootDepthLow" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                                  <Component id="rootDepthHigh" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                                  <Component id="_to" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="rootDepthError" min="-2" pref="32" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="cropRowSpacing" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Component id="jLabel13" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="cropRowSpacing" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                              <Component id="rowSpacingLabel" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="rowSpacingError" min="-2" pref="34" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="cropPlantingScheme" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel11" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="plantingSchemeLabel" alignment="3" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="saveCropForm" min="-2" max="-2" attributes="0"/>
@@ -1620,7 +1667,7 @@
                                 </Component>
                               </SubComponents>
                             </Container>
-                            <Component class="javax.swing.JLabel" name="jLabel4">
+                            <Component class="javax.swing.JLabel" name="cropNameLabel">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Segoe UI" size="14" style="1"/>
@@ -1632,7 +1679,7 @@
                                 <Property name="text" type="java.lang.String" value="Crop Name :"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel10">
+                            <Component class="javax.swing.JLabel" name="cropCategorylabel">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Segoe UI" size="14" style="1"/>
@@ -1644,7 +1691,7 @@
                                 <Property name="text" type="java.lang.String" value="Crop Category :"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel11">
+                            <Component class="javax.swing.JLabel" name="plantingSchemeLabel">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Segoe UI" size="14" style="1"/>
@@ -1656,7 +1703,7 @@
                                 <Property name="text" type="java.lang.String" value="Planting Scheme :"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel12">
+                            <Component class="javax.swing.JLabel" name="cropCoefficientLabel">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Segoe UI" size="14" style="1"/>
@@ -1668,7 +1715,7 @@
                                 <Property name="text" type="java.lang.String" value="Crop Coefficient :"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel13">
+                            <Component class="javax.swing.JLabel" name="rowSpacingLabel">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Segoe UI" size="14" style="1"/>
@@ -1705,7 +1752,7 @@
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveCropFormActionPerformed"/>
                               </Events>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="cropCoefficient">
+                            <Component class="javax.swing.JTextField" name="intialKc">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1714,6 +1761,10 @@
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="intialKcMouseClicked"/>
+                                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="intialKcKeyPressed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JTextField" name="cropName">
                               <Properties>
@@ -1724,6 +1775,9 @@
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cropNameMouseClicked"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JComboBox" name="cropCategory">
                               <Properties>
@@ -1773,7 +1827,7 @@
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel15">
+                            <Component class="javax.swing.JLabel" name="cropSpacingLabel">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Segoe UI" size="14" style="1"/>
@@ -1785,7 +1839,7 @@
                                 <Property name="text" type="java.lang.String" value="Crop Spacing:"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel16">
+                            <Component class="javax.swing.JLabel" name="cropRootDepthLabel">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Segoe UI" size="14" style="1"/>
@@ -1806,6 +1860,10 @@
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rootDepthHighMouseClicked"/>
+                                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rootDepthHighKeyPressed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JTextField" name="cropSpacing">
                               <Properties>
@@ -1816,6 +1874,10 @@
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cropSpacingMouseClicked"/>
+                                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cropSpacingKeyPressed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JTextField" name="cropRowSpacing">
                               <Properties>
@@ -1826,6 +1888,10 @@
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cropRowSpacingMouseClicked"/>
+                                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cropRowSpacingKeyPressed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JTextField" name="rootDepthLow">
                               <Properties>
@@ -1836,6 +1902,10 @@
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rootDepthLowMouseClicked"/>
+                                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rootDepthLowKeyPressed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="createCropCategory">
                               <Properties>
@@ -1851,16 +1921,141 @@
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createCropCategoryActionPerformed"/>
                               </Events>
                             </Component>
-                            <Component class="javax.swing.JLabel" name="jLabel17">
+                            <Component class="javax.swing.JTextField" name="lateKc">
                               <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="0" type="rgb"/>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lateKcMouseClicked"/>
+                                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lateKcKeyPressed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="midKc">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="0" type="rgb"/>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="midKcMouseClicked"/>
+                                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="midKcKeyPressed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="initialKcLabel">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="14" style="1"/>
+                                  <Font name="Segoe UI" size="12" style="1"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="0" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Intial"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="midKcLabel">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI" size="12" style="1"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="0" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Mid"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="lateKcLabel">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI" size="12" style="1"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="0" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Late"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="_to">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI" size="12" style="1"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="0" red="0" type="rgb"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="to"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="cropCoefficientError">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI" size="14" style="0"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="99" type="rgb"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="rowSpacingError">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI" size="14" style="0"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="99" type="rgb"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="rootDepthError">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI" size="14" style="0"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="99" type="rgb"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="cropSpacingError">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI" size="14" style="0"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="0" red="99" type="rgb"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>

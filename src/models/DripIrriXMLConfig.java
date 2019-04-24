@@ -14,6 +14,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -30,10 +32,10 @@ public class DripIrriXMLConfig {
     private DocumentBuilderFactory factory;
     private DocumentBuilder builder;
     private Document doc;
-    private NodeList list;
+    //private NodeList list;
     private File file;
     
-    private ArrayList<String> pipeCategories;
+    private ArrayList<String> childNodes;
 
     /**
      *  The constructor
@@ -61,10 +63,38 @@ public class DripIrriXMLConfig {
         }
     }
     
-    /*Function to search for the pipe categories */
-    public ArrayList<String> getPipeCategories(String parentNode) {
+    /** Function to search for the child nodes of the specified parendNode
+     * @param parentNode : the parent node whose child nodes we want to extract
+     * @return ArrayList<String> : an ArrayList of the child nodes
+     */
+    public ArrayList<String> getChildNodes(String parentNode) {
+        
+        NodeList list = null;
         
         list = doc.getElementsByTagName(parentNode);
-        return pipeCategories;
+        
+        //loop throught the list to pick the child elements
+        for (int i = 0; i < list.getLength(); i++) {
+            Node currentNode = list.item(i);
+            
+            //check if the picked node is an element node
+            if(currentNode.getNodeType() == Node.ELEMENT_NODE) {
+                //downcast the node
+                Element element = (Element)currentNode;
+                NodeList nodes = element.getChildNodes();
+                for(int j = 0; j < nodes.getLength(); j++) {
+                    Node node = nodes.item(j);
+                    //check the type of node 
+                    if(node.getNodeType() == Node.ELEMENT_NODE) {
+                        Element childNode = (Element)node;
+                        //do what you want with the category now
+                        System.out.println("> "+ childNode.getTagName() + " : " + childNode.getTextContent());
+                        //add the categories to the ArrayList
+                    }
+                }
+            }
+            
+        } 
+        return childNodes;
     }
 }
