@@ -51,7 +51,7 @@ public class CropCategories {
             }
         } catch (SQLException ex) {
             Logger.getLogger(CropCategories.class.getName()).log(Level.SEVERE, null, ex);
-            message += "Crop category not saved to database!";
+            message = "Crop category not saved to database!";
         }
         
         return message;

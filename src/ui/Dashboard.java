@@ -10,7 +10,9 @@ import java.awt.Color;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import controllers.Crops;
+import dripirrimanager.NewCrop;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,17 +22,25 @@ import javax.swing.JOptionPane;
 public class Dashboard extends javax.swing.JFrame {
     
     private Crops crop;
+    private NewCrop newCrop;
     private ArrayList<String> pipeCategories;
+    
     private ArrayList<Float> cropCoefficients;
     
     /** Creates new form Dashboard */
     public Dashboard() {
         
         initComponents();
-        
         crop = new Crops();     //initialize the crops controller
+        newCrop = new NewCrop();
         pipeCategories = null;
         cropCoefficients = null;
+        
+        //set the combobox values for crop categories
+        setComboBoxValues(cropCategory, crop.getCropCategories());  //set crop categories
+        //set the combobox values for planting scheme
+        setComboBoxValues(cropPlantingScheme, crop.getPlantScheme());
+        
         
     }
 
@@ -1870,17 +1880,59 @@ public class Dashboard extends javax.swing.JFrame {
         try {
             name = cropName.getText().trim();
             
+            //planting scheme
+            scheme = (String)cropPlantingScheme.getSelectedItem();
+            //crop category
+            category = (String)cropCategory.getSelectedItem();
+            System.out.println(category);
             KcInitial = Float.parseFloat(intialKc.getText().trim());
             KcMid = Float.parseFloat(midKc.getText().trim());
             KcLate = Float.parseFloat(lateKc.getText().trim());
             
             spacingCrop = Float.parseFloat(cropSpacing.getText().trim());
             spacingRow = Float.parseFloat(cropRowSpacing.getText().trim());
+            
+            shallowDepth = Float.parseFloat(rootDepthLow.getText().trim());
+            deepDepth = Float.parseFloat(rootDepthHigh.getText().trim());
+            
+            //populate the data into the new crop object
+            
+           newCrop.setCropName(name);
+           newCrop.setCropCategory(category);
+           newCrop.setCropCoefficients(KcInitial, KcMid, KcLate);
+           newCrop.setCropDepth(shallowDepth, deepDepth);
+           newCrop.setCropSpacig(spacingCrop);
+           newCrop.setRowSpacing(spacingRow);
+           newCrop.setPlantingScheme(scheme);
+           
+          // Send the crop data to the controller controllers.Crops
+          String message = crop.getCropData(newCrop);
+          
+          if(message.startsWith("New")){
+              JOptionPane.showMessageDialog(rootPane, message, "Saved Successfully!", JOptionPane.INFORMATION_MESSAGE);
+          }
+          else {
+              JOptionPane.showMessageDialog(rootPane, message, "Saving Failed!", JOptionPane.ERROR_MESSAGE);
+          }
+          
+          //clear the fields
+          cropName.setText("");
+          cropSpacing.setText("");
+          cropRowSpacing.setText("");
+          intialKc.setText("");
+          midKc.setText("");
+          lateKc.setText("");
+          rootDepthLow.setText("");
+          rootDepthHigh.setText("");
+          
+          
+          //clear the crop object
+          newCrop = null;
+           
         }
-        catch(NumberFormatException nfe) {
-            //handle the Exception
+        catch(Exception e) {
+            System.out.println("An Error occured: "+ e.getMessage());
         }
-        //send the data to the controller to manipulate it
         
         //show a success message or a failure message
     }//GEN-LAST:event_saveCropFormActionPerformed
@@ -2075,7 +2127,17 @@ public class Dashboard extends javax.swing.JFrame {
             rowSpacingError.setText("");
         }
     }//GEN-LAST:event_cropRowSpacingKeyPressed
-
+    /**
+     * Setting values in the combo box
+     */
+    private void setComboBoxValues(JComboBox<String> combbox, ArrayList<String> values) {
+        String[] categories = new String[values.size()];
+        //set the combobox values
+        for(int i = 0; i < values.size(); i++) {
+            categories[i] = values.get(i);
+        }
+        combbox.setModel(new javax.swing.DefaultComboBoxModel<>(categories));
+    }
     /**
      * @param args the command line arguments
      */

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import models.CropCategories;
 import models.Crop;
 import models.DripIrriXMLConfig;
+import dripirrimanager.NewCrop;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Crops {
     
     private Crop crop;                      //the crop
     private DripIrriXMLConfig pipeConfig;   //the pipe Configurations
+    private DripIrriXMLConfig cropConfig;   //the crop configuratios
     
     //the constructor
     public Crops() {
@@ -27,6 +29,7 @@ public class Crops {
         cropCategory = new CropCategories();    //initailize the crop category
         crop = new Crop();
         pipeConfig = new DripIrriXMLConfig("config\\pipeConfig.xml");
+        cropConfig = new DripIrriXMLConfig(("config\\cropConfig.xml"));
         
     }
     /**
@@ -44,9 +47,9 @@ public class Crops {
     /**
      * Get the Crop data from the ui.Dashboard.AddNewCrop and passes it to the model.Crop 
      */
-    public String getCropData() {
+    public String getCropData(NewCrop newCrop) {
         
-        return "";
+        return crop.saveCropData(newCrop);
     }
     /**
      * #################################### GETTING DATA FROM THE MODEL ###################################
@@ -57,6 +60,22 @@ public class Crops {
     public ArrayList<String> getPipeCategories () {
       
         return pipeConfig.getChildNodes("pipe-categories");
+    }
+    
+    /**
+     * Get the plant schemes from the XML cropConfig.xml
+     */
+    public ArrayList<String> getPlantScheme() {
+        
+        return cropConfig.getChildNodes("plant-scheme");
+    }
+    
+    /**
+     * Get the crop categories from the database
+     */
+    public ArrayList<String> getCropCategories () {
+        
+        return crop.fetchCropCategories();
     }
     /**
      * #################################### SENDING DATA TO THE MODEL ###################################

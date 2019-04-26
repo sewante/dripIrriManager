@@ -44,13 +44,13 @@ public class DripIrriXMLConfig {
     public  DripIrriXMLConfig (String xmlFile) {
         
         try {
+            childNodes = new ArrayList<>(); //initialize the child nodes array list
             factory = DocumentBuilderFactory.newInstance();
             builder = factory.newDocumentBuilder();
             
             file  = new File(xmlFile);  //load the xml file
             doc = builder.parse(file);  //parse the XML file
             
-            //list = doc.getElementsByTagName(xmlFile)
             
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(DripIrriXMLConfig.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,9 +87,8 @@ public class DripIrriXMLConfig {
                     //check the type of node 
                     if(node.getNodeType() == Node.ELEMENT_NODE) {
                         Element childNode = (Element)node;
-                        //do what you want with the category now
-                        System.out.println("> "+ childNode.getTagName() + " : " + childNode.getTextContent());
-                        //add the categories to the ArrayList
+                        //add the child node values to the arraylist
+                        childNodes.add(childNode.getTextContent());
                     }
                 }
             }

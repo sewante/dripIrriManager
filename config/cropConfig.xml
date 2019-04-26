@@ -1,70 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<densityfactor> 
+<cropConfig>
+    <densityfactor> 
 	<trees>
-		<low>0.5</low>
-		<medium>1.0</medium>
-		<high>1.3</high>
+            <low>0.5</low>
+            <medium>1.0</medium>
+            <high>1.3</high>
 	</trees> 
 	<shrubs>
-		<low>0.5</low>
-		<medium>1.0</medium>
-		<high>1.1</high>
+            <low>0.5</low>
+            <medium>1.0</medium>
+            <high>1.1</high>
 	</shrubs> 
 	<groundcover>
-		<low>0.5</low>
-		<medium>1.0</medium>
-		<high>1.1</high>
+            <low>0.5</low>
+            <medium>1.0</medium>
+            <high>1.1</high>
 	</groundcover> 
 	<mixed>
 	<!-- Mixture of trees, shrubs, and ground-cover-->
-		<low>0.6</low>
-		<medium>1.0</medium>
-		<high>1.3</high>
+            <low>0.6</low>
+            <medium>1.0</medium>
+            <high>1.3</high>
 	</mixed>
-</densityfactor>
-<microclimatefactor> 
+    </densityfactor>
+    <microclimatefactor> 
 	<trees>
-		<low>0.5</low>
-		<medium>1.0</medium>
-		<high>1.4</high>
+            <low>0.5</low>
+            <medium>1.0</medium>
+            <high>1.4</high>
 	</trees> 
 	<shrubs>
-		<low>0.5</low>
-		<medium>1.0</medium>
-		<high>1.3</high>
+            <low>0.5</low>
+            <medium>1.0</medium>
+            <high>1.3</high>
 	</shrubs> 
 	<groundcover>
-		<low>0.5</low>
-		<medium>1.0</medium>
-		<high>1.2</high>
+            <low>0.5</low>
+            <medium>1.0</medium>
+            <high>1.2</high>
 	</groundcover> 
 	<mixed>
 	<!-- Mixture of trees, shrubs, and ground-cover-->
-		<low>0.6</low>
-		<medium>1.0</medium>
-		<high>1.4</high>
+            <low>0.6</low>
+            <medium>1.0</medium>
+            <high>1.4</high>
 	</mixed>
-</microclimatefactor>
-<speciesfactor> 
+    </microclimatefactor>
+    <speciesfactor> 
 	<trees>
-		<low>0.2</low>
-		<medium>0.5</medium>
-		<high>0.9</high>
+            <low>0.2</low>
+            <medium>0.5</medium>
+            <high>0.9</high>
 	</trees> 
 	<shrubs>
-		<low>0.2</low>
-		<medium>0.5</medium>
-		<high>0.7</high>
+            <low>0.2</low>
+            <medium>0.5</medium>
+            <high>0.7</high>
 	</shrubs> 
 	<groundcover>
-		<low>0.2</low>
-		<medium>0.5</medium>
-		<high>0.7</high>
+            <low>0.2</low>
+            <medium>0.5</medium>
+            <high>0.7</high>
 	</groundcover> 
 	<mixed>
 	<!-- Mixture of trees, shrubs, and ground-cover-->
-		<low>0.2</low>
-		<medium>0.5</medium>
-		<high>0.9</high>
+            <low>0.2</low>
+            <medium>0.5</medium>
+            <high>0.9</high>
 	</mixed>
-</speciesfactor>
+    </speciesfactor>
+    <plant-scheme>
+        <dense>dense</dense>
+        <sparse>sparse</sparse>
+    </plant-scheme>
+</cropConfig>
