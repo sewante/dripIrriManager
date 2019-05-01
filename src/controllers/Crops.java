@@ -19,7 +19,7 @@ public class Crops {
     
     private CropCategories cropCategory;        //the crop category
     
-    private Crop crop;                      //the crop
+    private Crop crop;                      //the crop model
     private DripIrriXMLConfig pipeConfig;   //the pipe Configurations
     private DripIrriXMLConfig cropConfig;   //the crop configuratios
     

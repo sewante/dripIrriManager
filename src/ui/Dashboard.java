@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import controllers.Crops;
+import controllers.Pipes;
 import dripirrimanager.NewCrop;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
@@ -22,6 +23,7 @@ import javax.swing.JOptionPane;
 public class Dashboard extends javax.swing.JFrame {
     
     private Crops crop;
+    private Pipes pipe;
     private NewCrop newCrop;
     private ArrayList<String> pipeCategories;
     
@@ -32,6 +34,7 @@ public class Dashboard extends javax.swing.JFrame {
         
         initComponents();
         crop = new Crops();     //initialize the crops controller
+        pipe = new Pipes();     //initialize the pipes controller
         newCrop = new NewCrop();
         pipeCategories = null;
         cropCoefficients = null;
@@ -40,6 +43,8 @@ public class Dashboard extends javax.swing.JFrame {
         setComboBoxValues(cropCategory, crop.getCropCategories());  //set crop categories
         //set the combobox values for planting scheme
         setComboBoxValues(cropPlantingScheme, crop.getPlantScheme());
+        //set the combobox values for pipe types
+        setComboBoxValues(pipeType, pipe.getPipeTypes());
         
         
     }
@@ -158,7 +163,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         pipeNextBtn = new javax.swing.JButton();
-        cropCategory1 = new javax.swing.JComboBox<>();
+        pipeType = new javax.swing.JComboBox<>();
         addEmitterPanel = new javax.swing.JPanel();
         addEmitterTitle = new javax.swing.JLabel();
         addEmitterForm = new javax.swing.JPanel();
@@ -1259,10 +1264,10 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        cropCategory1.setBackground(new java.awt.Color(255, 255, 255));
-        cropCategory1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cropCategory1.setForeground(new java.awt.Color(0, 0, 0));
-        cropCategory1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pipeType.setBackground(new java.awt.Color(255, 255, 255));
+        pipeType.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        pipeType.setForeground(new java.awt.Color(0, 0, 0));
+        pipeType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout addPipeFormLayout = new javax.swing.GroupLayout(addPipeForm);
         addPipeForm.setLayout(addPipeFormLayout);
@@ -1270,20 +1275,20 @@ public class Dashboard extends javax.swing.JFrame {
             addPipeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pipeHedingPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(addPipeFormLayout.createSequentialGroup()
+                .addGap(416, 416, 416)
+                .addComponent(jLabel24)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPipeFormLayout.createSequentialGroup()
                 .addGroup(addPipeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(addPipeFormLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(pipeNextBtn))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pipeNextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addPipeFormLayout.createSequentialGroup()
                         .addGap(304, 304, 304)
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(cropCategory1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pipeType, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(189, 189, 189))
-            .addGroup(addPipeFormLayout.createSequentialGroup()
-                .addGap(416, 416, 416)
-                .addComponent(jLabel24)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addPipeFormLayout.setVerticalGroup(
             addPipeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1293,7 +1298,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
                 .addGroup(addPipeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cropCategory1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pipeType, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(pipeNextBtn)
@@ -1784,7 +1789,7 @@ public class Dashboard extends javax.swing.JFrame {
         String name, category, scheme;
         float KcInitial, KcMid, KcLate, spacingCrop, spacingRow, shallowDepth, deepDepth;
         
-        /* Validate the Entered data*/
+        /* Validate the Entered data */
         //validate crop category name
         if(cropName.getText().isEmpty()) {
            
@@ -1944,9 +1949,19 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void pipeNextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pipeNextBtnActionPerformed
         //check for what is submitted from the comb box and load the appropriate interface
-        
-        //to be changed
-        new AddBlankTubing().setVisible(true);
+        String typeOfPipe = (String)pipeType.getSelectedItem();
+        if(typeOfPipe.equals("Blank Tubing")){
+            
+            //to be changed
+            new AddBlankTubing().setVisible(true);
+        }
+        else if(typeOfPipe.equals("Dripline")) {
+            new AddDripLine().setVisible(true);
+        }
+        else {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "The seleceted pipe category is not yet confiqured in the System.", "Pipe Type Unavailable!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_pipeNextBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
@@ -2019,6 +2034,7 @@ public class Dashboard extends javax.swing.JFrame {
             //set the error on the interface
             cropCoefficientError.setText("Fill in numbers");
             //ring bell
+            getToolkit().beep();
         }
         else {
             intialKc.setEditable(true);
@@ -2036,6 +2052,7 @@ public class Dashboard extends javax.swing.JFrame {
             //set the error on the interface
             cropCoefficientError.setText("Fill in numbers");
             //ring bell
+            getToolkit().beep();
         }
         else {
             midKc.setEditable(true);
@@ -2053,6 +2070,7 @@ public class Dashboard extends javax.swing.JFrame {
             //set the error on the interface
             cropCoefficientError.setText("Fill in numbers");
             //ring bell
+            getToolkit().beep();
         }
         else {
             lateKc.setEditable(true);
@@ -2070,6 +2088,7 @@ public class Dashboard extends javax.swing.JFrame {
             //set the error on the interface
             cropSpacingError.setText("Fill in numbers");
             //ring bell
+            getToolkit().beep();
         }
         else {
             cropSpacing.setEditable(true);
@@ -2087,6 +2106,7 @@ public class Dashboard extends javax.swing.JFrame {
             //set the error on the interface
             rootDepthError.setText("Fill in numbers");
             //ring bell
+            getToolkit().beep();
         }
         else {
             rootDepthLow.setEditable(true);
@@ -2121,6 +2141,7 @@ public class Dashboard extends javax.swing.JFrame {
             //set the error on the interface
             rowSpacingError.setText("Fill in numbers");
             //ring bell
+            getToolkit().beep();
         }
         else {
             cropRowSpacing.setEditable(true);
@@ -2200,7 +2221,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton createCropCategory;
     private javax.swing.JMenu createMenu;
     private javax.swing.JComboBox<String> cropCategory;
-    private javax.swing.JComboBox<String> cropCategory1;
     private javax.swing.JLabel cropCategorylabel;
     private javax.swing.JLabel cropCoefficientError;
     private javax.swing.JLabel cropCoefficientLabel;
@@ -2272,6 +2292,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel midKcLabel;
     private javax.swing.JPanel pipeHedingPanel1;
     private javax.swing.JButton pipeNextBtn;
+    private javax.swing.JComboBox<String> pipeType;
     private javax.swing.JLabel plantingSchemeLabel;
     private javax.swing.JMenuItem printDripSysInfo;
     private javax.swing.JMenu printMenu;

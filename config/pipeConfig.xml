@@ -8,6 +8,12 @@
 		<main title="mainpipe">Main pipe</main>
 		<submain title="submain">Sub-main pipe</submain>
 	</pipe-categories>
+        
+        <!-- PIPE TYPES -->
+        <pipe-types>
+            <blanktubing>Blank Tubing</blanktubing>
+            <dripline>Dripline</dripline>
+        </pipe-types>
 	
 	<!-- PIPE COLOURS -->
 	<colors>
@@ -20,8 +26,10 @@
 	
 	<!-- PIPE MATERIAL -->
 	<materials>
-		<pvc title="pvc">PVC</pvc>
-		<polypropene>Polypropene</polypropene>
+		<pvc title="pvc">PolyVinyl Chloride PVC</pvc>
+		<hdpe title="hdpe">High Density Polyethylene HDPE</hdpe>
+		<ldpe title="ldpe">Low Density Polyethylene LDPE</ldpe>
+		<lldpe title="lldpe">Linear Low Density Polyethylene LLDPE</lldpe>
 	</materials>
 	
 	<!-- EMITTER SPACING inches -->

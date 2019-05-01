@@ -10,17 +10,39 @@
  */
 package ui;
 
+import controllers.Pipes;
+import dripirrimanager.NewPipe;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rober
  */
 public class AddBlankTubing extends javax.swing.JFrame {
 
+    Pipes pipe;
+    NewPipe newPipe;
     /**
      * Creates new form AddBlankTubing
      */
     public AddBlankTubing() {
         initComponents();
+        
+        pipe = new Pipes();         //initialize the pipes controller
+        newPipe = new NewPipe();    //initialize the new pie object to add to the system
+        
+        //set the combobox values for the pipe categories
+        setComboBoxValues(pipeCategory, pipe.getPipeCategories());
+        //set the combobox values for the pipe color
+        setComboBoxValues(color, pipe.getPipeColors());
+        //set the combobox values for the pipe materials
+        setComboBoxValues(material, pipe.getPipeMaterials());
+        
+        
     }
 
     /**
@@ -37,14 +59,14 @@ public class AddBlankTubing extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         andBlankTubingHeading = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        modelNameLabel = new javax.swing.JLabel();
+        flowRateLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        coilLengthLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        intDiameterLabel = new javax.swing.JLabel();
+        pipeCostLabel = new javax.swing.JLabel();
+        extDiameterLabel = new javax.swing.JLabel();
         modelName = new javax.swing.JTextField();
         material = new javax.swing.JComboBox<>();
         flowRate = new javax.swing.JTextField();
@@ -60,7 +82,12 @@ public class AddBlankTubing extends javax.swing.JFrame {
         cancelBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        coilLength1 = new javax.swing.JTextField();
+        coilLength = new javax.swing.JTextField();
+        costError = new javax.swing.JLabel();
+        flowRateError = new javax.swing.JLabel();
+        coilLengthError = new javax.swing.JLabel();
+        intDiameterError = new javax.swing.JLabel();
+        extDiameterError = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -110,49 +137,54 @@ public class AddBlankTubing extends javax.swing.JFrame {
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Model Name :");
+        modelNameLabel.setBackground(new java.awt.Color(255, 255, 255));
+        modelNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        modelNameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        modelNameLabel.setText("Model Name :");
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Flow rate :");
+        flowRateLabel.setBackground(new java.awt.Color(255, 255, 255));
+        flowRateLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        flowRateLabel.setForeground(new java.awt.Color(0, 0, 0));
+        flowRateLabel.setText("Flow rate :");
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Color :");
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Coil Length :");
+        coilLengthLabel.setBackground(new java.awt.Color(255, 255, 255));
+        coilLengthLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        coilLengthLabel.setForeground(new java.awt.Color(0, 0, 0));
+        coilLengthLabel.setText("Coil Length :");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Pipe Category :");
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Internal Diameter :");
+        intDiameterLabel.setBackground(new java.awt.Color(255, 255, 255));
+        intDiameterLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        intDiameterLabel.setForeground(new java.awt.Color(0, 0, 0));
+        intDiameterLabel.setText("Internal Diameter :");
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Cost UGx :");
+        pipeCostLabel.setBackground(new java.awt.Color(255, 255, 255));
+        pipeCostLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        pipeCostLabel.setForeground(new java.awt.Color(0, 0, 0));
+        pipeCostLabel.setText("Cost UGx :");
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("External Diameter :");
+        extDiameterLabel.setBackground(new java.awt.Color(255, 255, 255));
+        extDiameterLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        extDiameterLabel.setForeground(new java.awt.Color(0, 0, 0));
+        extDiameterLabel.setText("External Diameter :");
 
         modelName.setBackground(new java.awt.Color(255, 255, 255));
         modelName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         modelName.setForeground(new java.awt.Color(0, 0, 0));
+        modelName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modelNameMouseClicked(evt);
+            }
+        });
 
         material.setBackground(new java.awt.Color(255, 255, 255));
         material.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -162,23 +194,64 @@ public class AddBlankTubing extends javax.swing.JFrame {
         flowRate.setBackground(new java.awt.Color(255, 255, 255));
         flowRate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         flowRate.setForeground(new java.awt.Color(0, 0, 0));
+        flowRate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                flowRateMouseClicked(evt);
+            }
+        });
+        flowRate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                flowRateKeyPressed(evt);
+            }
+        });
 
         pipeCost.setBackground(new java.awt.Color(255, 255, 255));
         pipeCost.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pipeCost.setForeground(new java.awt.Color(0, 0, 0));
+        pipeCost.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pipeCostMouseClicked(evt);
+            }
+        });
+        pipeCost.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pipeCostKeyPressed(evt);
+            }
+        });
 
         internalDiameter.setBackground(new java.awt.Color(255, 255, 255));
         internalDiameter.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         internalDiameter.setForeground(new java.awt.Color(0, 0, 0));
+        internalDiameter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                internalDiameterMouseClicked(evt);
+            }
+        });
+        internalDiameter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                internalDiameterKeyPressed(evt);
+            }
+        });
 
         pipeCategory.setBackground(new java.awt.Color(255, 255, 255));
         pipeCategory.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         pipeCategory.setForeground(new java.awt.Color(0, 0, 0));
         pipeCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pipeCategory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         externalDiameter.setBackground(new java.awt.Color(255, 255, 255));
         externalDiameter.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         externalDiameter.setForeground(new java.awt.Color(0, 0, 0));
+        externalDiameter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                externalDiameterMouseClicked(evt);
+            }
+        });
+        externalDiameter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                externalDiameterKeyPressed(evt);
+            }
+        });
 
         color.setBackground(new java.awt.Color(255, 255, 255));
         color.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -219,15 +292,51 @@ public class AddBlankTubing extends javax.swing.JFrame {
         saveBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saveBtn.setForeground(new java.awt.Color(0, 0, 0));
         saveBtn.setText("Save");
+        saveBtn.setBorderPainted(false);
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Material :");
 
-        coilLength1.setBackground(new java.awt.Color(255, 255, 255));
-        coilLength1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        coilLength1.setForeground(new java.awt.Color(0, 0, 0));
+        coilLength.setBackground(new java.awt.Color(255, 255, 255));
+        coilLength.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        coilLength.setForeground(new java.awt.Color(0, 0, 0));
+        coilLength.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                coilLengthMouseClicked(evt);
+            }
+        });
+        coilLength.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                coilLengthKeyPressed(evt);
+            }
+        });
+
+        costError.setBackground(new java.awt.Color(255, 255, 255));
+        costError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        costError.setForeground(new java.awt.Color(204, 0, 0));
+
+        flowRateError.setBackground(new java.awt.Color(255, 255, 255));
+        flowRateError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        flowRateError.setForeground(new java.awt.Color(204, 0, 0));
+
+        coilLengthError.setBackground(new java.awt.Color(255, 255, 255));
+        coilLengthError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        coilLengthError.setForeground(new java.awt.Color(204, 0, 0));
+
+        intDiameterError.setBackground(new java.awt.Color(255, 255, 255));
+        intDiameterError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        intDiameterError.setForeground(new java.awt.Color(204, 0, 0));
+
+        extDiameterError.setBackground(new java.awt.Color(255, 255, 255));
+        extDiameterError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        extDiameterError.setForeground(new java.awt.Color(204, 0, 0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -239,16 +348,29 @@ public class AddBlankTubing extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel6)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel3)
+                        .addComponent(modelNameLabel)
+                        .addComponent(flowRateLabel)
                         .addComponent(jLabel4)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8)
+                        .addComponent(intDiameterLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(extDiameterLabel)
+                    .addComponent(coilLengthLabel)
+                    .addComponent(pipeCostLabel)
                     .addComponent(jLabel14))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(cancelBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(saveBtn))
+                            .addComponent(pipeCost, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(coilLength, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(externalDiameter)
+                            .addComponent(material, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11)
+                        .addGap(352, 352, 352))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,20 +385,14 @@ public class AddBlankTubing extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(cancelBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(saveBtn))
-                            .addComponent(pipeCost, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(coilLength1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(externalDiameter)
-                            .addComponent(material, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel11)
-                        .addGap(352, 352, 352))))
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(flowRateError, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(extDiameterError, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(coilLengthError, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(intDiameterError, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(costError, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +400,7 @@ public class AddBlankTubing extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modelNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modelName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -292,9 +408,10 @@ public class AddBlankTubing extends javax.swing.JFrame {
                     .addComponent(pipeCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flowRateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(flowRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flowRateError, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,34 +420,39 @@ public class AddBlankTubing extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(internalDiameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(intDiameterError, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(intDiameterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(externalDiameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(extDiameterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(extDiameterError, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(coilLength1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(coilLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(coilLengthError, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(material, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(coilLengthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pipeCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pipeCostLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pipeCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(costError, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveBtn)
                     .addComponent(cancelBtn))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
@@ -380,10 +502,250 @@ public class AddBlankTubing extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-       //close the add New Blank tubing interface
-       this.dispose();
+        //close the add New Blank tubing interface
+        this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    private void modelNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modelNameMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        modelNameLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_modelNameMouseClicked
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        
+        String pipeModel, categoryOfPipe, colorOfPipe;
+        float pipeFlowRate, pipeInternalDiameter, pipeExternalDiameter, pipeCoilLength, cost;
+        
+        /* validate the data input */
+        
+        //validate pipe model name
+        if(modelName.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the model name of the pipe.", "Empty Model Name!", JOptionPane.ERROR_MESSAGE);
+            modelNameLabel.setForeground(Color.red);
+            return;
+        }
+        //validate pipe flow rate
+        if(flowRate.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the flow rate of the pipe.", "Empty Flow rate!", JOptionPane.ERROR_MESSAGE);
+            flowRateLabel.setForeground(Color.red);
+            return;
+        }
+        //validate internal Diameter of the pipe
+        if(internalDiameter.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the internal diameter of the pipe.", "Empty Internal diameter!", JOptionPane.ERROR_MESSAGE);
+            intDiameterLabel.setForeground(Color.red);
+            return;
+        }
+        //validate external Diameter of the pipe
+        if(externalDiameter.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the external diameter of the pipe.", "Empty External diameter!", JOptionPane.ERROR_MESSAGE);
+            extDiameterLabel.setForeground(Color.red);
+            return;
+        }
+        //validate coil length of the pipe
+        if(coilLength.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the coil length of the pipe.", "Empty Coil length!", JOptionPane.ERROR_MESSAGE);
+            coilLengthLabel.setForeground(Color.red);
+            return;
+        }
+        //validate cost of the pipe
+        if(pipeCost.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the cost of the pipe.", "Empty Pipe cost!", JOptionPane.ERROR_MESSAGE);
+            pipeCostLabel.setForeground(Color.red);
+            return;
+        }
+        
+        /* Get the data entered in the blank tubing form */
+        try {
+            
+            pipeModel = modelName.getText().trim();
+            categoryOfPipe = (String)pipeCategory.getSelectedItem();
+            colorOfPipe = (String)color.getSelectedItem();
+            
+            pipeFlowRate = Float.parseFloat(flowRate.getText().trim());
+            pipeInternalDiameter = Float.parseFloat(internalDiameter.getText().trim());
+            pipeExternalDiameter = Float.parseFloat(externalDiameter.getText().trim());
+            pipeCoilLength = Float.parseFloat(coilLength.getText().trim());
+            cost = Float.parseFloat(pipeCost.getText().trim());
+            
+            //set the data in the blank tubing object
+            newPipe.setPipeModelName(pipeModel);
+            newPipe.setPipeColor(colorOfPipe);
+            newPipe.setPipeCategory(pipeModel);
+            newPipe.setPipeFlowRate(pipeFlowRate);
+            newPipe.setPipeInternalDiameter(pipeInternalDiameter);
+            newPipe.setPipeExternalDiameter(pipeExternalDiameter);
+            newPipe.setPipeCoilLength(pipeCoilLength);
+            newPipe.setPipeCost(cost);
+            
+            //send the new pipe object to the controller
+            String message = pipe.getPipeData(newPipe);
+            
+            //show the response
+        }
+        catch(NumberFormatException nfe) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Flow rate, internal diameter, external diameter\n"
+                   + "and coil length have to be float numbers.", "Not A number!", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void flowRateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flowRateMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        flowRateLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_flowRateMouseClicked
+
+    private void internalDiameterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_internalDiameterMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        intDiameterLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_internalDiameterMouseClicked
+
+    private void externalDiameterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_externalDiameterMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        extDiameterLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_externalDiameterMouseClicked
+
+    private void coilLengthMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_coilLengthMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        coilLengthLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_coilLengthMouseClicked
+
+    private void pipeCostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pipeCostMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        pipeCostLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_pipeCostMouseClicked
+
+    private void pipeCostKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pipeCostKeyPressed
+        // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the pipeCost text field
+            pipeCost.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            costError.setText("Fill in Numbers only!");
+        }
+        else if((keyPressed == KeyEvent.VK_COMMA) || (keyPressed == KeyEvent.VK_SPACE)) {
+            //diable editing of the pipeCost text field
+            pipeCost.setEditable(false);
+            
+            //ring a beep
+            getToolkit().beep();
+            //show the error message
+            costError.setText("Commas and Spaces not allowed!");
+            
+        }
+        else {
+            pipeCost.setEditable(true);
+            costError.setText("");
+        }
+        
+    }//GEN-LAST:event_pipeCostKeyPressed
+
+    private void flowRateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_flowRateKeyPressed
+         // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the pipeCost text field
+            flowRate.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            flowRateError.setText("Fill in Numbers only!");
+        }
+        else {
+            //enable edditing of the field
+            flowRate.setEditable(true);
+            //clear the error message
+            flowRateError.setText("");
+        }
+    }//GEN-LAST:event_flowRateKeyPressed
+
+    private void internalDiameterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_internalDiameterKeyPressed
+        // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the pipeCost text field
+            internalDiameter.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            intDiameterError.setText("Fill in Numbers only!");
+        }
+        else {
+            //enable edditing of the field
+            internalDiameter.setEditable(true);
+            //clear the error message
+            intDiameterError.setText("");
+        }
+    }//GEN-LAST:event_internalDiameterKeyPressed
+
+    private void externalDiameterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_externalDiameterKeyPressed
+        // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the pipeCost text field
+            externalDiameter.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            extDiameterError.setText("Fill in Numbers only!");
+        }
+        else {
+            //enable edditing of the field
+            externalDiameter.setEditable(true);
+            //clear the error message
+            extDiameterError.setText("");
+        }
+    }//GEN-LAST:event_externalDiameterKeyPressed
+
+    private void coilLengthKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coilLengthKeyPressed
+        // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the pipeCost text field
+            coilLength.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            coilLengthError.setText("Fill in Numbers only!");
+        }
+        else {
+            //enable edditing of the field
+            coilLength.setEditable(true);
+            //clear the error message
+            coilLengthError.setText("");
+        }
+    }//GEN-LAST:event_coilLengthKeyPressed
+    /**
+     * Setting values in the combo box
+     */
+    private void setComboBoxValues(JComboBox<String> combbox, ArrayList<String> values) {
+        String[] categories = new String[values.size()];
+        //set the combobox values
+        for(int i = 0; i < values.size(); i++) {
+            categories[i] = values.get(i);
+        }
+        combbox.setModel(new javax.swing.DefaultComboBoxModel<>(categories));
+    }
     /**
      * @param args the command line arguments
      */
@@ -423,32 +785,37 @@ public class AddBlankTubing extends javax.swing.JFrame {
     private javax.swing.JPanel addBlankipePanel;
     private javax.swing.JLabel andBlankTubingHeading;
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JTextField coilLength1;
+    private javax.swing.JTextField coilLength;
+    private javax.swing.JLabel coilLengthError;
+    private javax.swing.JLabel coilLengthLabel;
     private javax.swing.JComboBox<String> color;
+    private javax.swing.JLabel costError;
+    private javax.swing.JLabel extDiameterError;
+    private javax.swing.JLabel extDiameterLabel;
     private javax.swing.JTextField externalDiameter;
     private javax.swing.JTextField flowRate;
+    private javax.swing.JLabel flowRateError;
+    private javax.swing.JLabel flowRateLabel;
     private javax.swing.JPanel footerPanel;
+    private javax.swing.JLabel intDiameterError;
+    private javax.swing.JLabel intDiameterLabel;
     private javax.swing.JTextField internalDiameter;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JComboBox<String> material;
     private javax.swing.JTextField modelName;
+    private javax.swing.JLabel modelNameLabel;
     private javax.swing.JComboBox<String> pipeCategory;
     private javax.swing.JTextField pipeCost;
+    private javax.swing.JLabel pipeCostLabel;
     private javax.swing.JButton saveBtn;
     // End of variables declaration//GEN-END:variables
 }
