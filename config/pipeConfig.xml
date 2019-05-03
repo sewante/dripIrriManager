@@ -19,6 +19,7 @@
 	<colors>
 		<blue title="blue">Blue</blue>
 		<purple title="purple">Purple</purple>
+                <brown title="brown">Brown</brown>
 		<black title="black">Black</black>
 		<red title="red">Red</red>
 		<yellow title="yellow">Yellow</yellow>

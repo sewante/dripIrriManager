@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import dripirrimanager.DripLine;
 import java.util.ArrayList;
 import dripirrimanager.NewPipe;
 import models.DripIrriXMLConfig;
@@ -33,13 +34,22 @@ public class Pipes {
      */
     
     /**
-     * Get the Pipe data from the ui.Dashboard.AddBlankTubing and passes it to the model.Pipe 
+     * Get the Pipe data from the ui.AddBlankTubing and passes it to the model.Pipe 
      * @param newPipe
      * @return string message showing success or failure
      */
     public String getPipeData(NewPipe newPipe) {
         
         return pipe.savePipesData(newPipe);
+    }
+    
+    /**
+     * Get the dripline data from the ui.AddDripLine and pass it to the model.Pipe
+     * @param dripline  the dripline object whose data is to add
+     * @return String message showing success or failure
+     */
+    public String getDripLineData(DripLine dripline) {
+        return pipe.saveDripLine(dripline);
     }
     
     /**

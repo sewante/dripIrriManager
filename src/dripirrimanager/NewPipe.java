@@ -15,6 +15,7 @@ public class NewPipe {
     private String pipeModel;
     private String pipeColor;
     private String pipeCategory;
+    private String pipeMaterial;
     private float pipeFlowRate;
     private float pipeCost;
     private float pipeInternalDiameter;
@@ -39,6 +40,11 @@ public class NewPipe {
     // set the pipe category
     public void setPipeCategory(String pipeCategory) {
         this.pipeCategory = pipeCategory;
+    }
+    
+    // set the pipe material
+    public void setPipeMaterial(String pipeMaterial) {
+        this.pipeMaterial = pipeMaterial;
     }
     
     // set the pipe flow rate
@@ -84,6 +90,11 @@ public class NewPipe {
     // get the pipe color
     public String getPipeColor() {
         return pipeColor;
+    }
+    
+    // get the pipe material
+    public String getPipeMaterial() {
+        return pipeMaterial;
     }
     
     // get the pipe internal Diameter

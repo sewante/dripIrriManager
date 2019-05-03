@@ -10,14 +10,19 @@ package models;
  * @author rober
  */
 
+import dripirrimanager.DripLine;
 import java.sql.PreparedStatement;
 import dripirrimanager.NewPipe;
+import java.io.PipedOutputStream;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Pipe {
     
-    private PreparedStatement pipeSatatement;
-    private String message;
-    private String pipeMessage;
+    private PreparedStatement pipeStatement;
+    private String message = "";
+    private String pipeMessage = "";
     
     /**
      * saves the pipe data into the database for the new pipe
@@ -27,12 +32,13 @@ public class Pipe {
     public String savePipesData(NewPipe newPipe) {
         
         if(newPipe.getPipeCategory().equals("Lateral pipe")) {
-            
+            message = saveBlankTubing(newPipe, "pipelateral");
         }
         else if(newPipe.getPipeCategory().equals("Manifold pipe")) {
             
         }
         else if(newPipe.getPipeCategory().equals("Main pipe")) {
+            message = saveBlankTubing(newPipe, "pipemain");
             
         }
         else if (newPipe.getPipeCategory().equals("Sub-main pipe")) {
@@ -50,12 +56,72 @@ public class Pipe {
      * @param tableName the name of the table to which to save the data
      * @return String showing failure or success of the operation
      */
-    public String savePipe(NewPipe pipe, String tableName) {
+    private String saveBlankTubing(NewPipe pipe, String tableName) {
         String pipeSql = String.format("INSERT INTO %s(modelName,flowRate,color,interDiameter,exterDiameter,coilLength,material,cost) "
                 + "VALUES(?,?,?,?,?,?,?,?)", tableName);
-        pipeSatatement = DatabaseManager.getPreparedStatement(pipeSql);
+        pipeStatement = DatabaseManager.getPreparedStatement(pipeSql);
         
-        //CONTINUE HERE
+        try {
+            
+            pipeStatement.setString(1, pipe.getPipeModelName());
+            pipeStatement.setFloat(2, pipe.getPipeFlowRate());
+            pipeStatement.setString(3, pipe.getPipeColor());
+            pipeStatement.setFloat(4, pipe.getPipeInternalDiameter());
+            pipeStatement.setFloat(5, pipe.getPipeExternalDiameter());
+            pipeStatement.setFloat(6, pipe.getPipeCoilLength());
+            pipeStatement.setString(7, pipe.getPipeMaterial());
+            pipeStatement.setFloat(8, pipe.getPipeCost());
+            
+            if(pipeStatement.executeUpdate() > 0) {
+                pipeMessage = "New pipe \""+ pipe.getPipeModelName().toUpperCase() + "\" saved successfully";
+            }
+            else {
+                pipeMessage = "Failed to save \""+ pipe.getPipeModelName().toUpperCase() + "\" to the system";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
+            pipeMessage = "Error: Could not add \""+pipe.getPipeModelName()+"\" to the system";
+        }
         return pipeMessage;
+    }
+    
+    /**
+     * Saves the dripline data into the pipedripline table
+     * @param dripLine  the dripline object whose data is to be inserted into the database
+     * @param tableName the dripline table
+     * @return String showing the failure or the success of the operation
+     */
+    public String saveDripLine(DripLine dripLine) {
+        
+        String dripLineSql = String.format("INSERT INTO %s(modelName,flowRate,color,interDiameter,exterDiameter,coilLength,material,cost,comments,emitterSpacing) "
+                + "VALUES(?,?,?,?,?,?,?,?,?,?)", "pipedripline");
+        pipeStatement = DatabaseManager.getPreparedStatement(dripLineSql);
+        
+        try {
+            
+            pipeStatement.setString(1, dripLine.getPipeModelName());
+            pipeStatement.setFloat(2, dripLine.getPipeFlowRate());
+            pipeStatement.setString(3, dripLine.getPipeColor());
+            pipeStatement.setFloat(4, dripLine.getPipeInternalDiameter());
+            pipeStatement.setFloat(5, dripLine.getPipeExternalDiameter());
+            pipeStatement.setFloat(6, dripLine.getPipeCoilLength());
+            pipeStatement.setString(7, dripLine.getPipeMaterial());
+            pipeStatement.setFloat(8, dripLine.getPipeCost());
+            pipeStatement.setString(9, dripLine.getComments());
+            pipeStatement.setFloat(10, dripLine.getEmitterSpacing());
+            
+            if(pipeStatement.executeUpdate() > 0) {
+                message = "New pipe \""+ dripLine.getPipeModelName().toUpperCase() + "\" saved successfully";
+            }
+            else {
+                message = "Failed to save \""+ dripLine.getPipeModelName().toUpperCase() + "\" to the system";
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
+            message = "Error: Could not add \""+dripLine.getPipeModelName()+"\" to the system";
+        }
+        
+        return message;
     }
 }

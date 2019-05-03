@@ -3,19 +3,47 @@
  * This software is distributed under the license  * 
  * Open to modification and redistribution * 
  */
+
+
+/**
+ * PURPOSE:
+ *      This file is used to add a new dripline to the system 
+ */
 package ui;
 
 /**
  *
  * @author rober
  */
+
+import controllers.Pipes;
+import dripirrimanager.DripLine;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 public class AddDripLine extends javax.swing.JFrame {
 
+    private Pipes pipe;
+    private DripLine dripLine;
     /**
      * Creates new form AddCrop
      */
     public AddDripLine() {
         initComponents();
+        
+        pipe = new Pipes();
+        dripLine = new DripLine();
+        
+        // set th combobox values for emitter spacing
+        setComboBoxValues(emitterSpacing, pipe.getEmitterSpacing());
+        // set the combobox values for dripline color
+        setComboBoxValues(driplineColour, pipe.getPipeColors());
+        // set the combobox values for the dripline material
+        setComboBoxValues(driplineMaterial, pipe.getPipeMaterials());
+        
     }
 
     /**
@@ -32,14 +60,14 @@ public class AddDripLine extends javax.swing.JFrame {
         driplineForm = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        dripLineModelLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        flowRateLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        costLabel = new javax.swing.JLabel();
+        interDiameterLabel = new javax.swing.JLabel();
+        commentsLabel = new javax.swing.JLabel();
+        exterDiameterLabel = new javax.swing.JLabel();
         driplineModel = new javax.swing.JTextField();
         emitterSpacing = new javax.swing.JComboBox<>();
         driplineFlowRate = new javax.swing.JTextField();
@@ -48,7 +76,7 @@ public class AddDripLine extends javax.swing.JFrame {
         internalDiameter = new javax.swing.JTextField();
         driplineMaterial = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        droplineComments = new javax.swing.JTextArea();
+        driplineComments = new javax.swing.JTextArea();
         cancelBtn = new javax.swing.JButton();
         DriplineSaveBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
@@ -56,9 +84,14 @@ public class AddDripLine extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        coilLegthLabel = new javax.swing.JLabel();
         coilLength = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        exterDiameterError = new javax.swing.JLabel();
+        costError = new javax.swing.JLabel();
+        coilLengthError = new javax.swing.JLabel();
+        interDiameterError = new javax.swing.JLabel();
+        flowRateError = new javax.swing.JLabel();
         driplineTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -107,11 +140,11 @@ public class AddDripLine extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Dripline Model :");
+        dripLineModelLabel.setBackground(new java.awt.Color(255, 255, 255));
+        dripLineModelLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        dripLineModelLabel.setForeground(new java.awt.Color(0, 0, 0));
+        dripLineModelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dripLineModelLabel.setText("Dripline Model :");
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -119,11 +152,11 @@ public class AddDripLine extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Emitter Spacing :");
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Flow Rate :");
+        flowRateLabel.setBackground(new java.awt.Color(255, 255, 255));
+        flowRateLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        flowRateLabel.setForeground(new java.awt.Color(0, 0, 0));
+        flowRateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        flowRateLabel.setText("Flow Rate :");
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -131,33 +164,38 @@ public class AddDripLine extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Colour :");
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Cost UGx :");
+        costLabel.setBackground(new java.awt.Color(255, 255, 255));
+        costLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        costLabel.setForeground(new java.awt.Color(0, 0, 0));
+        costLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        costLabel.setText("Cost UGx :");
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Internal Diameter :");
+        interDiameterLabel.setBackground(new java.awt.Color(255, 255, 255));
+        interDiameterLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        interDiameterLabel.setForeground(new java.awt.Color(0, 0, 0));
+        interDiameterLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        interDiameterLabel.setText("Internal Diameter :");
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Comments :");
+        commentsLabel.setBackground(new java.awt.Color(255, 255, 255));
+        commentsLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        commentsLabel.setForeground(new java.awt.Color(0, 0, 0));
+        commentsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        commentsLabel.setText("Comments :");
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("External Diameter :");
+        exterDiameterLabel.setBackground(new java.awt.Color(255, 255, 255));
+        exterDiameterLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        exterDiameterLabel.setForeground(new java.awt.Color(0, 0, 0));
+        exterDiameterLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exterDiameterLabel.setText("External Diameter :");
 
         driplineModel.setBackground(new java.awt.Color(255, 255, 255));
         driplineModel.setForeground(new java.awt.Color(0, 0, 0));
         driplineModel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        driplineModel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                driplineModelMouseClicked(evt);
+            }
+        });
 
         emitterSpacing.setBackground(new java.awt.Color(255, 255, 255));
         emitterSpacing.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -167,6 +205,16 @@ public class AddDripLine extends javax.swing.JFrame {
         driplineFlowRate.setBackground(new java.awt.Color(255, 255, 255));
         driplineFlowRate.setForeground(new java.awt.Color(0, 0, 0));
         driplineFlowRate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        driplineFlowRate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                driplineFlowRateMouseClicked(evt);
+            }
+        });
+        driplineFlowRate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                driplineFlowRateKeyPressed(evt);
+            }
+        });
 
         driplineColour.setBackground(new java.awt.Color(255, 255, 255));
         driplineColour.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -176,10 +224,30 @@ public class AddDripLine extends javax.swing.JFrame {
         driplineCost.setBackground(new java.awt.Color(255, 255, 255));
         driplineCost.setForeground(new java.awt.Color(0, 0, 0));
         driplineCost.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        driplineCost.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                driplineCostMouseClicked(evt);
+            }
+        });
+        driplineCost.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                driplineCostKeyPressed(evt);
+            }
+        });
 
         internalDiameter.setBackground(new java.awt.Color(255, 255, 255));
         internalDiameter.setForeground(new java.awt.Color(0, 0, 0));
         internalDiameter.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        internalDiameter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                internalDiameterMouseClicked(evt);
+            }
+        });
+        internalDiameter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                internalDiameterKeyPressed(evt);
+            }
+        });
 
         driplineMaterial.setBackground(new java.awt.Color(255, 255, 255));
         driplineMaterial.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -189,12 +257,17 @@ public class AddDripLine extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setForeground(new java.awt.Color(0, 0, 0));
 
-        droplineComments.setBackground(new java.awt.Color(255, 255, 255));
-        droplineComments.setColumns(20);
-        droplineComments.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        droplineComments.setForeground(new java.awt.Color(0, 0, 0));
-        droplineComments.setRows(5);
-        jScrollPane1.setViewportView(droplineComments);
+        driplineComments.setBackground(new java.awt.Color(255, 255, 255));
+        driplineComments.setColumns(20);
+        driplineComments.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        driplineComments.setForeground(new java.awt.Color(0, 0, 0));
+        driplineComments.setRows(5);
+        driplineComments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                driplineCommentsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(driplineComments);
 
         cancelBtn.setBackground(new java.awt.Color(0, 51, 51));
         cancelBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -225,6 +298,16 @@ public class AddDripLine extends javax.swing.JFrame {
         externalDiameter.setBackground(new java.awt.Color(255, 255, 255));
         externalDiameter.setForeground(new java.awt.Color(0, 0, 0));
         externalDiameter.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        externalDiameter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                externalDiameterMouseClicked(evt);
+            }
+        });
+        externalDiameter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                externalDiameterKeyPressed(evt);
+            }
+        });
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
@@ -244,15 +327,25 @@ public class AddDripLine extends javax.swing.JFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("inch");
 
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Coil Length :");
+        coilLegthLabel.setBackground(new java.awt.Color(255, 255, 255));
+        coilLegthLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        coilLegthLabel.setForeground(new java.awt.Color(0, 0, 0));
+        coilLegthLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        coilLegthLabel.setText("Coil Length :");
 
         coilLength.setBackground(new java.awt.Color(255, 255, 255));
         coilLength.setForeground(new java.awt.Color(0, 0, 0));
         coilLength.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        coilLength.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                coilLengthMouseClicked(evt);
+            }
+        });
+        coilLength.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                coilLengthKeyPressed(evt);
+            }
+        });
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
@@ -260,56 +353,95 @@ public class AddDripLine extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("m");
 
+        exterDiameterError.setBackground(new java.awt.Color(255, 255, 255));
+        exterDiameterError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        exterDiameterError.setForeground(new java.awt.Color(204, 0, 0));
+
+        costError.setBackground(new java.awt.Color(255, 255, 255));
+        costError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        costError.setForeground(new java.awt.Color(204, 0, 0));
+
+        coilLengthError.setBackground(new java.awt.Color(255, 255, 255));
+        coilLengthError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        coilLengthError.setForeground(new java.awt.Color(204, 0, 0));
+
+        interDiameterError.setBackground(new java.awt.Color(255, 255, 255));
+        interDiameterError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        interDiameterError.setForeground(new java.awt.Color(204, 0, 0));
+
+        flowRateError.setBackground(new java.awt.Color(255, 255, 255));
+        flowRateError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        flowRateError.setForeground(new java.awt.Color(204, 0, 0));
+
         javax.swing.GroupLayout driplineFormLayout = new javax.swing.GroupLayout(driplineForm);
         driplineForm.setLayout(driplineFormLayout);
         driplineFormLayout.setHorizontalGroup(
             driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(driplineFormLayout.createSequentialGroup()
+                .addGap(193, 193, 193)
+                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(flowRateLabel)
+                    .addComponent(dripLineModelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(interDiameterLabel)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(exterDiameterLabel)
+                    .addComponent(coilLegthLabel))
+                .addGap(18, 18, 18)
+                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(driplineModel)
+                    .addComponent(emitterSpacing, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(driplineColour, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(internalDiameter)
+                    .addComponent(externalDiameter)
+                    .addComponent(coilLength)
+                    .addComponent(driplineFlowRate, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(driplineFormLayout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel14))
-                        .addGap(18, 18, 18)
-                        .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(driplineModel)
-                            .addComponent(emitterSpacing, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(driplineColour, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(internalDiameter)
-                            .addComponent(externalDiameter)
-                            .addComponent(coilLength)
-                            .addComponent(driplineFlowRate, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel15)))
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(coilLengthError, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(driplineFormLayout.createSequentialGroup()
-                        .addGap(242, 242, 242)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exterDiameterError, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, driplineFormLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(costError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, driplineFormLayout.createSequentialGroup()
+                                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, driplineFormLayout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addGap(70, 70, 70))
+                                    .addGroup(driplineFormLayout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(78, 78, 78)))
+                                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(flowRateError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(interDiameterError, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))))))
+                .addGap(30, 30, 30))
+            .addGroup(driplineFormLayout.createSequentialGroup()
+                .addGap(242, 242, 242)
+                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(commentsLabel)
+                    .addComponent(costLabel)
+                    .addComponent(jLabel10))
+                .addGap(18, 18, 18)
+                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(driplineFormLayout.createSequentialGroup()
+                        .addComponent(cancelBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
+                        .addComponent(DriplineSaveBtn))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, driplineFormLayout.createSequentialGroup()
                         .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
-                        .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(driplineFormLayout.createSequentialGroup()
-                                .addComponent(cancelBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(DriplineSaveBtn))
-                            .addComponent(driplineCost)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(driplineFormLayout.createSequentialGroup()
-                                .addComponent(driplineMaterial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(23, 23, 23)))))
-                .addContainerGap(320, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(driplineCost, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(driplineMaterial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         driplineFormLayout.setVerticalGroup(
             driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +449,7 @@ public class AddDripLine extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dripLineModelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(driplineModel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -325,49 +457,60 @@ public class AddDripLine extends javax.swing.JFrame {
                     .addComponent(emitterSpacing, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flowRateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(driplineFlowRate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(flowRateError, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(driplineColour, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(internalDiameter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(interDiameterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(internalDiameter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(interDiameterError, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(driplineFormLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(driplineFormLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(externalDiameter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(driplineFormLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(exterDiameterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(7, 7, 7)
                         .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(externalDiameter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(driplineFormLayout.createSequentialGroup()
+                            .addComponent(coilLegthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(coilLength, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11)
-                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(coilLength, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(driplineMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driplineCost, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DriplineSaveBtn)
-                    .addComponent(cancelBtn))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(driplineMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(costLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(driplineCost, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(costError, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(commentsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(driplineFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DriplineSaveBtn)
+                            .addComponent(cancelBtn)))
+                    .addGroup(driplineFormLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(exterDiameterError, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(coilLengthError, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         driplineTitle.setBackground(new java.awt.Color(255, 255, 255));
@@ -393,7 +536,7 @@ public class AddDripLine extends javax.swing.JFrame {
         driplinePanelLayout.setVerticalGroup(
             driplinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, driplinePanelLayout.createSequentialGroup()
-                .addComponent(driplineTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addComponent(driplineTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(driplineForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -421,9 +564,277 @@ public class AddDripLine extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void DriplineSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DriplineSaveBtnActionPerformed
-        // TODO add your handling code here:
+       
+        String pipeModel,colorOfPipe, materialOfPipe, comments;
+        float pipeFlowRate, pipeInternalDiameter, pipeExternalDiameter, pipeCoilLength, cost, spacingOfEmitters;
+        
+        /* Validate the input data */
+        
+        //validate the dripline model
+        if(driplineModel.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the model name of the dripline.", "Empty Model Name!", JOptionPane.ERROR_MESSAGE);
+            dripLineModelLabel.setForeground(Color.red);
+            return;
+            
+        }
+        //validate the dripline flow rate
+        if(driplineFlowRate.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Flow rate of the dripline.", "Empty Flow Rate!", JOptionPane.ERROR_MESSAGE);
+            flowRateLabel.setForeground(Color.red);
+            return;
+            
+        }
+        //validate the internal Diameter
+        if(internalDiameter.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Internal Diameter of the dripline.", "Empty Internal Diameter!", JOptionPane.ERROR_MESSAGE);
+            interDiameterLabel.setForeground(Color.red);
+            return;
+            
+        }
+        //validate the external Diameter
+        if(externalDiameter.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the External Diameter of the dripline.", "Empty External Diameter!", JOptionPane.ERROR_MESSAGE);
+            exterDiameterLabel.setForeground(Color.red);
+            return;
+            
+        }
+        //validate the coil length
+        if(coilLength.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Coil Length of the dripline.", "Empty Coil length!", JOptionPane.ERROR_MESSAGE);
+            coilLegthLabel.setForeground(Color.red);
+            return;
+            
+        }
+        //validate the cost
+        if(driplineCost.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Cost of the dripline.", "Empty Cost!", JOptionPane.ERROR_MESSAGE);
+            costLabel.setForeground(Color.red);
+            return;
+            
+        }
+        //validate the comments
+        if(driplineComments.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Comments on the dripline.", "Empty Comments!", JOptionPane.ERROR_MESSAGE);
+            commentsLabel.setForeground(Color.red);
+            return;
+        }
+        
+        // get the data
+        try {
+            pipeModel = driplineModel.getText().trim();
+            colorOfPipe = (String)driplineColour.getSelectedItem();
+            materialOfPipe = (String)driplineMaterial.getSelectedItem();
+            comments = driplineComments.getText().trim();
+            
+            pipeFlowRate = Float.parseFloat(driplineFlowRate.getText().trim());
+            pipeCoilLength = Float.parseFloat(coilLength.getText().trim());
+            pipeExternalDiameter = Float.parseFloat(externalDiameter.getText().trim());
+            pipeInternalDiameter = Float.parseFloat(internalDiameter.getText().trim());
+            cost = Float.parseFloat(driplineCost.getText().trim());
+            
+             spacingOfEmitters = Float.parseFloat((String)emitterSpacing.getSelectedItem());
+             
+             // set the data into the dripline object
+             dripLine.setPipeModelName(pipeModel);
+             dripLine.setPipeColor(colorOfPipe);
+             dripLine.setPipeMaterial(materialOfPipe);
+             dripLine.setComments(comments);
+             dripLine.setPipeFlowRate(pipeFlowRate);
+             dripLine.setPipeCoilLength(pipeCoilLength);
+             dripLine.setPipeExternalDiameter(pipeExternalDiameter);
+             dripLine.setPipeInternalDiameter(pipeInternalDiameter);
+             dripLine.setPipeCost(cost);
+             dripLine.setEmitterSpacing(spacingOfEmitters);
+             
+             // send the data dripline object to the controller
+             String message = pipe.getDripLineData(dripLine);
+             
+             //show the response
+            if(message.startsWith("New")){
+                JOptionPane.showMessageDialog(rootPane, message, "Saved Successfully!", JOptionPane.INFORMATION_MESSAGE);
+                  
+            }
+            else {
+                JOptionPane.showMessageDialog(rootPane, message, "Saving Failed!", JOptionPane.ERROR_MESSAGE);
+            }
+            //clear the fields
+            driplineModel.setText("");
+            driplineComments.setText("");
+            internalDiameter.setText("");
+            externalDiameter.setText("");
+            driplineCost.setText("");
+            coilLength.setText("");
+            driplineFlowRate.setText("");
+            
+            // clear the dripline object
+            dripLine = null;
+        }
+        catch(NumberFormatException nfe){
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Flow rate, internal diameter, external diameter\n"
+                   + "and coil length have to be float numbers.", "Not A number!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_DriplineSaveBtnActionPerformed
 
+    private void driplineModelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_driplineModelMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        dripLineModelLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_driplineModelMouseClicked
+
+    private void driplineFlowRateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_driplineFlowRateMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        flowRateLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_driplineFlowRateMouseClicked
+
+    private void internalDiameterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_internalDiameterMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        interDiameterLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_internalDiameterMouseClicked
+
+    private void externalDiameterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_externalDiameterMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        exterDiameterLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_externalDiameterMouseClicked
+
+    private void coilLengthMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_coilLengthMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        coilLegthLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_coilLengthMouseClicked
+
+    private void driplineCostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_driplineCostMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        costLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_driplineCostMouseClicked
+
+    private void driplineCommentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_driplineCommentsMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        commentsLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_driplineCommentsMouseClicked
+
+    private void driplineFlowRateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_driplineFlowRateKeyPressed
+        // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the driplineFlowRate text field
+            driplineFlowRate.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            flowRateError.setText("Fill in Numbers only!");
+        }
+        else {
+            driplineFlowRate.setEditable(true);
+            flowRateError.setText("");
+        }
+    }//GEN-LAST:event_driplineFlowRateKeyPressed
+
+    private void driplineCostKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_driplineCostKeyPressed
+        // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the driplineCost text field
+            driplineCost.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            costError.setText("Fill in Numbers only!");
+        }
+        else if((keyPressed == KeyEvent.VK_COMMA) || (keyPressed == KeyEvent.VK_SPACE)) {
+            //diable editing of the driplineCost text field
+            driplineCost.setEditable(false);
+            
+            //ring a beep
+            getToolkit().beep();
+            //show the error message
+            costError.setText("Commas and Spaces not allowed!");
+            
+        }
+        else {
+            driplineCost.setEditable(true);
+            costError.setText("");
+        }
+    }//GEN-LAST:event_driplineCostKeyPressed
+
+    private void internalDiameterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_internalDiameterKeyPressed
+        // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the internal diameter text field
+            internalDiameter.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            interDiameterError.setText("Fill in Numbers only!");
+        }
+        else {
+            internalDiameter.setEditable(true);
+            interDiameterError.setText("");
+        }
+    }//GEN-LAST:event_internalDiameterKeyPressed
+
+    private void externalDiameterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_externalDiameterKeyPressed
+        // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the external diameter text field
+            externalDiameter.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            exterDiameterError.setText("Fill in Numbers only!");
+        }
+        else {
+            externalDiameter.setEditable(true);
+            exterDiameterError.setText("");
+        }
+    }//GEN-LAST:event_externalDiameterKeyPressed
+
+    private void coilLengthKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_coilLengthKeyPressed
+        // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the coilLength diameter text field
+            coilLength.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            coilLengthError.setText("Fill in Numbers only!");
+        }
+        else {
+            //reenable the editing
+            coilLength.setEditable(true);
+            coilLengthError.setText("");
+        }
+    }//GEN-LAST:event_coilLengthKeyPressed
+                                     
+    /**
+     * Setting values in the combo box
+     */
+    private void setComboBoxValues(JComboBox<String> combbox, ArrayList<String> values) {
+        String[] categories = new String[values.size()];
+        //set the combobox values
+        for(int i = 0; i < values.size(); i++) {
+            categories[i] = values.get(i);
+        }
+        combbox.setModel(new javax.swing.DefaultComboBoxModel<>(categories));
+    }
     /**
      * @param args the command line arguments
      */
@@ -463,8 +874,15 @@ public class AddDripLine extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DriplineSaveBtn;
     private javax.swing.JButton cancelBtn;
+    private javax.swing.JLabel coilLegthLabel;
     private javax.swing.JTextField coilLength;
+    private javax.swing.JLabel coilLengthError;
+    private javax.swing.JLabel commentsLabel;
+    private javax.swing.JLabel costError;
+    private javax.swing.JLabel costLabel;
+    private javax.swing.JLabel dripLineModelLabel;
     private javax.swing.JComboBox<String> driplineColour;
+    private javax.swing.JTextArea driplineComments;
     private javax.swing.JTextField driplineCost;
     private javax.swing.JTextField driplineFlowRate;
     private javax.swing.JPanel driplineForm;
@@ -472,25 +890,23 @@ public class AddDripLine extends javax.swing.JFrame {
     private javax.swing.JTextField driplineModel;
     private javax.swing.JPanel driplinePanel;
     private javax.swing.JLabel driplineTitle;
-    private javax.swing.JTextArea droplineComments;
     private javax.swing.JComboBox<String> emitterSpacing;
+    private javax.swing.JLabel exterDiameterError;
+    private javax.swing.JLabel exterDiameterLabel;
     private javax.swing.JTextField externalDiameter;
+    private javax.swing.JLabel flowRateError;
+    private javax.swing.JLabel flowRateLabel;
     private javax.swing.JPanel footerPanel;
+    private javax.swing.JLabel interDiameterError;
+    private javax.swing.JLabel interDiameterLabel;
     private javax.swing.JTextField internalDiameter;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

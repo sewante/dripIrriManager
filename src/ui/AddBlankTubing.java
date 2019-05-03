@@ -513,7 +513,7 @@ public class AddBlankTubing extends javax.swing.JFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         
-        String pipeModel, categoryOfPipe, colorOfPipe;
+        String pipeModel, categoryOfPipe, colorOfPipe, materialOfPipe;
         float pipeFlowRate, pipeInternalDiameter, pipeExternalDiameter, pipeCoilLength, cost;
         
         /* validate the data input */
@@ -567,6 +567,7 @@ public class AddBlankTubing extends javax.swing.JFrame {
             pipeModel = modelName.getText().trim();
             categoryOfPipe = (String)pipeCategory.getSelectedItem();
             colorOfPipe = (String)color.getSelectedItem();
+            materialOfPipe = (String)material.getSelectedItem();
             
             pipeFlowRate = Float.parseFloat(flowRate.getText().trim());
             pipeInternalDiameter = Float.parseFloat(internalDiameter.getText().trim());
@@ -577,17 +578,37 @@ public class AddBlankTubing extends javax.swing.JFrame {
             //set the data in the blank tubing object
             newPipe.setPipeModelName(pipeModel);
             newPipe.setPipeColor(colorOfPipe);
-            newPipe.setPipeCategory(pipeModel);
+            newPipe.setPipeCategory(categoryOfPipe);
             newPipe.setPipeFlowRate(pipeFlowRate);
             newPipe.setPipeInternalDiameter(pipeInternalDiameter);
             newPipe.setPipeExternalDiameter(pipeExternalDiameter);
             newPipe.setPipeCoilLength(pipeCoilLength);
             newPipe.setPipeCost(cost);
+            newPipe.setPipeMaterial(materialOfPipe);
             
             //send the new pipe object to the controller
             String message = pipe.getPipeData(newPipe);
             
             //show the response
+            if(message.startsWith("New")){
+                JOptionPane.showMessageDialog(rootPane, message, "Saved Successfully!", JOptionPane.INFORMATION_MESSAGE);
+                  
+            }
+            else {
+                JOptionPane.showMessageDialog(rootPane, message, "Saving Failed!", JOptionPane.ERROR_MESSAGE);
+            }
+            //clear the fields
+            pipeCost.setText("");
+            modelName.setText("");
+            flowRate.setText("");
+            internalDiameter.setText("");
+            externalDiameter.setText("");
+            coilLength.setText("");
+            
+            //clear the object
+            newPipe = null;
+            
+           
         }
         catch(NumberFormatException nfe) {
             //show a dialog box with the error message
