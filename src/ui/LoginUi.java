@@ -43,6 +43,7 @@ public class LoginUi extends javax.swing.JFrame {
         loginLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("DripIrri Manager - Login");
         setBackground(new java.awt.Color(0, 102, 51));
         setName("login"); // NOI18N
 
@@ -63,7 +64,7 @@ public class LoginUi extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(0, 51, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("LOGIN");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

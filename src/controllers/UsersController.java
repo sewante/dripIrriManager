@@ -33,7 +33,7 @@ public class UsersController {
            new Dashboard().setVisible(true);    //load the user dashboard
        }
        else {
-           logger.logError("Invalid Credentials");
+           logger.logError("controllers.UsersController.login "+"Invalid Credentials");
            JOptionPane.showMessageDialog(null, "Invalid Credentials", "Login Error", JOptionPane.ERROR_MESSAGE);
            new LoginUi().setVisible(true);  //open the login frame for the user to try again
        }

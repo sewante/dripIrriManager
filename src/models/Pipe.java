@@ -14,10 +14,7 @@ import dripirrimanager.DripLine;
 import dripirrimanager.ErrorLogger;
 import java.sql.PreparedStatement;
 import dripirrimanager.NewPipe;
-import java.io.PipedOutputStream;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Pipe {
     

@@ -11,7 +11,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import controllers.Crops;
 import controllers.Pipes;
+import controllers.Emitters;
 import dripirrimanager.NewCrop;
+import dripirrimanager.NewEmitter;
+import dripirrimanager.ErrorLogger;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -24,7 +28,10 @@ public class Dashboard extends javax.swing.JFrame {
     
     private Crops crop;
     private Pipes pipe;
+    private Emitters emitter;
+    private NewEmitter newEmitter;
     private NewCrop newCrop;
+    private ErrorLogger logger;
     private ArrayList<String> pipeCategories;
     
     private ArrayList<Float> cropCoefficients;
@@ -33,9 +40,13 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         
         initComponents();
-        crop = new Crops();     //initialize the crops controller
-        pipe = new Pipes();     //initialize the pipes controller
-        newCrop = new NewCrop();
+        crop = new Crops();             //initialize the crops controller
+        pipe = new Pipes();             //initialize the pipes controller
+        newCrop = new NewCrop();        //initialize the newCrop object
+        newEmitter = new NewEmitter();  //initialize the new emitter object
+        emitter = new Emitters();       //initialize the emitter model
+        logger = ErrorLogger.getLogger();   //initialize the error logger
+        
         pipeCategories = null;
         cropCoefficients = null;
         
@@ -45,6 +56,14 @@ public class Dashboard extends javax.swing.JFrame {
         setComboBoxValues(cropPlantingScheme, crop.getPlantScheme());
         //set the combobox values for pipe types
         setComboBoxValues(pipeType, pipe.getPipeTypes());
+        //set the combobox values for the emitter inlet type
+        setComboBoxValues(emitterInletType, emitter.getEmitterInletType());
+        //set the combobox values for the emitter filtration requirement
+        setComboBoxValues(emitterFiltration, emitter.getEmitterFiltration());
+        //set the combobox values for the emitter color
+        setComboBoxValues(emitterColour, emitter.getEmitterColors());
+        //set the combobox values for the emitter categories
+        setComboBoxValues(emitterCategory, emitter.getEmitterCategories());
         
         
     }
@@ -170,22 +189,25 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         addEmitterHeading = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        emitterFlowRateLabel = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        emitterModellabel = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        emiiterCostLabel = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         emitterFlowRate = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        inletType = new javax.swing.JTextField();
-        emitterModel = new javax.swing.JTextField();
-        filtration = new javax.swing.JTextField();
-        emitterCost = new javax.swing.JTextField();
         emitterColour = new javax.swing.JComboBox<>();
-        saveBtn = new javax.swing.JButton();
-        saveBtn1 = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
+        saveEmitterBtn = new javax.swing.JButton();
         emitterCategory = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        emitterCostError = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        emitterInletType = new javax.swing.JComboBox<>();
+        emitterFiltration = new javax.swing.JComboBox<>();
+        emitterFlowRateError = new javax.swing.JLabel();
+        emitterModel = new javax.swing.JTextField();
+        emitterCost = new javax.swing.JTextField();
         updateTab = new javax.swing.JPanel();
         descriptionsTab = new javax.swing.JPanel();
         usersTab = new javax.swing.JPanel();
@@ -1372,30 +1394,30 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Category :");
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Flow rate :");
+        emitterFlowRateLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        emitterFlowRateLabel.setForeground(new java.awt.Color(0, 0, 0));
+        emitterFlowRateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        emitterFlowRateLabel.setText("Flow rate :");
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Inlet Type :");
 
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("Model Name :");
+        emitterModellabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        emitterModellabel.setForeground(new java.awt.Color(0, 0, 0));
+        emitterModellabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        emitterModellabel.setText("Model Name :");
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("Colour :");
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("Cost UGx :");
+        emiiterCostLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        emiiterCostLabel.setForeground(new java.awt.Color(0, 0, 0));
+        emiiterCostLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        emiiterCostLabel.setText("Cost UGx :");
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
@@ -1405,50 +1427,99 @@ public class Dashboard extends javax.swing.JFrame {
         emitterFlowRate.setBackground(new java.awt.Color(255, 255, 255));
         emitterFlowRate.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         emitterFlowRate.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-
-        inletType.setBackground(new java.awt.Color(255, 255, 255));
-        inletType.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        inletType.setForeground(new java.awt.Color(0, 0, 0));
-
-        emitterModel.setBackground(new java.awt.Color(255, 255, 255));
-        emitterModel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        emitterModel.setForeground(new java.awt.Color(0, 0, 0));
-
-        filtration.setBackground(new java.awt.Color(255, 255, 255));
-        filtration.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        filtration.setForeground(new java.awt.Color(0, 0, 0));
-
-        emitterCost.setBackground(new java.awt.Color(255, 255, 255));
-        emitterCost.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        emitterCost.setForeground(new java.awt.Color(0, 0, 0));
+        emitterFlowRate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                emitterFlowRateMouseClicked(evt);
+            }
+        });
+        emitterFlowRate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                emitterFlowRateKeyPressed(evt);
+            }
+        });
 
         emitterColour.setBackground(new java.awt.Color(255, 255, 255));
         emitterColour.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         emitterColour.setForeground(new java.awt.Color(0, 0, 0));
         emitterColour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        saveBtn.setBackground(new java.awt.Color(0, 51, 51));
-        saveBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        saveBtn.setForeground(new java.awt.Color(0, 0, 0));
-        saveBtn.setText("Clear");
-        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+        cancelBtn.setBackground(new java.awt.Color(0, 51, 51));
+        cancelBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(0, 0, 0));
+        cancelBtn.setText("Clear");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBtnActionPerformed(evt);
+                cancelBtnActionPerformed(evt);
             }
         });
 
-        saveBtn1.setBackground(new java.awt.Color(0, 51, 51));
-        saveBtn1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        saveBtn1.setForeground(new java.awt.Color(0, 0, 0));
-        saveBtn1.setText("Save");
+        saveEmitterBtn.setBackground(new java.awt.Color(0, 51, 51));
+        saveEmitterBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        saveEmitterBtn.setForeground(new java.awt.Color(0, 0, 0));
+        saveEmitterBtn.setText("Save");
+        saveEmitterBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveEmitterBtnActionPerformed(evt);
+            }
+        });
 
         emitterCategory.setBackground(new java.awt.Color(255, 255, 255));
         emitterCategory.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         emitterCategory.setForeground(new java.awt.Color(0, 0, 0));
         emitterCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("l/h");
+
+        emitterCostError.setBackground(new java.awt.Color(255, 255, 255));
+        emitterCostError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        emitterCostError.setForeground(new java.awt.Color(204, 0, 0));
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Micron");
+
+        emitterInletType.setBackground(new java.awt.Color(255, 255, 255));
+        emitterInletType.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        emitterInletType.setForeground(new java.awt.Color(0, 0, 0));
+        emitterInletType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        emitterFiltration.setBackground(new java.awt.Color(255, 255, 255));
+        emitterFiltration.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        emitterFiltration.setForeground(new java.awt.Color(0, 0, 0));
+        emitterFiltration.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        emitterFlowRateError.setBackground(new java.awt.Color(255, 255, 255));
+        emitterFlowRateError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        emitterFlowRateError.setForeground(new java.awt.Color(204, 0, 0));
+
+        emitterModel.setBackground(new java.awt.Color(255, 255, 255));
+        emitterModel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        emitterModel.setForeground(new java.awt.Color(0, 0, 0));
+        emitterModel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                emitterModelMouseClicked(evt);
+            }
+        });
+
+        emitterCost.setBackground(new java.awt.Color(255, 255, 255));
+        emitterCost.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        emitterCost.setForeground(new java.awt.Color(0, 0, 0));
+        emitterCost.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                emitterCostMouseClicked(evt);
+            }
+        });
+        emitterCost.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                emitterCostKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addEmitterFormLayout = new javax.swing.GroupLayout(addEmitterForm);
         addEmitterForm.setLayout(addEmitterFormLayout);
@@ -1458,40 +1529,44 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(addEmitterFormLayout.createSequentialGroup()
                 .addGap(225, 225, 225)
                 .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(emitterModellabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(emitterFlowRateLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(emiiterCostLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(50, 50, 50)
                 .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(addEmitterFormLayout.createSequentialGroup()
-                        .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(emitterCost, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                    .addComponent(emitterFlowRate)
-                    .addComponent(inletType, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                    .addComponent(filtration, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                    .addComponent(emitterModel, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                        .addComponent(saveEmitterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emitterFlowRate, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                     .addComponent(emitterColour, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(emitterCategory, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(emitterCategory, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emitterInletType, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emitterFiltration, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emitterModel, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                    .addComponent(emitterCost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addEmitterFormLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(53, 53, 53)
+                        .addComponent(emitterFlowRateError, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10)
+                    .addComponent(emitterCostError, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addEmitterFormLayout.setVerticalGroup(
             addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addEmitterFormLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addEmitterFormLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addEmitterFormLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(emitterModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42)
+                .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emitterModellabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emitterModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1499,13 +1574,11 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addEmitterFormLayout.createSequentialGroup()
-                        .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(emitterFlowRateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
-                            .addComponent(inletType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(emitterInletType))
                         .addGap(18, 18, 18)
                         .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1513,16 +1586,21 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(filtration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(emitterFlowRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emitterFiltration)))
+                    .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emitterFlowRateError, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emitterFlowRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emitterCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(emiiterCostLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emitterCostError, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emitterCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(addEmitterFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveBtn)
-                    .addComponent(saveBtn1))
+                    .addComponent(cancelBtn)
+                    .addComponent(saveEmitterBtn))
                 .addGap(70, 70, 70))
         );
 
@@ -1988,14 +2066,12 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_pipeNextBtnActionPerformed
 
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // Clear the fields in case someone doesn't want to save the file
-        emitterModel.setText("");
         emitterFlowRate.setText("");
-        inletType.setText("");
-        filtration.setText("");
+        emitterModel.setText("");
         emitterCost.setText("");
-    }//GEN-LAST:event_saveBtnActionPerformed
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void fileExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileExitActionPerformed
         //close down the entire applicattion
@@ -2191,6 +2267,153 @@ public class Dashboard extends javax.swing.JFrame {
         // show the add new DripLine interface
         new AddCropCategory().setVisible(true);
     }//GEN-LAST:event_addNewCropCategoryActionPerformed
+
+    private void emitterFlowRateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emitterFlowRateMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        emitterFlowRateLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_emitterFlowRateMouseClicked
+
+    private void saveEmitterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEmitterBtnActionPerformed
+        String modelOfEmitter, categoryOfEmitter, colorOfEmitter, inletType;
+        float flowRateOfEmitter, cost;
+        int filterationRequirement;
+        
+        /* validate the data input */
+        
+        //validate emitter model name
+        if(emitterModel.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the model name of the emitter.", "Empty Model Name!", JOptionPane.ERROR_MESSAGE);
+            emitterModellabel.setForeground(Color.red);
+            return;
+        }
+        //validate emitter flow rate
+        if(emitterFlowRate.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the flow rate of the emitter.", "Empty Flow Rate!", JOptionPane.ERROR_MESSAGE);
+            emitterFlowRateLabel.setForeground(Color.red);
+            return;
+        }
+        //validate emitter cost
+        if(emitterCost.getText().isEmpty()) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the cost of the emitter.", "Empty Cost!", JOptionPane.ERROR_MESSAGE);
+            emiiterCostLabel.setForeground(Color.red);
+            return;
+        }
+        
+        /* Get the data entered in the emitter form */
+        
+        try{
+            
+            modelOfEmitter = emitterModel.getText().trim();
+            categoryOfEmitter = (String)emitterCategory.getSelectedItem();
+            colorOfEmitter = (String)emitterColour.getSelectedItem();
+            inletType = (String)emitterInletType.getSelectedItem();
+            
+            flowRateOfEmitter = Float.parseFloat(emitterFlowRate.getText().trim());
+            cost = Float.parseFloat(emitterCost.getText().trim());
+            filterationRequirement = Integer.parseInt((String)emitterFiltration.getSelectedItem());
+            
+            //set the data in the emitter object
+            newEmitter.setEmitterModelName(modelOfEmitter);
+            newEmitter.setEmitterCategory(categoryOfEmitter);
+            newEmitter.setEmitterColor(colorOfEmitter);
+            newEmitter.setEmitterInletType(inletType);
+            newEmitter.setEmitterFlowRate(flowRateOfEmitter);
+            newEmitter.setEmitterCost(cost);
+            newEmitter.setEmitterFiltration(filterationRequirement);
+            
+            String message = emitter.getEmitterData(newEmitter);
+            
+            //show the response
+            if(message.startsWith("New")){
+                JOptionPane.showMessageDialog(rootPane, message, "Saved Successfully!", JOptionPane.INFORMATION_MESSAGE);
+                  
+            }
+            else {
+                JOptionPane.showMessageDialog(rootPane, message, "Saving Failed!", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            //clear the the fields
+            emitterModel.setText("");
+            emitterFlowRate.setText("");
+            emitterCost.setText("");
+            
+            // clear the NewEmitter object
+            //newEmitter = null;
+        }
+        catch(NumberFormatException nfe){
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Flow rate and cost "
+                   + "have to be numbers.", "Not A number!", JOptionPane.ERROR_MESSAGE);
+            logger.logError("ui.Dashboard.saveEmitterBtn "+nfe.getMessage());
+        }
+    }//GEN-LAST:event_saveEmitterBtnActionPerformed
+
+    private void emitterCostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emitterCostMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        emiiterCostLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_emitterCostMouseClicked
+
+    private void emitterModelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emitterModelMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        emitterModellabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_emitterModelMouseClicked
+
+    private void emitterFlowRateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emitterFlowRateKeyPressed
+         // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the flow rate text field
+            emitterFlowRate.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            emitterFlowRateError.setText("Fill in Numbers only!");
+        }
+        else {
+            //enable edditing of the field
+            emitterFlowRate.setEditable(true);
+            //clear the error message
+            emitterFlowRateError.setText("");
+        }
+    }//GEN-LAST:event_emitterFlowRateKeyPressed
+
+    private void emitterCostKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emitterCostKeyPressed
+        // Ensure that the typed in characters are numbers and have no commas
+        char keyPressed  = evt.getKeyChar();
+        
+        if(Character.isLetter(keyPressed)) {
+            //diable editing of the emitter cost text field
+            emitterCost.setEditable(false);
+            //ring a beep
+            getToolkit().beep();
+            
+            //show the error message
+            emitterCostError.setText("Fill in Numbers only!");
+        }
+        else if((keyPressed == KeyEvent.VK_COMMA) || (keyPressed == KeyEvent.VK_SPACE)) {
+            //diable editing of the emitter cost text field
+            emitterCost.setEditable(false);
+            
+            //ring a beep
+            getToolkit().beep();
+            //show the error message
+            emitterCostError.setText("Commas and Spaces not allowed!");
+            
+        }
+        else {
+            //enable edditing of the field
+            emitterCost.setEditable(true);
+            //clear the error message
+            emitterCostError.setText("");
+        }
+        
+        
+    }//GEN-LAST:event_emitterCostKeyPressed
     /**
      * Setting values in the combo box
      */
@@ -2259,6 +2482,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel addPipePanel;
     private javax.swing.JPanel addTab;
     private javax.swing.JTabbedPane addTabbedPanel;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JRadioButton coarseSoilButton;
     private javax.swing.JPanel configureDripTab;
     private javax.swing.JTabbedPane configureDripTabbedPanel;
@@ -2279,31 +2503,35 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel cropSpacingLabel;
     private javax.swing.JPanel descriptionsTab;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JLabel emiiterCostLabel;
     private javax.swing.JComboBox<String> emitterCategory;
     private javax.swing.JComboBox<String> emitterColour;
     private javax.swing.JTextField emitterCost;
+    private javax.swing.JLabel emitterCostError;
+    private javax.swing.JComboBox<String> emitterFiltration;
     private javax.swing.JTextField emitterFlowRate;
+    private javax.swing.JLabel emitterFlowRateError;
+    private javax.swing.JLabel emitterFlowRateLabel;
+    private javax.swing.JComboBox<String> emitterInletType;
     private javax.swing.JTextField emitterModel;
+    private javax.swing.JLabel emitterModellabel;
     private javax.swing.JMenuItem fileExit;
-    private javax.swing.JTextField filtration;
     private javax.swing.JRadioButton fineSoilButton;
     private javax.swing.JLabel footeCopyright;
     private javax.swing.JTextField footerYear;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JLabel initialKcLabel;
-    private javax.swing.JTextField inletType;
     private javax.swing.JTextField intialKc;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -2328,7 +2556,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField lateKc;
     private javax.swing.JLabel lateKcLabel;
     private javax.swing.JRadioButton mediumSoilButton;
@@ -2345,9 +2572,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField rootDepthLow;
     private javax.swing.JLabel rowSpacingError;
     private javax.swing.JLabel rowSpacingLabel;
-    private javax.swing.JButton saveBtn;
-    private javax.swing.JButton saveBtn1;
     private javax.swing.JButton saveCropForm;
+    private javax.swing.JButton saveEmitterBtn;
     private javax.swing.JTextField siteAddress;
     private javax.swing.JLabel siteAddressLabel;
     private javax.swing.JTextField siteCity;

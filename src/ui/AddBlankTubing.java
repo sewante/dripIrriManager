@@ -606,7 +606,7 @@ public class AddBlankTubing extends javax.swing.JFrame {
             coilLength.setText("");
             
             //clear the object
-            newPipe = null;
+            //newPipe = null;
             
            
         }
@@ -678,7 +678,7 @@ public class AddBlankTubing extends javax.swing.JFrame {
         char keyPressed  = evt.getKeyChar();
         
         if(Character.isLetter(keyPressed)) {
-            //diable editing of the pipeCost text field
+            //diable editing of the flow rate text field
             flowRate.setEditable(false);
             //ring a beep
             getToolkit().beep();

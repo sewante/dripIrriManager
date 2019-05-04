@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+License
+This software is distributed under the license 
+Open to modification and redistribution
+-->
+
+
+<emitterConfig>
+    <!-- The colours of the emitters -->
+    <colors>
+        <black title="black">Black</black>
+        <red title="red">Red</red>
+        <blue title="blue">Blue</blue>
+        <purple title="purple">Purple</purple>
+    </colors>
+    
+    <!-- The Inlet Type of the Emitter -->
+    <inlet-type>
+        <barb title="barb">Barb</barb>
+        <ten32T title="ten32T">10-32T</ten32T>
+        <halfInchFTP title="halfInchFTP">half inch FTP</halfInchFTP>
+    </inlet-type>
+    
+    <!-- The filtration requirements for the Emitters -->
+    <filtration>
+        <seventy-five>75</seventy-five>
+        <onehundred>100</onehundred>
+    </filtration>
+    
+    <!-- The emitter categories -->
+    <categories>
+        <microsprayer title="microsprayer">Microsprayer</microsprayer>
+        <dripper title="dripper">Dripper</dripper>
+    </categories>
+</emitterConfig>
