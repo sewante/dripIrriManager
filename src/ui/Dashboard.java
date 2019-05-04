@@ -196,8 +196,9 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         fileExit = new javax.swing.JMenuItem();
         createMenu = new javax.swing.JMenu();
-        addSoilType = new javax.swing.JMenuItem();
-        addCropType = new javax.swing.JMenuItem();
+        addNewDripline = new javax.swing.JMenuItem();
+        addNewBlankTubing = new javax.swing.JMenuItem();
+        addNewCropCategory = new javax.swing.JMenuItem();
         addEmitterType = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         printMenu = new javax.swing.JMenu();
@@ -1672,20 +1673,43 @@ public class Dashboard extends javax.swing.JFrame {
 
         createMenu.setText("Create");
 
-        addSoilType.setText("Add New Soil Type");
-        createMenu.add(addSoilType);
+        addNewDripline.setText("Add New Dripline");
+        addNewDripline.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                addNewDriplineFocusGained(evt);
+            }
+        });
+        addNewDripline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewDriplineActionPerformed(evt);
+            }
+        });
+        createMenu.add(addNewDripline);
 
-        addCropType.setText("Add New Crop");
-        addCropType.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
+        addNewBlankTubing.setText("Add New Blank Tubing");
+        addNewBlankTubing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewBlankTubingActionPerformed(evt);
+            }
+        });
+        createMenu.add(addNewBlankTubing);
+
+        addNewCropCategory.setText("Add New Crop Category");
+        addNewCropCategory.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
             public void menuKeyPressed(javax.swing.event.MenuKeyEvent evt) {
-                addCropTypeMenuKeyPressed(evt);
+                addNewCropCategoryMenuKeyPressed(evt);
             }
             public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
             }
             public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
             }
         });
-        createMenu.add(addCropType);
+        addNewCropCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewCropCategoryActionPerformed(evt);
+            }
+        });
+        createMenu.add(addNewCropCategory);
 
         addEmitterType.setText("Add New Emitter");
         createMenu.add(addEmitterType);
@@ -1780,9 +1804,9 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_unknownSiteSizeActionPerformed
 
-    private void addCropTypeMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_addCropTypeMenuKeyPressed
+    private void addNewCropCategoryMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_addNewCropCategoryMenuKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addCropTypeMenuKeyPressed
+    }//GEN-LAST:event_addNewCropCategoryMenuKeyPressed
 
     private void saveCropFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveCropFormActionPerformed
         
@@ -2148,6 +2172,25 @@ public class Dashboard extends javax.swing.JFrame {
             rowSpacingError.setText("");
         }
     }//GEN-LAST:event_cropRowSpacingKeyPressed
+
+    private void addNewDriplineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewDriplineActionPerformed
+        // show the add new DripLine interface
+        new AddDripLine().setVisible(true);
+    }//GEN-LAST:event_addNewDriplineActionPerformed
+
+    private void addNewDriplineFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addNewDriplineFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addNewDriplineFocusGained
+
+    private void addNewBlankTubingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewBlankTubingActionPerformed
+        // show the add new blank tubing interface
+        new AddBlankTubing().setVisible(true);
+    }//GEN-LAST:event_addNewBlankTubingActionPerformed
+
+    private void addNewCropCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewCropCategoryActionPerformed
+        // show the add new DripLine interface
+        new AddCropCategory().setVisible(true);
+    }//GEN-LAST:event_addNewCropCategoryActionPerformed
     /**
      * Setting values in the combo box
      */
@@ -2203,16 +2246,17 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel addCropHeading;
     private javax.swing.JPanel addCropPanel;
     private javax.swing.JLabel addCropTitle;
-    private javax.swing.JMenuItem addCropType;
     private javax.swing.JPanel addEmitterForm;
     private javax.swing.JLabel addEmitterHeading;
     private javax.swing.JPanel addEmitterPanel;
     private javax.swing.JLabel addEmitterTitle;
     private javax.swing.JMenuItem addEmitterType;
+    private javax.swing.JMenuItem addNewBlankTubing;
+    private javax.swing.JMenuItem addNewCropCategory;
+    private javax.swing.JMenuItem addNewDripline;
     private javax.swing.JPanel addPipeForm;
     private javax.swing.JLabel addPipeHeading;
     private javax.swing.JPanel addPipePanel;
-    private javax.swing.JMenuItem addSoilType;
     private javax.swing.JPanel addTab;
     private javax.swing.JTabbedPane addTabbedPanel;
     private javax.swing.JRadioButton coarseSoilButton;

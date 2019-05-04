@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import dripirrimanager.ErrorLogger;
 
 /**
  *
@@ -16,6 +17,7 @@ public class DatabaseManager {
     private final static  String databaseUser = "root";
     private final static  String userKey = "";
     private static Connection connection;
+    private static ErrorLogger logger = ErrorLogger.getLogger();
     
     private static Connection getDatabaseConnection() {
         connection = null;
@@ -28,10 +30,12 @@ public class DatabaseManager {
         }
         catch(ClassNotFoundException cnfe) {
             //report error
+            logger.logError("models.DripIrriXMLConfig.getDatabaseConnection "+cnfe.getMessage());
+            
         }
         catch(SQLException sqle) {
             //report error
-            reportError(sqle.getMessage());
+            logger.logError("models.DripIrriXMLConfig.getDatabaseConnection "+sqle.getMessage());
         }
         return connection;
     }
@@ -48,7 +52,8 @@ public class DatabaseManager {
             dbStatement = getDatabaseConnection().createStatement();
         }
         catch(SQLException sqle) {
-            reportError(sqle.getMessage());
+            //report error
+            logger.logError("models.DripIrriXMLConfig.getStatement "+sqle.getMessage());
         }
 
         return dbStatement;
@@ -66,7 +71,8 @@ public class DatabaseManager {
             dbPreparedStatement = getDatabaseConnection().prepareStatement(sql);
         }
         catch(SQLException sqle) {
-            reportError(sqle.getMessage());
+            //report error
+            logger.logError("models.DripIrriXMLConfig.getPreparedStatement "+sqle.getMessage());
         }
         
         return dbPreparedStatement;
@@ -75,6 +81,7 @@ public class DatabaseManager {
     
     /**
      * report error
+     * @param error the error message to report
     */
     public static void reportError(Object error) {
         System.out.println("ERROR: " + error.toString());

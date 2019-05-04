@@ -10,14 +10,12 @@ package models;
  * @author robert
  */
 import dripirrimanager.NewCrop;
+import dripirrimanager.ErrorLogger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import models.DatabaseManager;
 
 /**
  * This file is the model for handling the crop data
@@ -31,11 +29,14 @@ public class Crop {
     private Statement categoriesStatement;
     private String message;
     private PreparedStatement cropStatement;
+    private ErrorLogger logger;
     /**
      * The constructor
      * it initializes the Database Manager object for connecting to the database
      */
     public Crop() {
+        
+        logger = ErrorLogger.getLogger();
         categoriesStatement = DatabaseManager.getStatement();
         cropCategories = new ArrayList<String>();
     }
@@ -56,11 +57,12 @@ public class Crop {
             }
               
         } catch (SQLException ex) {
-            Logger.getLogger(Crop.class.getName()).log(Level.SEVERE, null, ex);
-            DatabaseManager.reportError(ex.getMessage());
+            
+            logger.logError("models.Crop.fetchCropCategories "+ex.getMessage());
         }
         catch(Exception e){
             System.out.println(" Problem " + e.getMessage());
+            ErrorLogger.getLogger().logError("models.Crop.fetchCropCategories "+e.getMessage());
         }
          return cropCategories;
     }
@@ -110,7 +112,8 @@ public class Crop {
                 message = "Failed to save \""+ newCrop.getCropName().toUpperCase() + "\" to the database";
             } 
         } catch (SQLException ex) {
-            Logger.getLogger(Crop.class.getName()).log(Level.SEVERE, null, ex);
+            
+            logger.logError("models.Crop.saveCropData "+ex.getMessage());
             message = "Error: Failed to insert the crop \""+newCrop.getCropName() + "\" into the system";
         }     
         

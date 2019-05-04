@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/rober/Documents/NetBeansProjects/dripIrriManager/src/controllers/Crops.java</file>
-            <file>file:/C:/Users/rober/Documents/NetBeansProjects/dripIrriManager/src/controllers/Pipes.java</file>
-            <file>file:/C:/Users/rober/Documents/NetBeansProjects/dripIrriManager/src/ui/Dashboard.java</file>
-            <file>file:/C:/Users/rober/Documents/NetBeansProjects/dripIrriManager/src/models/Pipe.java</file>
-            <file>file:/C:/Users/rober/Documents/NetBeansProjects/dripIrriManager/src/models/Crop.java</file>
-            <file>file:/C:/Users/rober/Documents/NetBeansProjects/dripIrriManager/src/ui/AddBlankTubing.java</file>
-            <file>file:/C:/Users/rober/Documents/NetBeansProjects/dripIrriManager/config/pipeConfig.xml</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

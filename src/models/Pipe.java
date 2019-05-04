@@ -11,6 +11,7 @@ package models;
  */
 
 import dripirrimanager.DripLine;
+import dripirrimanager.ErrorLogger;
 import java.sql.PreparedStatement;
 import dripirrimanager.NewPipe;
 import java.io.PipedOutputStream;
@@ -21,8 +22,13 @@ import java.util.logging.Logger;
 public class Pipe {
     
     private PreparedStatement pipeStatement;
+    private ErrorLogger logger;
     private String message = "";
     private String pipeMessage = "";
+    
+    public Pipe() {
+        logger = ErrorLogger.getLogger();
+    }
     
     /**
      * saves the pipe data into the database for the new pipe
@@ -35,7 +41,7 @@ public class Pipe {
             message = saveBlankTubing(newPipe, "pipelateral");
         }
         else if(newPipe.getPipeCategory().equals("Manifold pipe")) {
-            
+            message = "Error: Pipe category not available in system";
         }
         else if(newPipe.getPipeCategory().equals("Main pipe")) {
             message = saveBlankTubing(newPipe, "pipemain");
@@ -43,6 +49,7 @@ public class Pipe {
         }
         else if (newPipe.getPipeCategory().equals("Sub-main pipe")) {
             //save 
+            message = "Error: Pipe category not available in system";
         }
         else {
             message = "Error: Pipe category not available in system";
@@ -79,7 +86,8 @@ public class Pipe {
                 pipeMessage = "Failed to save \""+ pipe.getPipeModelName().toUpperCase() + "\" to the system";
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
+            
+            logger.logError("models.Crop.saveBlankTubing "+ex.getMessage());
             pipeMessage = "Error: Could not add \""+pipe.getPipeModelName()+"\" to the system";
         }
         return pipeMessage;
@@ -118,7 +126,8 @@ public class Pipe {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(Pipe.class.getName()).log(Level.SEVERE, null, ex);
+            
+            logger.logError("models.Crop.saveDripLine "+ex.getMessage());
             message = "Error: Could not add \""+dripLine.getPipeModelName()+"\" to the system";
         }
         

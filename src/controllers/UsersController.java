@@ -8,17 +8,21 @@ package controllers;
 
 import javax.swing.JOptionPane;
 import models.Users;
+import dripirrimanager.ErrorLogger;
 import ui.Dashboard;
 import ui.LoginUi;
 
 public class UsersController {
     
     private Users user;
+    private ErrorLogger logger;
     
     public UsersController() {
         
         //initialise the Users model
         user = new Users();
+        logger = ErrorLogger.getLogger();
+        
     }
     
     //handle the login of the user
@@ -29,7 +33,7 @@ public class UsersController {
            new Dashboard().setVisible(true);    //load the user dashboard
        }
        else {
-           System.out.println("Not allowed");
+           logger.logError("Invalid Credentials");
            JOptionPane.showMessageDialog(null, "Invalid Credentials", "Login Error", JOptionPane.ERROR_MESSAGE);
            new LoginUi().setVisible(true);  //open the login frame for the user to try again
        }

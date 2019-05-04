@@ -7,17 +7,19 @@ package models;
  */
 
 import java.sql.ResultSet;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.sql.Statement;
 import models.DatabaseManager;
+import dripirrimanager.ErrorLogger;
 
 public class Users {
     
+    private ErrorLogger logger;
     private Statement userStatement;
     private boolean userPresent = false;
     public Users() {
         
+        logger = ErrorLogger.getLogger();
         userStatement = DatabaseManager.getStatement();
     }
     
@@ -55,7 +57,7 @@ public class Users {
             }
         }
         catch(SQLException sqle) {
-            DatabaseManager.reportError(sqle.getMessage());
+            logger.logError("models.User.loginUser "+sqle.getMessage());
         }
         
         return userPresent;

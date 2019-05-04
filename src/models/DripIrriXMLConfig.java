@@ -8,8 +8,6 @@ package models;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,6 +16,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import dripirrimanager.ErrorLogger;
 
 /**
  *
@@ -32,6 +31,7 @@ public class DripIrriXMLConfig {
     private DocumentBuilderFactory factory;
     private DocumentBuilder builder;
     private Document doc;
+    private ErrorLogger logger;
     //private NodeList list;
     private File file;
     
@@ -43,6 +43,7 @@ public class DripIrriXMLConfig {
      */
     public  DripIrriXMLConfig (String xmlFile) {
         
+        logger = ErrorLogger.getLogger();
         try {
             childNodes = new ArrayList<>(); //initialize the child nodes array list
             factory = DocumentBuilderFactory.newInstance();
@@ -53,13 +54,12 @@ public class DripIrriXMLConfig {
             
             
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(DripIrriXMLConfig.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Error: " + ex.getMessage());
+            logger.logError("models.DripIrriXMLConfig.DripIrriXMLConfig "+ex.getMessage());
         } catch (SAXException ex) {
-            Logger.getLogger(DripIrriXMLConfig.class.getName()).log(Level.SEVERE, null, ex);
+            logger.logError("models.DripIrriXMLConfig.DripIrriXMLConfig "+ex.getMessage());
         } catch (IOException ex) {
-            Logger.getLogger(DripIrriXMLConfig.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Error: "+ex.getMessage());
+            
+            logger.logError("models.DripIrriXMLConfig.DripIrriXMLConfig "+ex.getMessage());
         }
     }
     

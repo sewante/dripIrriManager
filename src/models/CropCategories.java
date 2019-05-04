@@ -12,13 +12,12 @@ package models;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import models.DatabaseManager;
+import dripirrimanager.ErrorLogger;
+
 public class CropCategories {
     
+    private ErrorLogger logger;
     private String message = "";    //the message to be returned after either saving the category to the db or failure to save it
     private PreparedStatement cropCategoryStatement = null;
     private String categorySql = null;
@@ -26,6 +25,7 @@ public class CropCategories {
     //the constructor
     public CropCategories() {
         
+        logger = ErrorLogger.getLogger();
         categorySql = "INSERT INTO cropcategories(categoryName,avgRootDepth,initialKc,midKc,lateKc,foASoilWater) VALUES(?,?,?,?,?,?)";
         cropCategoryStatement = DatabaseManager.getPreparedStatement(categorySql); //obtain the statement to execute the queries
     }
@@ -50,7 +50,8 @@ public class CropCategories {
                 message = "Error: Crop category \"" + category + "\" not saved!";
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CropCategories.class.getName()).log(Level.SEVERE, null, ex);
+            
+            logger.logError("models.CropCategories.saveCropCategory "+ex.getMessage());
             message = "Crop category not saved to database!";
         }
         

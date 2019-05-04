@@ -6,12 +6,14 @@ package ui;
  * @author robert
  */
 
+import dripirrimanager.ErrorLogger;
 import controllers.UsersController;
 import javax.swing.JOptionPane;
 
 public class LoginUi extends javax.swing.JFrame {
     
     private UsersController userController = null;
+    
     /**
      * Creates new form LoginUi
      */
@@ -59,7 +61,9 @@ public class LoginUi extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Password");
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setBackground(new java.awt.Color(0, 51, 51));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("LOGIN");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,18 +163,23 @@ public class LoginUi extends javax.swing.JFrame {
                     
                 }
                 else {
-                    JOptionPane.showMessageDialog(rootPane, "Please provide a password");
+                    
+               //show a dialog box with the error message
+               JOptionPane.showMessageDialog(rootPane, "Please provide a password.", "Empty Password!", JOptionPane.ERROR_MESSAGE);
                 }
            }
            else {
-               JOptionPane.showMessageDialog(rootPane, "Please provide a user name");
+               
+               //show a dialog box with the error message
+               JOptionPane.showMessageDialog(rootPane, "Please provide a user name.", "Empty Username!", JOptionPane.ERROR_MESSAGE);
            }
-           
-           
            
        }
        catch(Exception e) {
-           //report error
+            //show a dialog box with the error message
+            JOptionPane.showMessageDialog(rootPane, "Failed to login.", "Login Failure!", JOptionPane.ERROR_MESSAGE);
+            ErrorLogger.getLogger().logError(e.getMessage());
+            
        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
