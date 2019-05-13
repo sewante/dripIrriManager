@@ -71,29 +71,36 @@ public class DripIrriXMLConfig {
         
         NodeList list = null;
         
-        list = doc.getElementsByTagName(parentNode);
+        try {
+            list = doc.getElementsByTagName(parentNode);
         
-        //loop throught the list to pick the child elements
-        for (int i = 0; i < list.getLength(); i++) {
-            Node currentNode = list.item(i);
-            
-            //check if the picked node is an element node
-            if(currentNode.getNodeType() == Node.ELEMENT_NODE) {
-                //downcast the node
-                Element element = (Element)currentNode;
-                NodeList nodes = element.getChildNodes();
-                for(int j = 0; j < nodes.getLength(); j++) {
-                    Node node = nodes.item(j);
-                    //check the type of node 
-                    if(node.getNodeType() == Node.ELEMENT_NODE) {
-                        Element childNode = (Element)node;
-                        //add the child node values to the arraylist
-                        childNodes.add(childNode.getTextContent());
+            //loop throught the list to pick the child elements
+            for (int i = 0; i < list.getLength(); i++) {
+                Node currentNode = list.item(i);
+
+                //check if the picked node is an element node
+                if(currentNode.getNodeType() == Node.ELEMENT_NODE) {
+                    //downcast the node
+                    Element element = (Element)currentNode;
+                    NodeList nodes = element.getChildNodes();
+                    for(int j = 0; j < nodes.getLength(); j++) {
+                        Node node = nodes.item(j);
+                        //check the type of node 
+                        if(node.getNodeType() == Node.ELEMENT_NODE) {
+                            Element childNode = (Element)node;
+                            //add the child node values to the arraylist
+                            childNodes.add(childNode.getTextContent());
+                        }
                     }
                 }
-            }
-            
-        } 
+
+            }  
+        }
+        catch(Exception e) {
+            logger.logError("models.DripIrriXMLConfig.getChildNodes "+e.getMessage());
+        }
+        
+        
         return childNodes;
     }
 }

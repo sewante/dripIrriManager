@@ -26,6 +26,7 @@ public class Crop {
     
     private String cropSql;
     private ArrayList<String> cropCategories;
+    private ArrayList<String> crops;
     private Statement categoriesStatement;
     private String message;
     private PreparedStatement cropStatement;
@@ -39,6 +40,7 @@ public class Crop {
         logger = ErrorLogger.getLogger();
         categoriesStatement = DatabaseManager.getStatement();
         cropCategories = new ArrayList<String>();
+        crops = new ArrayList<>();
     }
     
     /**
@@ -65,6 +67,33 @@ public class Crop {
             ErrorLogger.getLogger().logError("models.Crop.fetchCropCategories "+e.getMessage());
         }
          return cropCategories;
+    }
+    
+    /**
+     * Gets the Crops  names from the database and adds them into an arraylist
+     */
+    public ArrayList<String> fetchCrops() {
+        
+        Statement cropStatement = DatabaseManager.getStatement();
+        try {
+            String cropSQL = "SELECT name FROM crop";
+            ResultSet cropResultSet = cropStatement.executeQuery(cropSQL);
+            
+            int cropCounter = 0;
+            while(cropResultSet.next()) {
+               crops.add(cropCounter, cropResultSet.getString("name"));
+                cropCounter++;
+            }
+              
+        } catch (SQLException ex) {
+            
+            logger.logError("models.Crop.fetchCrops "+ex.getMessage());
+        }
+        catch(Exception e){
+            System.out.println(" Problem " + e.getMessage());
+            ErrorLogger.getLogger().logError("models.Crop.fetchCrops "+e.getMessage());
+        }
+         return crops;
     }
     /**
      * Saves the crop data into the database for newly added crop

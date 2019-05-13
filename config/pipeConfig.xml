@@ -41,6 +41,13 @@
 		<eighteeninch>18.0</eighteeninch>
 		
 	</emitter-spacing>
+        
+        <!-- LATERAL PIPE TYPE -->
+        <lateral-type>
+            <default>--Select lateral--</default>
+            <dripline titile="dripline">Driplne</dripline>
+            <blankTubing title="blanktube">Blank Tubing</blankTubing>
+        </lateral-type>
 </pipe>
 
 

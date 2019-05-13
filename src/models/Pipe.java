@@ -12,12 +12,20 @@ package models;
 
 import dripirrimanager.DripLine;
 import dripirrimanager.ErrorLogger;
-import java.sql.PreparedStatement;
 import dripirrimanager.NewPipe;
+
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Pipe {
     
+    private ArrayList<String> pipes;
     private PreparedStatement pipeStatement;
     private ErrorLogger logger;
     private String message = "";
@@ -25,6 +33,7 @@ public class Pipe {
     
     public Pipe() {
         logger = ErrorLogger.getLogger();
+        pipes = new ArrayList<>();
     }
     
     /**
@@ -129,5 +138,30 @@ public class Pipe {
         }
         
         return message;
+    }
+    
+     /**
+     * Gets the pipe  names from the database and adds them into an arraylist
+     */
+    public ArrayList<String> fetchPipes(String category) {
+        String pipeSQL = String.format("SELECT modelName FROM %s", category);
+        
+        Statement pipeStatement = DatabaseManager.getStatement();
+        try {
+            ResultSet pipeResult = pipeStatement.executeQuery(pipeSQL);
+            
+            int pipeCounter = 0;
+            while(pipeResult.next()) {
+                pipes.add(pipeCounter, pipeResult.getString("modelName"));
+                pipeCounter++;
+            }
+        } catch (SQLException ex) {
+            logger.logError("models.Pipe.fetchPipes "+ex.getMessage());
+        }
+        catch(Exception e){
+            System.out.println(" Problem " + e.getMessage());
+            logger.logError("models.Pipe.fetchPipes "+e.getMessage());
+        }
+        return pipes;
     }
 }

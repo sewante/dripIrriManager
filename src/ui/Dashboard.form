@@ -381,63 +381,62 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="siteAddressLabel" min="-2" pref="53" max="-2" attributes="0"/>
-                                              <Component id="siteNameLabel" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
-                                              <Component id="siteCityLabel" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <Component id="sitePersonLabel" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                                  <Component id="siteContactLabel" min="-2" pref="62" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="siteLengthLabel" max="32767" attributes="0"/>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="siteWidthLabel1" max="32767" attributes="0"/>
-                                                          <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="jSeparator4" alignment="0" pref="283" max="32767" attributes="0"/>
-                                                      <Component id="siteName" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="siteCity" max="32767" attributes="0"/>
-                                                      <Component id="siteOwner" max="32767" attributes="0"/>
-                                                      <Component id="jSeparator5" alignment="1" max="32767" attributes="0"/>
-                                                      <Component id="siteAddress" alignment="1" max="32767" attributes="0"/>
-                                                      <Component id="jSeparator8" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="siteContact" min="-2" pref="277" max="-2" attributes="0"/>
-                                                      <Component id="jSeparator10" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="unknownSiteSize" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <Component id="siteLength" max="32767" attributes="0"/>
-                                                      <Component id="siteWidth" max="32767" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                                      <Component id="siteAddressLabel" min="-2" pref="53" max="-2" attributes="0"/>
+                                      <Component id="siteNameLabel" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="siteCityLabel" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="siteOwnerLabel" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                          <Component id="siteContactLabel" min="-2" pref="62" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="179" pref="179" max="-2" attributes="0"/>
-                                          <Component id="sitesizeLabel" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="siteLengthLabel" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="siteWidthLabel" max="32767" attributes="0"/>
+                                                  <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jSeparator4" alignment="0" pref="283" max="32767" attributes="0"/>
+                                              <Component id="siteName" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="siteCity" max="32767" attributes="0"/>
+                                              <Component id="siteOwner" max="32767" attributes="0"/>
+                                              <Component id="jSeparator5" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="siteAddress" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="jSeparator8" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="siteContact" min="-2" pref="277" max="-2" attributes="0"/>
+                                              <Component id="jSeparator10" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="sitesizeLabel" alignment="0" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="siteWidth" alignment="0" pref="180" max="32767" attributes="0"/>
+                                                      <Component id="unknownSiteSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="siteLength" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="jLabel4" min="-2" pref="19" max="-2" attributes="0"/>
+                                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="SiteInfoFormHeader" max="32767" attributes="0"/>
@@ -471,9 +470,9 @@
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Component id="jSeparator5" min="-2" pref="10" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="sitePersonLabel" min="-2" pref="24" max="-2" attributes="0"/>
-                                      <Component id="siteOwner" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="siteOwnerLabel" pref="24" max="32767" attributes="0"/>
+                                      <Component id="siteOwner" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                   <Component id="jSeparator8" min="-2" pref="10" max="-2" attributes="0"/>
@@ -484,17 +483,26 @@
                                   </Group>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Component id="jSeparator10" min="-2" pref="10" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="sitesizeLabel" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="siteLength" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                       <Component id="siteLengthLabel" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="siteLength" alignment="3" max="32767" attributes="0"/>
+                                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="siteWidthLabel1" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="siteWidth" alignment="3" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace type="separate" pref="30" max="32767" attributes="0"/>
+                                          <Component id="siteWidthLabel" pref="28" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="siteWidth" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                                              <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="unknownSiteSize" min="-2" max="-2" attributes="0"/>
@@ -593,6 +601,9 @@
                               <Border info="null"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="siteNameMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JSeparator" name="jSeparator4">
                           <Properties>
@@ -634,6 +645,9 @@
                               <Border info="null"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="siteAddressMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="siteCityLabel">
                           <Properties>
@@ -679,8 +693,11 @@
                               <Border info="null"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="siteCityMouseClicked"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="sitePersonLabel">
+                        <Component class="javax.swing.JLabel" name="siteOwnerLabel">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -713,6 +730,9 @@
                               <Border info="null"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="siteOwnerMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="siteContactLabel">
                           <Properties>
@@ -746,6 +766,9 @@
                               <Border info="null"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="siteContactMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="sitesizeLabel">
                           <Properties>
@@ -777,7 +800,7 @@
                             <Property name="text" type="java.lang.String" value="Length"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="siteWidthLabel1">
+                        <Component class="javax.swing.JLabel" name="siteWidthLabel">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -797,14 +820,28 @@
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="siteLengthMouseClicked"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="siteLengthKeyPressed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="siteWidth">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="siteWidthMouseClicked"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="siteWidthKeyPressed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JCheckBox" name="unknownSiteSize">
                           <Properties>
@@ -819,6 +856,34 @@
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="unknownSiteSizeActionPerformed"/>
                           </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel4">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Georgia" size="14" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="m"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel11">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Georgia" size="14" style="0"/>
+                            </Property>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="m"/>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1038,7 +1103,7 @@
                                       <Component id="jRadioButton5" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox1" min="-2" pref="174" max="-2" attributes="0"/>
+                                  <Component id="wellType" min="-2" pref="174" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                   <Component id="jSeparator11" min="-2" pref="16" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
@@ -1082,14 +1147,14 @@
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="3" attributes="0">
                                                       <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jComboBox1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                                      <Component id="wellType" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jRadioButton5" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="jSeparator11" min="-2" pref="145" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="18" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="waterQualityGood" max="32767" attributes="0"/>
@@ -1258,7 +1323,7 @@
                             <Property name="text" type="java.lang.String" value="Water Quality"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox1">
+                        <Component class="javax.swing.JComboBox" name="wellType">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>

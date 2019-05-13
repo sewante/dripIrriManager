@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+License
+This software is distributed under the license 
+Open to modification and redistribution
+-->
+
+
+<field>
+    
+    <!-- The field well type for those fields whose water source is a well -->
+    <well-type>
+        <sub title="sub">Sub</sub>
+        <centrifugal title="centrifugal">Centrifugal</centrifugal>
+    </well-type>
+    
+</field>

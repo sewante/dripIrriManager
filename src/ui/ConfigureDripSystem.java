@@ -9,13 +9,28 @@ package ui;
  *
  * @author rober
  */
+import dripirrimanager.DripIrriSystem;
+import controllers.DripIrriSystemController;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+
 public class ConfigureDripSystem extends javax.swing.JFrame {
 
+    private DripIrriSystemController dripIrriSysController;
     /**
      * Creates new form ChooseCrop
      */
     public ConfigureDripSystem() {
+        
+        dripIrriSysController = new DripIrriSystemController();     // initialize the drip irrigation system controller
         initComponents();
+        
+        //set the combo box values for the crop
+        setComboBoxValues(crop, dripIrriSysController.getCrops());
+        // set the combo box values for the lateral pipe
+        setComboBoxValues(lateralPipe, dripIrriSysController.getLateralPipes());
+        // set the combo box values for the lateral pipe type
+        setComboBoxValues(lateralType, dripIrriSysController.getLateralPipeTypes());
     }
 
     /**
@@ -51,16 +66,27 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         cropHeading = new javax.swing.JPanel();
         chooseCropLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cropSelect = new javax.swing.JComboBox<>();
+        crop = new javax.swing.JComboBox<>();
         cropLabel = new javax.swing.JLabel();
         pipeAndEmiterPanel = new javax.swing.JPanel();
         pipeEmitterHeading = new javax.swing.JPanel();
         pipeEmitterLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         pipeLabel = new javax.swing.JLabel();
-        emitterSelect = new javax.swing.JComboBox<>();
+        lateralPipe = new javax.swing.JComboBox<>();
         emitterLable = new javax.swing.JLabel();
-        pipeSelect1 = new javax.swing.JComboBox<>();
+        submain = new javax.swing.JComboBox<>();
+        pipeLabel2 = new javax.swing.JLabel();
+        manifold = new javax.swing.JComboBox<>();
+        mainPipe = new javax.swing.JComboBox<>();
+        pipeLabel3 = new javax.swing.JLabel();
+        pipeLabel4 = new javax.swing.JLabel();
+        emitterLable1 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        emitterLable2 = new javax.swing.JLabel();
+        emitter = new javax.swing.JComboBox<>();
+        lateralType = new javax.swing.JComboBox<>();
+        emitterLable3 = new javax.swing.JLabel();
         backToConfigure = new javax.swing.JButton();
         configure = new javax.swing.JButton();
 
@@ -227,7 +253,7 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, climateAndPETPanelLayout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(climateAndPETPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(climateAndPETPanelLayout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(21, 21, 21)))
@@ -235,11 +261,11 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
                 .addGroup(climateAndPETPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2)
                     .addGroup(climateAndPETPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(142, 142, 142)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(74, 74, 74)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(49, 49, 49))
                     .addGroup(climateAndPETPanelLayout.createSequentialGroup()
                         .addGroup(climateAndPETPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,13 +352,13 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         cropHeadingLayout.setVerticalGroup(
             cropHeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cropHeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(chooseCropLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addComponent(chooseCropLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        cropSelect.setBackground(new java.awt.Color(255, 255, 255));
-        cropSelect.setForeground(new java.awt.Color(0, 0, 0));
-        cropSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        crop.setBackground(new java.awt.Color(255, 255, 255));
+        crop.setForeground(new java.awt.Color(0, 0, 0));
+        crop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cropLabel.setBackground(new java.awt.Color(255, 255, 255));
         cropLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -349,20 +375,21 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cropLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cropSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addComponent(crop, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         chooseCropPanelLayout.setVerticalGroup(
             chooseCropPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(chooseCropPanelLayout.createSequentialGroup()
                 .addComponent(cropHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(47, 47, 47)
+                .addGap(53, 53, 53)
                 .addGroup(chooseCropPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(chooseCropPanelLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(cropLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(cropSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(91, 91, 91))
+                        .addComponent(cropLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                        .addGap(91, 91, 91))
+                    .addGroup(chooseCropPanelLayout.createSequentialGroup()
+                        .addComponent(crop, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pipeAndEmiterPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -396,7 +423,7 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         pipeEmitterHeadingLayout.setVerticalGroup(
             pipeEmitterHeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pipeEmitterHeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(pipeEmitterLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addComponent(pipeEmitterLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -404,21 +431,76 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         pipeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         pipeLabel.setForeground(new java.awt.Color(0, 0, 0));
         pipeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pipeLabel.setText("Pipe:");
+        pipeLabel.setText("Submain:");
 
-        emitterSelect.setBackground(new java.awt.Color(255, 255, 255));
-        emitterSelect.setForeground(new java.awt.Color(0, 0, 0));
-        emitterSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        lateralPipe.setBackground(new java.awt.Color(255, 255, 255));
+        lateralPipe.setForeground(new java.awt.Color(0, 0, 0));
+        lateralPipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         emitterLable.setBackground(new java.awt.Color(255, 255, 255));
         emitterLable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         emitterLable.setForeground(new java.awt.Color(0, 0, 0));
         emitterLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        emitterLable.setText("Emitter:");
+        emitterLable.setText("Set Dripline:");
 
-        pipeSelect1.setBackground(new java.awt.Color(255, 255, 255));
-        pipeSelect1.setForeground(new java.awt.Color(0, 0, 0));
-        pipeSelect1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        submain.setBackground(new java.awt.Color(255, 255, 255));
+        submain.setForeground(new java.awt.Color(0, 0, 0));
+        submain.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        pipeLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        pipeLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        pipeLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        pipeLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pipeLabel2.setText("Pipe");
+
+        manifold.setBackground(new java.awt.Color(255, 255, 255));
+        manifold.setForeground(new java.awt.Color(0, 0, 0));
+        manifold.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        mainPipe.setBackground(new java.awt.Color(255, 255, 255));
+        mainPipe.setForeground(new java.awt.Color(0, 0, 0));
+        mainPipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        pipeLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        pipeLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        pipeLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        pipeLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pipeLabel3.setText("Main Pipe:");
+
+        pipeLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        pipeLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        pipeLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        pipeLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pipeLabel4.setText("Manifold:");
+
+        emitterLable1.setBackground(new java.awt.Color(255, 255, 255));
+        emitterLable1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        emitterLable1.setForeground(new java.awt.Color(0, 0, 0));
+        emitterLable1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        emitterLable1.setText("Emitter");
+
+        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator3.setForeground(new java.awt.Color(0, 51, 51));
+
+        emitterLable2.setBackground(new java.awt.Color(255, 255, 255));
+        emitterLable2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        emitterLable2.setForeground(new java.awt.Color(0, 0, 0));
+        emitterLable2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        emitterLable2.setText("Set Emitter:");
+
+        emitter.setBackground(new java.awt.Color(255, 255, 255));
+        emitter.setForeground(new java.awt.Color(0, 0, 0));
+        emitter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lateralType.setBackground(new java.awt.Color(255, 255, 255));
+        lateralType.setForeground(new java.awt.Color(0, 0, 0));
+        lateralType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        emitterLable3.setBackground(new java.awt.Color(255, 255, 255));
+        emitterLable3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        emitterLable3.setForeground(new java.awt.Color(0, 0, 0));
+        emitterLable3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        emitterLable3.setText("Lateral Type:");
 
         javax.swing.GroupLayout pipeAndEmiterPanelLayout = new javax.swing.GroupLayout(pipeAndEmiterPanel);
         pipeAndEmiterPanel.setLayout(pipeAndEmiterPanelLayout);
@@ -426,31 +508,84 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
             pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pipeEmitterHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pipeAndEmiterPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pipeAndEmiterPanelLayout.createSequentialGroup()
+                                .addComponent(pipeLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(223, 223, 223))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pipeAndEmiterPanelLayout.createSequentialGroup()
+                                .addComponent(emitterLable1)
+                                .addGap(228, 228, 228))))
                     .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
-                        .addComponent(emitterLable)
-                        .addGap(18, 18, 18)
-                        .addComponent(emitterSelect, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
-                        .addComponent(pipeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pipeSelect1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
+                                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(emitterLable2)
+                                    .addComponent(emitterLable, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(emitter, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lateralPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 10, Short.MAX_VALUE))
+                            .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(pipeLabel)
+                                    .addComponent(pipeLabel3)
+                                    .addComponent(pipeLabel4)
+                                    .addComponent(emitterLable3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(submain, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mainPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(manifold, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lateralType, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(13, 13, 13))
+                            .addComponent(jSeparator3))
+                        .addContainerGap())))
         );
         pipeAndEmiterPanelLayout.setVerticalGroup(
             pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
                 .addComponent(pipeEmitterHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(98, 98, 98)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pipeLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pipeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pipeSelect1))
-                .addGap(51, 51, 51)
-                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mainPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pipeLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
+                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addComponent(pipeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                        .addGap(148, 148, 148))
+                    .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
+                        .addComponent(submain, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(manifold, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pipeLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lateralType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emitterLable3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(47, 47, 47)))
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(emitterLable1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(emitterLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(emitterSelect))
-                .addGap(246, 246, 246))
+                    .addComponent(lateralPipe, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emitter, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emitterLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         backToConfigure.setBackground(new java.awt.Color(0, 51, 51));
@@ -486,27 +621,27 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
                 .addContainerGap())
             .addComponent(footerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(90, 90, 90)
                 .addComponent(backToConfigure, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(configure, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(32, 32, 32))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(climateAndPETPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(chooseCropPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pipeAndEmiterPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(chooseCropPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pipeAndEmiterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1))
                 .addGap(18, 18, 18)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backToConfigure)
-                    .addComponent(configure))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(configure)
+                    .addComponent(backToConfigure))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(footerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -555,7 +690,17 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         //dispose this tab
         this.dispose();
     }//GEN-LAST:event_backToConfigureActionPerformed
-
+    /**
+     * Setting values in the combo box
+     */
+    private void setComboBoxValues(JComboBox<String> combbox, ArrayList<String> values) {
+        String[] categories = new String[values.size()];
+        //set the combobox values
+        for(int i = 0; i < values.size(); i++) {
+            categories[i] = values.get(i);
+        }
+        combbox.setModel(new javax.swing.DefaultComboBoxModel<>(categories));
+    }
     /**
      * @param args the command line arguments
      */
@@ -603,11 +748,14 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
     private javax.swing.JButton configure;
     private javax.swing.JRadioButton coolDryPET;
     private javax.swing.JRadioButton coolHumidPET;
+    private javax.swing.JComboBox<String> crop;
     private javax.swing.JPanel cropHeading;
     private javax.swing.JLabel cropLabel;
-    private javax.swing.JComboBox<String> cropSelect;
+    private javax.swing.JComboBox<String> emitter;
     private javax.swing.JLabel emitterLable;
-    private javax.swing.JComboBox<String> emitterSelect;
+    private javax.swing.JLabel emitterLable1;
+    private javax.swing.JLabel emitterLable2;
+    private javax.swing.JLabel emitterLable3;
     private javax.swing.JPanel footerPanel;
     private javax.swing.JRadioButton hotDryPET;
     private javax.swing.JRadioButton hotHumidPET;
@@ -621,12 +769,20 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JComboBox<String> lateralPipe;
+    private javax.swing.JComboBox<String> lateralType;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JComboBox<String> mainPipe;
+    private javax.swing.JComboBox<String> manifold;
     private javax.swing.JPanel pipeAndEmiterPanel;
     private javax.swing.JPanel pipeEmitterHeading;
     private javax.swing.JLabel pipeEmitterLabel;
     private javax.swing.JLabel pipeLabel;
-    private javax.swing.JComboBox<String> pipeSelect1;
+    private javax.swing.JLabel pipeLabel2;
+    private javax.swing.JLabel pipeLabel3;
+    private javax.swing.JLabel pipeLabel4;
+    private javax.swing.JComboBox<String> submain;
     private javax.swing.JRadioButton warmDryPET;
     private javax.swing.JRadioButton warmHumidPET;
     // End of variables declaration//GEN-END:variables

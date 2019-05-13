@@ -7,18 +7,21 @@
 package ui;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
+
+import controllers.DripIrriSystemController;
 import controllers.Crops;
 import controllers.Pipes;
 import controllers.Emitters;
 import dripirrimanager.NewCrop;
 import dripirrimanager.NewEmitter;
 import dripirrimanager.ErrorLogger;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
+import dripirrimanager.DripIrriSystem;
 
 /**
  *
@@ -33,6 +36,7 @@ public class Dashboard extends javax.swing.JFrame {
     private NewCrop newCrop;
     private ErrorLogger logger;
     private ArrayList<String> pipeCategories;
+    private DripIrriSystemController dripIrriController;
     
     private ArrayList<Float> cropCoefficients;
     
@@ -45,7 +49,9 @@ public class Dashboard extends javax.swing.JFrame {
         newCrop = new NewCrop();        //initialize the newCrop object
         newEmitter = new NewEmitter();  //initialize the new emitter object
         emitter = new Emitters();       //initialize the emitter model
+        dripIrriController = new DripIrriSystemController();    //initialize the dripIrri controller for the system
         logger = ErrorLogger.getLogger();   //initialize the error logger
+        
         
         pipeCategories = null;
         cropCoefficients = null;
@@ -64,6 +70,9 @@ public class Dashboard extends javax.swing.JFrame {
         setComboBoxValues(emitterColour, emitter.getEmitterColors());
         //set the combobox values for the emitter categories
         setComboBoxValues(emitterCategory, emitter.getEmitterCategories());
+        //set the combobox values for the well types
+        setComboBoxValues(wellType, dripIrriController.getWellTypes());
+        
         
         
     }
@@ -103,7 +112,7 @@ public class Dashboard extends javax.swing.JFrame {
         siteCityLabel = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         siteCity = new javax.swing.JTextField();
-        sitePersonLabel = new javax.swing.JLabel();
+        siteOwnerLabel = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
         siteOwner = new javax.swing.JTextField();
         siteContactLabel = new javax.swing.JLabel();
@@ -111,10 +120,12 @@ public class Dashboard extends javax.swing.JFrame {
         siteContact = new javax.swing.JTextField();
         sitesizeLabel = new javax.swing.JLabel();
         siteLengthLabel = new javax.swing.JLabel();
-        siteWidthLabel1 = new javax.swing.JLabel();
+        siteWidthLabel = new javax.swing.JLabel();
         siteLength = new javax.swing.JTextField();
         siteWidth = new javax.swing.JTextField();
         unknownSiteSize = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         soilForm = new javax.swing.JPanel();
         soilFormHeader = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -133,7 +144,7 @@ public class Dashboard extends javax.swing.JFrame {
         jSeparator11 = new javax.swing.JSeparator();
         waterSourceSecction = new javax.swing.JLabel();
         waterQualitySection = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        wellType = new javax.swing.JComboBox<>();
         jRadioButton5 = new javax.swing.JRadioButton();
         waterQualityPoor = new javax.swing.JRadioButton();
         waterQualityGood = new javax.swing.JRadioButton();
@@ -313,6 +324,11 @@ public class Dashboard extends javax.swing.JFrame {
         siteName.setForeground(new java.awt.Color(0, 51, 51));
         siteName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         siteName.setBorder(null);
+        siteName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                siteNameMouseClicked(evt);
+            }
+        });
 
         jSeparator4.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -327,6 +343,11 @@ public class Dashboard extends javax.swing.JFrame {
         siteAddress.setForeground(new java.awt.Color(0, 51, 51));
         siteAddress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         siteAddress.setBorder(null);
+        siteAddress.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                siteAddressMouseClicked(evt);
+            }
+        });
 
         siteCityLabel.setBackground(new java.awt.Color(255, 255, 255));
         siteCityLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -347,18 +368,28 @@ public class Dashboard extends javax.swing.JFrame {
         siteCity.setForeground(new java.awt.Color(0, 51, 51));
         siteCity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         siteCity.setBorder(null);
+        siteCity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                siteCityMouseClicked(evt);
+            }
+        });
 
-        sitePersonLabel.setBackground(new java.awt.Color(255, 255, 255));
-        sitePersonLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        sitePersonLabel.setForeground(new java.awt.Color(0, 0, 0));
-        sitePersonLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sitePersonLabel.setText("Owner");
+        siteOwnerLabel.setBackground(new java.awt.Color(255, 255, 255));
+        siteOwnerLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        siteOwnerLabel.setForeground(new java.awt.Color(0, 0, 0));
+        siteOwnerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        siteOwnerLabel.setText("Owner");
 
         siteOwner.setBackground(new java.awt.Color(255, 255, 255));
         siteOwner.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         siteOwner.setForeground(new java.awt.Color(0, 51, 51));
         siteOwner.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         siteOwner.setBorder(null);
+        siteOwner.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                siteOwnerMouseClicked(evt);
+            }
+        });
 
         siteContactLabel.setBackground(new java.awt.Color(255, 255, 255));
         siteContactLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -370,6 +401,11 @@ public class Dashboard extends javax.swing.JFrame {
         siteContact.setForeground(new java.awt.Color(0, 51, 51));
         siteContact.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         siteContact.setBorder(null);
+        siteContact.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                siteContactMouseClicked(evt);
+            }
+        });
 
         sitesizeLabel.setBackground(new java.awt.Color(255, 255, 255));
         sitesizeLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -383,15 +419,37 @@ public class Dashboard extends javax.swing.JFrame {
         siteLengthLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         siteLengthLabel.setText("Length");
 
-        siteWidthLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        siteWidthLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        siteWidthLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        siteWidthLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        siteWidthLabel1.setText("Width");
+        siteWidthLabel.setBackground(new java.awt.Color(255, 255, 255));
+        siteWidthLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        siteWidthLabel.setForeground(new java.awt.Color(0, 0, 0));
+        siteWidthLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        siteWidthLabel.setText("Width");
 
         siteLength.setBackground(new java.awt.Color(255, 255, 255));
+        siteLength.setForeground(new java.awt.Color(0, 0, 0));
+        siteLength.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                siteLengthMouseClicked(evt);
+            }
+        });
+        siteLength.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                siteLengthKeyPressed(evt);
+            }
+        });
 
         siteWidth.setBackground(new java.awt.Color(255, 255, 255));
+        siteWidth.setForeground(new java.awt.Color(0, 0, 0));
+        siteWidth.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                siteWidthMouseClicked(evt);
+            }
+        });
+        siteWidth.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                siteWidthKeyPressed(evt);
+            }
+        });
 
         unknownSiteSize.setBackground(new java.awt.Color(255, 255, 255));
         unknownSiteSize.setForeground(new java.awt.Color(0, 0, 0));
@@ -402,6 +460,16 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("m");
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("m");
+
         javax.swing.GroupLayout siteInfoFormLayout = new javax.swing.GroupLayout(siteInfoForm);
         siteInfoForm.setLayout(siteInfoFormLayout);
         siteInfoFormLayout.setHorizontalGroup(
@@ -409,49 +477,49 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(siteAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(siteNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(siteCityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(siteOwnerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(siteInfoFormLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(siteContactLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
                         .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(siteAddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(siteNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(siteCityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sitePersonLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(siteLengthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(siteInfoFormLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(siteContactLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(siteLengthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(siteInfoFormLayout.createSequentialGroup()
-                                        .addComponent(siteWidthLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(5, 5, 5)))))
+                                .addComponent(siteWidthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(5, 5, 5)))))
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(siteInfoFormLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                            .addComponent(siteName)
+                            .addComponent(siteCity)
+                            .addComponent(siteOwner)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(siteAddress, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator8)
+                            .addComponent(siteContact, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator10)
+                            .addComponent(jSeparator3)))
+                    .addGroup(siteInfoFormLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
                         .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sitesizeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(siteInfoFormLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-                                    .addComponent(siteName)
-                                    .addComponent(siteCity)
-                                    .addComponent(siteOwner)
-                                    .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(siteAddress, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSeparator8)
-                                    .addComponent(siteContact, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator10)
-                                    .addComponent(jSeparator3)))
-                            .addGroup(siteInfoFormLayout.createSequentialGroup()
-                                .addGap(71, 71, 71)
+                                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(siteWidth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                    .addComponent(unknownSiteSize, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(siteLength, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(18, 18, 18)
                                 .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(siteInfoFormLayout.createSequentialGroup()
-                                        .addComponent(unknownSiteSize)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(siteLength)
-                                    .addComponent(siteWidth))))
-                        .addGap(117, 117, 117))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoFormLayout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(sitesizeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(137, 137, 137))))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(107, 107, 107))
             .addGroup(siteInfoFormLayout.createSequentialGroup()
                 .addComponent(SiteInfoFormHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(62, 62, 62))
@@ -479,9 +547,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sitePersonLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(siteOwner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(siteOwnerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addComponent(siteOwner))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -490,16 +558,22 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(siteContact, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(sitesizeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(39, 39, 39)
-                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(siteLengthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(siteLength))
                 .addGap(18, 18, 18)
+                .addComponent(sitesizeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(siteWidthLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(siteWidth))
+                    .addComponent(siteLength, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(siteLengthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4))
+                .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(siteInfoFormLayout.createSequentialGroup()
+                        .addGap(18, 30, Short.MAX_VALUE)
+                        .addComponent(siteWidthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                    .addGroup(siteInfoFormLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(siteInfoFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(siteWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(unknownSiteSize)
                 .addGap(12, 12, 12))
@@ -675,9 +749,9 @@ public class Dashboard extends javax.swing.JFrame {
         waterQualitySection.setForeground(new java.awt.Color(51, 51, 51));
         waterQualitySection.setText("Water Quality");
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        wellType.setBackground(new java.awt.Color(255, 255, 255));
+        wellType.setForeground(new java.awt.Color(0, 0, 0));
+        wellType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
         waterSource.add(jRadioButton5);
@@ -720,7 +794,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jRadioButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(wellType, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -755,11 +829,11 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(waterSourceFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jRadioButton2)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(wellType, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRadioButton5))
                             .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(18, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(waterSourceFormLayout.createSequentialGroup()
                         .addComponent(waterQualityGood, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2414,6 +2488,93 @@ public class Dashboard extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_emitterCostKeyPressed
+
+    private void siteLengthMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siteLengthMouseClicked
+        //set the color of the siteLength to black
+        siteLengthLabel.setForeground(Color.BLACK);
+        if(unknownSiteSize.isSelected()){
+            siteLength.setEditable(false);
+        }
+    }//GEN-LAST:event_siteLengthMouseClicked
+
+    private void siteWidthMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siteWidthMouseClicked
+        //set the color of the siteWidth to black
+        siteWidthLabel.setForeground(Color.BLACK);
+        if(unknownSiteSize.isSelected()){
+            siteWidth.setEditable(false);
+        }
+    }//GEN-LAST:event_siteWidthMouseClicked
+
+    private void siteNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siteNameMouseClicked
+        // set the color of the siteName label to black
+        siteNameLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_siteNameMouseClicked
+
+    private void siteAddressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siteAddressMouseClicked
+        // set the color of the siteAddress label to black
+        siteAddressLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_siteAddressMouseClicked
+
+    private void siteCityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siteCityMouseClicked
+        // set the color of the siteCity label to black
+        siteCityLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_siteCityMouseClicked
+
+    private void siteOwnerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siteOwnerMouseClicked
+        // set the color of the siteOwner label to black
+        siteOwnerLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_siteOwnerMouseClicked
+
+    private void siteContactMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siteContactMouseClicked
+        // set the color of the siteContact label to black
+        siteContactLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_siteContactMouseClicked
+
+    private void siteLengthKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_siteLengthKeyPressed
+        //ensure that the typed in keys are characters not letters
+        
+        char pressedKey = evt.getKeyChar();
+        
+        if(Character.isLetter(pressedKey)) {
+            siteLength.setEditable(false);
+            //ring bell
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Fill in numbers for site length", "Not A number!", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            if(unknownSiteSize.isSelected()){
+                getToolkit().beep();
+                JOptionPane.showMessageDialog(rootPane, "Un check \"Dot't Know\" to enable Editting", "Site Length Not Known!", JOptionPane.ERROR_MESSAGE);
+                siteLength.setEditable(false);
+            }
+            else {
+                siteLength.setEditable(true);
+            }
+        }
+    }//GEN-LAST:event_siteLengthKeyPressed
+
+    private void siteWidthKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_siteWidthKeyPressed
+        //ensure that the typed in keys are characters not letters
+        
+        char pressedKey = evt.getKeyChar();
+        
+        if(Character.isLetter(pressedKey)) {
+            siteWidth.setEditable(false);
+            //ring bell
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Fill in numbers for site Width", "Not A number!", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            if(unknownSiteSize.isSelected()){
+                getToolkit().beep();
+                JOptionPane.showMessageDialog(rootPane, "Un check \"Dot't Know\" to enable Editting", "Site Width Not Known!", JOptionPane.ERROR_MESSAGE);
+                siteWidth.setEditable(false);
+            }
+            else {
+                siteWidth.setEditable(true);
+            }
+        }
+    }//GEN-LAST:event_siteWidthKeyPressed
     /**
      * Setting values in the combo box
      */
@@ -2522,9 +2683,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JLabel initialKcLabel;
     private javax.swing.JTextField intialKc;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -2534,6 +2695,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2589,9 +2751,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel siteNameLabel;
     private javax.swing.JButton siteNextBtn;
     private javax.swing.JTextField siteOwner;
-    private javax.swing.JLabel sitePersonLabel;
+    private javax.swing.JLabel siteOwnerLabel;
     private javax.swing.JTextField siteWidth;
-    private javax.swing.JLabel siteWidthLabel1;
+    private javax.swing.JLabel siteWidthLabel;
     private javax.swing.JLabel sitesizeLabel;
     private javax.swing.JPanel soilForm;
     private javax.swing.JPanel soilFormHeader;
@@ -2610,6 +2772,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel waterSourceFormHeader;
     private javax.swing.JLabel waterSourceSecction;
     private javax.swing.JPanel welcomeTab;
+    private javax.swing.JComboBox<String> wellType;
     // End of variables declaration//GEN-END:variables
 
 }
