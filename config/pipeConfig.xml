@@ -45,7 +45,7 @@
         <!-- LATERAL PIPE TYPE -->
         <lateral-type>
             <default>--Select lateral--</default>
-            <dripline titile="dripline">Driplne</dripline>
+            <dripline titile="dripline">Dripline</dripline>
             <blankTubing title="blanktube">Blank Tubing</blankTubing>
         </lateral-type>
 </pipe>

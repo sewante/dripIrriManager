@@ -7,7 +7,7 @@ package models;
 
 /**
  *
- * @author rober
+ * @author robert
  */
 
 import dripirrimanager.DripLine;
@@ -20,8 +20,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Pipe {
     
@@ -47,7 +45,7 @@ public class Pipe {
             message = saveBlankTubing(newPipe, "pipelateral");
         }
         else if(newPipe.getPipeCategory().equals("Manifold pipe")) {
-            message = "Error: Pipe category not available in system";
+            message = saveBlankTubing(newPipe,"pipemanifold");
         }
         else if(newPipe.getPipeCategory().equals("Main pipe")) {
             message = saveBlankTubing(newPipe, "pipemain");
@@ -55,7 +53,7 @@ public class Pipe {
         }
         else if (newPipe.getPipeCategory().equals("Sub-main pipe")) {
             //save 
-            message = "Error: Pipe category not available in system";
+            message = saveBlankTubing(newPipe, "pipesubmain");
         }
         else {
             message = "Error: Pipe category not available in system";
@@ -142,8 +140,10 @@ public class Pipe {
     
      /**
      * Gets the pipe  names from the database and adds them into an arraylist
+     * @param category  The category / type of the pipe to be fetched (either main, submain, manifold or lateral)
+     * @return  The array list having the pipe names for the specified category
      */
-    public ArrayList<String> fetchPipes(String category) {
+    public ArrayList<String> fetchBlankPipes(String category) {
         String pipeSQL = String.format("SELECT modelName FROM %s", category);
         
         Statement pipeStatement = DatabaseManager.getStatement();
@@ -156,11 +156,36 @@ public class Pipe {
                 pipeCounter++;
             }
         } catch (SQLException ex) {
-            logger.logError("models.Pipe.fetchPipes "+ex.getMessage());
+            logger.logError("models.Pipe.fetchBlankPipes "+ex.getMessage());
         }
         catch(Exception e){
             System.out.println(" Problem " + e.getMessage());
-            logger.logError("models.Pipe.fetchPipes "+e.getMessage());
+            logger.logError("models.Pipe.fetchBlankPipes "+e.getMessage());
+        }
+        return pipes;
+    }
+    
+    /**
+     * Gets the dripline names from the database and add them into an arraylist
+     */
+    public ArrayList<String> fetchDriplinePipes() {
+        String driplineSQL = "SELECT modelName FROM pipedripline";
+        
+        Statement driplineStatement = DatabaseManager.getStatement();
+        try {
+            ResultSet driplineResult = driplineStatement.executeQuery(driplineSQL);
+            
+            int driplineCounter = 0;
+            while(driplineResult.next()) {
+                pipes.add(driplineCounter, driplineResult.getString("modelName"));
+                driplineCounter++;
+            }
+        } catch (SQLException ex) {
+            logger.logError("models.Pipe.fetchDriplinePipes "+ex.getMessage());
+        }
+        catch(Exception e){
+            System.out.println(" Problem " + e.getMessage());
+            logger.logError("models.Pipe.fetchDriplinePipes "+e.getMessage());
         }
         return pipes;
     }

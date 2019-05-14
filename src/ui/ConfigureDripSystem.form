@@ -92,7 +92,7 @@
                       <Component id="configure" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="backToConfigure" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="footerPanel" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -327,6 +327,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
+                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Cool Humid"/>
               </Properties>
               <Events>
@@ -547,16 +548,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="cropHeading" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="cropLabel" pref="27" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="crop" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="crop" pref="35" max="32767" attributes="0"/>
+                          <Component id="cropLabel" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="107" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -692,7 +688,7 @@
                                       <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="emitterLable1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lateralHeading" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -701,29 +697,29 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="emitterLable2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="emitterLable" min="-2" pref="131" max="-2" attributes="0"/>
+                                          <Component id="emitterLable" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lateralLabel" min="-2" pref="125" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="emitter" min="-2" pref="367" max="-2" attributes="0"/>
                                           <Component id="lateralPipe" min="-2" pref="367" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="pipeLabel" min="-2" max="-2" attributes="0"/>
-                                          <Component id="pipeLabel3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="pipeLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="emitterLable3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="submainPipeLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="mainPipeLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="manifoldPipeLabel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lateralTypeLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="submain" min="-2" pref="367" max="-2" attributes="0"/>
+                                          <Component id="submainPipe" min="-2" pref="367" max="-2" attributes="0"/>
                                           <Component id="mainPipe" min="-2" pref="367" max="-2" attributes="0"/>
-                                          <Component id="manifold" min="-2" pref="367" max="-2" attributes="0"/>
+                                          <Component id="manifoldPipe" min="-2" pref="367" max="-2" attributes="0"/>
                                           <Component id="lateralType" alignment="0" min="-2" pref="367" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
@@ -743,46 +739,42 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pipeLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="mainPipe" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="pipeLabel3" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
-                              <Component id="pipeLabel" pref="24" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="submain" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="mainPipe" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="mainPipeLabel" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="manifold" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Component id="pipeLabel4" alignment="3" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lateralType" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="emitterLable3" alignment="3" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="submainPipe" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="submainPipeLabel" min="-2" pref="21" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="manifoldPipe" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="manifoldPipeLabel" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lateralType" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="lateralTypeLabel" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="jSeparator3" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="emitterLable1" pref="39" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="emitterLable" max="32767" attributes="0"/>
-                          <Component id="lateralPipe" pref="35" max="32767" attributes="0"/>
+                      <Component id="lateralHeading" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lateralPipe" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="lateralLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="22" max="32767" attributes="0"/>
+                      <EmptySpace pref="8" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="emitter" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="emitterLable2" alignment="3" max="32767" attributes="0"/>
+                          <Component id="emitterLable" alignment="3" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -849,7 +841,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="pipeLabel">
+            <Component class="javax.swing.JLabel" name="submainPipeLabel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -885,7 +877,7 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="emitterLable">
+            <Component class="javax.swing.JLabel" name="lateralLabel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -896,11 +888,11 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="horizontalAlignment" type="int" value="4"/>
                 <Property name="text" type="java.lang.String" value="Set Dripline:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="submain">
+            <Component class="javax.swing.JComboBox" name="submainPipe">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -936,7 +928,7 @@
                 <Property name="text" type="java.lang.String" value="Pipe"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="manifold">
+            <Component class="javax.swing.JComboBox" name="manifoldPipe">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -978,7 +970,7 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="pipeLabel3">
+            <Component class="javax.swing.JLabel" name="mainPipeLabel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -993,7 +985,7 @@
                 <Property name="text" type="java.lang.String" value="Main Pipe:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="pipeLabel4">
+            <Component class="javax.swing.JLabel" name="manifoldPipeLabel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1008,7 +1000,7 @@
                 <Property name="text" type="java.lang.String" value="Manifold:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="emitterLable1">
+            <Component class="javax.swing.JLabel" name="lateralHeading">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1033,7 +1025,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="emitterLable2">
+            <Component class="javax.swing.JLabel" name="emitterLable">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1086,11 +1078,15 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="lateralTypeItemStateChanged"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lateralTypeMouseClicked"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="emitterLable3">
+            <Component class="javax.swing.JLabel" name="lateralTypeLabel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1151,6 +1147,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="configureActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

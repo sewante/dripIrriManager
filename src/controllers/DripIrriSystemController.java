@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import models.DripIrriXMLConfig;
 import models.Crop;
 import models.Pipe;
+import models.Emitter;
 
 public class DripIrriSystemController {
     
@@ -22,6 +23,7 @@ public class DripIrriSystemController {
     private DripIrriXMLConfig pipeConfig;
     private Crop crop;
     private Pipe pipe;
+    private Emitter emitter;
     
     // the constructor
     public DripIrriSystemController() {
@@ -46,26 +48,35 @@ public class DripIrriSystemController {
      * get the main pipes from the database
      */
     public ArrayList<String> getMainPipes() {
-        return pipe.fetchPipes("pipemain");
+        return new Pipe().fetchBlankPipes("pipemain");
     }
     /**
      * get the lateral pipes from the database
      * @return ArrayList having the pipes from the specified table
      */
     public ArrayList<String> getLateralPipes() {
-        return pipe.fetchPipes("pipelateral");
+        return new Pipe().fetchBlankPipes("pipelateral");
     }
     /**
      * get the manifold pipes from the database
      */
+    public ArrayList<String> getMainifoldPipes() {
+        return new Pipe().fetchBlankPipes("pipemanifold");
+    }
     
     /**
-     * get the lateral pipes from the database
+     * get the emitters pipes from the database
      */
+    public ArrayList<String> getEmitters() {
+        return new Emitter().fetchEmitters();
+    }
     
     /**
      * get the dripline pipes from the database
      */
+    public ArrayList<String> getDriplinePipes() {
+        return new Pipe().fetchDriplinePipes();
+    }
     
     /**
      * ################################## SENDING DATA TO THE UI #######################################
@@ -86,5 +97,11 @@ public class DripIrriSystemController {
         return pipeConfig.getChildNodes("lateral-type");
     }
     
-    
+    /**
+     * ################################## GETTING DATA FROM THE UI #######################################
+     */
+    // configure the Drip Irrigation system
+    public void configureDripIrriSystem(DripIrriSystem dripIrriSystem) {
+        System.out.println(" $ "+dripIrriSystem.getField().getFieldCity());
+    }
 }

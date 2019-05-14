@@ -8,7 +8,10 @@ package models;
 import dripirrimanager.NewEmitter;
 import dripirrimanager.ErrorLogger;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,12 +20,15 @@ import java.sql.SQLException;
 public class Emitter {
     
     private String message = "";
+    private ArrayList<String> emitters;
     private ErrorLogger logger = ErrorLogger.getLogger();
     PreparedStatement emitterStatement;
     
+    
+    
      /**
      * saves the emitter data into the database for the new emitter
-     * @param newEmitter
+     * @param emitter   The new emitter object to be added to the database
      * @return message string showing failure or success
      */
     public String saveEmitterData(NewEmitter emitter) {
@@ -54,5 +60,35 @@ public class Emitter {
             message = "Error: Could not add \""+emitter.getEmitterModelName()+"\" to the system";
         }
         return message;
+    }
+    
+    /**
+     * Gets the emitters from the database and adds them to the array list
+     * @return  The array list having the emitters
+     */
+    public ArrayList<String> fetchEmitters() {
+        
+        emitters = new ArrayList<>();
+        
+        String emitterSQL = "SELECT modelName FROM emitter";
+        
+        try {
+            Statement emitterStatement= DatabaseManager.getStatement();
+            ResultSet emitterResult = emitterStatement.executeQuery(emitterSQL);
+            
+            int emitterCounter = 0;
+            while(emitterResult.next()) {
+               emitters.add(emitterCounter, emitterResult.getString("modelName"));
+                emitterCounter++;
+            }
+        } catch (SQLException ex) {
+            
+            logger.logError("models.Emitter.fetchEmitters "+ex.getMessage());
+        }
+        catch(Exception e) {
+            logger.logError("models.Emitter.fetchEmitters "+ e.getMessage());
+        }
+        
+        return emitters;
     }
 }

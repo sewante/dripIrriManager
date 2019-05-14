@@ -45,6 +45,7 @@ public class Crop {
     
     /**
      * Gets the Crop categories names from the database and adds them into an arraylist
+     * @return  The array list having the crop categories
      */
     public ArrayList<String> fetchCropCategories() {
         
@@ -71,6 +72,7 @@ public class Crop {
     
     /**
      * Gets the Crops  names from the database and adds them into an arraylist
+     * @return  The array list having the names of the crops
      */
     public ArrayList<String> fetchCrops() {
         
@@ -97,6 +99,8 @@ public class Crop {
     }
     /**
      * Saves the crop data into the database for newly added crop
+     * @param newCrop   The new crop object to save
+     * @return  The message showing the status of the previous execution (success or failure)
      */
     public String saveCropData(NewCrop newCrop){
         int cropCategoryId = 0;

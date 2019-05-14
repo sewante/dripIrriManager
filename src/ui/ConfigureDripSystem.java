@@ -7,23 +7,45 @@ package ui;
 
 /**
  *
- * @author rober
+ * @author robert
  */
 import dripirrimanager.DripIrriSystem;
+import dripirrimanager.Field;
+import dripirrimanager.ErrorLogger;
 import controllers.DripIrriSystemController;
+import dripirrimanager.DripLine;
+import dripirrimanager.NewEmitter;
+import dripirrimanager.NewPipe;
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 public class ConfigureDripSystem extends javax.swing.JFrame {
 
     private DripIrriSystemController dripIrriSysController;
+    private DripIrriSystem dripIrriSystem;          //the drip irrigation system to be configured
+    private Field fieldToConfigure;
+    private ErrorLogger logger;
     /**
-     * Creates new form ChooseCrop
+     * Constructor
      */
     public ConfigureDripSystem() {
         
-        dripIrriSysController = new DripIrriSystemController();     // initialize the drip irrigation system controller
         initComponents();
+        //hide the emitter and dripline and lateral and reenable them later
+        lateralHeading.hide();
+        emitterLable.hide();
+        emitter.hide();
+        lateralLabel.hide();
+        lateralPipe.hide();
+        
+        dripIrriSysController = new DripIrriSystemController();     // initialize the drip irrigation system controller
+        
+        fieldToConfigure = new Field();
         
         //set the combo box values for the crop
         setComboBoxValues(crop, dripIrriSysController.getCrops());
@@ -31,6 +53,36 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         setComboBoxValues(lateralPipe, dripIrriSysController.getLateralPipes());
         // set the combo box values for the lateral pipe type
         setComboBoxValues(lateralType, dripIrriSysController.getLateralPipeTypes());
+        // set the combo box values for the manifold pipe
+        setComboBoxValues(manifoldPipe, dripIrriSysController.getMainifoldPipes());
+    }
+    
+    /** CONSTRUCTOR
+     *  overload the constructor to accept the the field object
+     * @param field The field into which the drip irrigation system is to be set
+     */
+    public  ConfigureDripSystem(Field field) {
+        
+        initComponents();
+        //hide the emitter and dripline and lateral and reenable them later
+        lateralHeading.hide();
+        emitterLable.hide();
+        emitter.hide();
+        lateralLabel.hide();
+        lateralPipe.hide();
+        
+        dripIrriSysController = new DripIrriSystemController();     // initialize the drip irrigation system controller
+        fieldToConfigure = field;
+        logger = ErrorLogger.getLogger();
+        
+        //set the combo box values for the crop
+        setComboBoxValues(crop, dripIrriSysController.getCrops());
+        // set the combo box values for the lateral pipe
+        setComboBoxValues(lateralPipe, dripIrriSysController.getLateralPipes());
+        // set the combo box values for the lateral pipe type
+        setComboBoxValues(lateralType, dripIrriSysController.getLateralPipeTypes());
+        // set the combo box values for the manifold pipe
+        setComboBoxValues(manifoldPipe, dripIrriSysController.getMainifoldPipes());
     }
 
     /**
@@ -72,21 +124,21 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         pipeEmitterHeading = new javax.swing.JPanel();
         pipeEmitterLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        pipeLabel = new javax.swing.JLabel();
+        submainPipeLabel = new javax.swing.JLabel();
         lateralPipe = new javax.swing.JComboBox<>();
-        emitterLable = new javax.swing.JLabel();
-        submain = new javax.swing.JComboBox<>();
+        lateralLabel = new javax.swing.JLabel();
+        submainPipe = new javax.swing.JComboBox<>();
         pipeLabel2 = new javax.swing.JLabel();
-        manifold = new javax.swing.JComboBox<>();
+        manifoldPipe = new javax.swing.JComboBox<>();
         mainPipe = new javax.swing.JComboBox<>();
-        pipeLabel3 = new javax.swing.JLabel();
-        pipeLabel4 = new javax.swing.JLabel();
-        emitterLable1 = new javax.swing.JLabel();
+        mainPipeLabel = new javax.swing.JLabel();
+        manifoldPipeLabel = new javax.swing.JLabel();
+        lateralHeading = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        emitterLable2 = new javax.swing.JLabel();
+        emitterLable = new javax.swing.JLabel();
         emitter = new javax.swing.JComboBox<>();
         lateralType = new javax.swing.JComboBox<>();
-        emitterLable3 = new javax.swing.JLabel();
+        lateralTypeLabel = new javax.swing.JLabel();
         backToConfigure = new javax.swing.JButton();
         configure = new javax.swing.JButton();
 
@@ -156,6 +208,7 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         climateAndPET.add(coolHumidPET);
         coolHumidPET.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         coolHumidPET.setForeground(new java.awt.Color(0, 0, 0));
+        coolHumidPET.setSelected(true);
         coolHumidPET.setText("Cool Humid");
         coolHumidPET.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,13 +436,10 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
             .addGroup(chooseCropPanelLayout.createSequentialGroup()
                 .addComponent(cropHeading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(53, 53, 53)
-                .addGroup(chooseCropPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(chooseCropPanelLayout.createSequentialGroup()
-                        .addComponent(cropLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                        .addGap(91, 91, 91))
-                    .addGroup(chooseCropPanelLayout.createSequentialGroup()
-                        .addComponent(crop, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(chooseCropPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(crop, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(cropLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         pipeAndEmiterPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -427,25 +477,25 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pipeLabel.setBackground(new java.awt.Color(255, 255, 255));
-        pipeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        pipeLabel.setForeground(new java.awt.Color(0, 0, 0));
-        pipeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pipeLabel.setText("Submain:");
+        submainPipeLabel.setBackground(new java.awt.Color(255, 255, 255));
+        submainPipeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        submainPipeLabel.setForeground(new java.awt.Color(0, 0, 0));
+        submainPipeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        submainPipeLabel.setText("Submain:");
 
         lateralPipe.setBackground(new java.awt.Color(255, 255, 255));
         lateralPipe.setForeground(new java.awt.Color(0, 0, 0));
         lateralPipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        emitterLable.setBackground(new java.awt.Color(255, 255, 255));
-        emitterLable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        emitterLable.setForeground(new java.awt.Color(0, 0, 0));
-        emitterLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        emitterLable.setText("Set Dripline:");
+        lateralLabel.setBackground(new java.awt.Color(255, 255, 255));
+        lateralLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lateralLabel.setForeground(new java.awt.Color(0, 0, 0));
+        lateralLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lateralLabel.setText("Set Dripline:");
 
-        submain.setBackground(new java.awt.Color(255, 255, 255));
-        submain.setForeground(new java.awt.Color(0, 0, 0));
-        submain.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        submainPipe.setBackground(new java.awt.Color(255, 255, 255));
+        submainPipe.setForeground(new java.awt.Color(0, 0, 0));
+        submainPipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         pipeLabel2.setBackground(new java.awt.Color(255, 255, 255));
         pipeLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -453,40 +503,40 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         pipeLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pipeLabel2.setText("Pipe");
 
-        manifold.setBackground(new java.awt.Color(255, 255, 255));
-        manifold.setForeground(new java.awt.Color(0, 0, 0));
-        manifold.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        manifoldPipe.setBackground(new java.awt.Color(255, 255, 255));
+        manifoldPipe.setForeground(new java.awt.Color(0, 0, 0));
+        manifoldPipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         mainPipe.setBackground(new java.awt.Color(255, 255, 255));
         mainPipe.setForeground(new java.awt.Color(0, 0, 0));
         mainPipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        pipeLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        pipeLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        pipeLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        pipeLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pipeLabel3.setText("Main Pipe:");
+        mainPipeLabel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPipeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        mainPipeLabel.setForeground(new java.awt.Color(0, 0, 0));
+        mainPipeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mainPipeLabel.setText("Main Pipe:");
 
-        pipeLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        pipeLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        pipeLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        pipeLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pipeLabel4.setText("Manifold:");
+        manifoldPipeLabel.setBackground(new java.awt.Color(255, 255, 255));
+        manifoldPipeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        manifoldPipeLabel.setForeground(new java.awt.Color(0, 0, 0));
+        manifoldPipeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        manifoldPipeLabel.setText("Manifold:");
 
-        emitterLable1.setBackground(new java.awt.Color(255, 255, 255));
-        emitterLable1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        emitterLable1.setForeground(new java.awt.Color(0, 0, 0));
-        emitterLable1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        emitterLable1.setText("Emitter");
+        lateralHeading.setBackground(new java.awt.Color(255, 255, 255));
+        lateralHeading.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lateralHeading.setForeground(new java.awt.Color(0, 0, 0));
+        lateralHeading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lateralHeading.setText("Emitter");
 
         jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator3.setForeground(new java.awt.Color(0, 51, 51));
 
-        emitterLable2.setBackground(new java.awt.Color(255, 255, 255));
-        emitterLable2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        emitterLable2.setForeground(new java.awt.Color(0, 0, 0));
-        emitterLable2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        emitterLable2.setText("Set Emitter:");
+        emitterLable.setBackground(new java.awt.Color(255, 255, 255));
+        emitterLable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        emitterLable.setForeground(new java.awt.Color(0, 0, 0));
+        emitterLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        emitterLable.setText("Set Emitter:");
 
         emitter.setBackground(new java.awt.Color(255, 255, 255));
         emitter.setForeground(new java.awt.Color(0, 0, 0));
@@ -495,12 +545,22 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         lateralType.setBackground(new java.awt.Color(255, 255, 255));
         lateralType.setForeground(new java.awt.Color(0, 0, 0));
         lateralType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        lateralType.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                lateralTypeItemStateChanged(evt);
+            }
+        });
+        lateralType.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lateralTypeMouseClicked(evt);
+            }
+        });
 
-        emitterLable3.setBackground(new java.awt.Color(255, 255, 255));
-        emitterLable3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        emitterLable3.setForeground(new java.awt.Color(0, 0, 0));
-        emitterLable3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        emitterLable3.setText("Lateral Type:");
+        lateralTypeLabel.setBackground(new java.awt.Color(255, 255, 255));
+        lateralTypeLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lateralTypeLabel.setForeground(new java.awt.Color(0, 0, 0));
+        lateralTypeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lateralTypeLabel.setText("Lateral Type:");
 
         javax.swing.GroupLayout pipeAndEmiterPanelLayout = new javax.swing.GroupLayout(pipeAndEmiterPanel);
         pipeAndEmiterPanel.setLayout(pipeAndEmiterPanelLayout);
@@ -517,31 +577,31 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
                                 .addComponent(pipeLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(223, 223, 223))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pipeAndEmiterPanelLayout.createSequentialGroup()
-                                .addComponent(emitterLable1)
+                                .addComponent(lateralHeading)
                                 .addGap(228, 228, 228))))
                     .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
                         .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
                                 .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(emitterLable2)
-                                    .addComponent(emitterLable, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(emitterLable)
+                                    .addComponent(lateralLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(emitter, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lateralPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 10, Short.MAX_VALUE))
+                                .addGap(0, 16, Short.MAX_VALUE))
                             .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(pipeLabel)
-                                    .addComponent(pipeLabel3)
-                                    .addComponent(pipeLabel4)
-                                    .addComponent(emitterLable3))
+                                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(submainPipeLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(mainPipeLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(manifoldPipeLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lateralTypeLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(submain, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(submainPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(mainPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(manifold, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(manifoldPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lateralType, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(13, 13, 13))
                             .addComponent(jSeparator3))
@@ -554,38 +614,35 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pipeLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mainPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pipeLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
-                        .addComponent(pipeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                        .addGap(148, 148, 148))
-                    .addGroup(pipeAndEmiterPanelLayout.createSequentialGroup()
-                        .addComponent(submain, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(mainPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mainPipeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(manifold, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pipeLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lateralType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emitterLable3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(47, 47, 47)))
+                        .addComponent(submainPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(submainPipeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(manifoldPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manifoldPipeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lateralType, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lateralTypeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emitterLable1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addGap(24, 24, 24)
-                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(emitterLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lateralPipe, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(lateralHeading)
+                .addGap(18, 18, 18)
+                .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lateralPipe, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lateralLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(pipeAndEmiterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emitter, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emitterLable2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(emitterLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         backToConfigure.setBackground(new java.awt.Color(0, 51, 51));
@@ -604,6 +661,11 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         configure.setForeground(new java.awt.Color(0, 0, 0));
         configure.setText("Save");
         configure.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 51), 2, true));
+        configure.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                configureActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -641,7 +703,7 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(configure)
                     .addComponent(backToConfigure))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(footerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -690,6 +752,127 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         //dispose this tab
         this.dispose();
     }//GEN-LAST:event_backToConfigureActionPerformed
+
+    private void configureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configureActionPerformed
+        
+        if(lateralType.getSelectedItem().equals("--Select lateral--")) {
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Choose the type of Lateral.", "Latera Type Not set!", JOptionPane.ERROR_MESSAGE);
+            lateralTypeLabel.setForeground(Color.red);
+            return;
+        }
+        // pick the input from the form
+        try {
+            
+            String climate = getSelectedButton(climateAndPET);
+            String cropGrown = (String)crop.getSelectedItem();
+            String typeOfLateral = (String)lateralType.getSelectedItem();   // just a control variable to guide selection of pipes
+            String pipeSubmain = (String)submainPipe.getSelectedItem();
+            String pipeManifold = (String)manifoldPipe.getSelectedItem();
+            String pipeMain = (String)mainPipe.getSelectedItem();
+            String pipeLateral = (String)lateralPipe.getSelectedItem();
+            
+            // package the field object 
+            fieldToConfigure.setFieldClimatePET(climate);
+            fieldToConfigure.setFieldCropGrown(cropGrown);
+            
+            //package the pipes
+            NewPipe mainpipe = new NewPipe();
+            mainpipe.setPipeModelName(pipeMain);
+            
+            NewPipe pipemanifold = new NewPipe();
+            pipemanifold.setPipeModelName(pipeManifold);
+            
+            NewPipe pipesubmain = new NewPipe();
+            pipesubmain.setPipeModelName(pipeSubmain);
+            
+            /* THIS WILL HAVE TO BE IMPLEMENTED IN ANOTHER WAY TO CATER FOR ALL POSSIBLE CONFIGURATIONS!
+                preferably a configure fucntion needs to be called here to ensure all the possible pipe combinations
+                For now we shall focus on two combinations only i.e with dripline and with blank tubing as lateral
+            */
+            if(typeOfLateral.equals("Dripline")) {
+                DripLine dripline = new DripLine();
+                dripline.setPipeModelName(pipeLateral);
+                
+                dripIrriSystem = new DripIrriSystem(mainpipe, pipesubmain, pipemanifold, dripline, fieldToConfigure);
+                
+                // send the DripIrri system object to the controller
+                dripIrriSysController.configureDripIrriSystem(dripIrriSystem);
+                
+                // dispose this window
+                this.dispose();
+            }
+            else if(typeOfLateral.equals("Blank Tubing")) {
+                NewEmitter emitterToUse = new NewEmitter();
+                emitterToUse.setEmitterModelName((String)emitter.getSelectedItem());
+                
+                NewPipe lateralTubing = new NewPipe();
+                lateralTubing.setPipeModelName(pipeLateral);
+                
+                dripIrriSystem = new DripIrriSystem(mainpipe, pipesubmain, pipemanifold, lateralTubing, emitterToUse, fieldToConfigure);
+                
+                // send the DripIrri system object to the controller
+                dripIrriSysController.configureDripIrriSystem(dripIrriSystem);
+                
+                // dispose this window
+                this.dispose();
+            }
+                         
+        }
+        catch(Exception e) {
+            logger.logError("ui.ConfigureDripSystem.ConfigureDripSystem " + e.getMessage());
+        }
+        
+    }//GEN-LAST:event_configureActionPerformed
+
+    private void lateralTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_lateralTypeItemStateChanged
+        
+        // check the value chosen
+        if(lateralType.getSelectedItem().equals("Dripline")) {
+            //show the lateral heading
+            lateralHeading.show();
+            lateralHeading.setText("Choose Dripline");
+            
+            //show the dripline combo box
+            lateralLabel.show();
+            lateralLabel.setText("Set Dripline:");
+            lateralPipe.show();
+            setComboBoxValues(lateralPipe, dripIrriSysController.getDriplinePipes());
+            //hide the emitter since dripline has emitter on it
+            emitterLable.hide();    //hide the emitter lable
+            emitter.hide();         //hide the emitter combo box
+        }
+        else if(lateralType.getSelectedItem().equals("Blank Tubing")) {
+            //show the lateral heading
+            lateralHeading.show();
+            lateralHeading.setText("Choose Lateral and Emitter");
+            
+            //show the lateral pipe (for blank tubing
+            lateralLabel.show();
+            lateralLabel.setText("Set Lateral:");
+            lateralPipe.show();
+            setComboBoxValues(lateralPipe, dripIrriSysController.getLateralPipes());
+            
+            //show the emitter label
+            emitterLable.show(); // show the emitter label
+            emitterLable.setText("Emitter :");
+            //show the emitter combo box
+            emitter.show();
+            setComboBoxValues(emitter, dripIrriSysController.getEmitters());
+        }
+        else {
+            lateralHeading.hide();
+            emitterLable.hide();
+            emitter.hide();
+            lateralLabel.hide();
+            lateralPipe.hide();
+        }
+    }//GEN-LAST:event_lateralTypeItemStateChanged
+
+    private void lateralTypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lateralTypeMouseClicked
+        //Restore the original blcak color of the lable when it is clicked into
+        lateralTypeLabel.setForeground(Color.BLACK);
+    }//GEN-LAST:event_lateralTypeMouseClicked
     /**
      * Setting values in the combo box
      */
@@ -700,6 +883,20 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
             categories[i] = values.get(i);
         }
         combbox.setModel(new javax.swing.DefaultComboBoxModel<>(categories));
+    }
+    /**
+     * Getting the value of the selected radio button in a button group
+     */
+    private String getSelectedButton(ButtonGroup buttonGroup) {
+        
+        for(Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            
+            if(button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null;
     }
     /**
      * @param args the command line arguments
@@ -753,9 +950,6 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
     private javax.swing.JLabel cropLabel;
     private javax.swing.JComboBox<String> emitter;
     private javax.swing.JLabel emitterLable;
-    private javax.swing.JLabel emitterLable1;
-    private javax.swing.JLabel emitterLable2;
-    private javax.swing.JLabel emitterLable3;
     private javax.swing.JPanel footerPanel;
     private javax.swing.JRadioButton hotDryPET;
     private javax.swing.JRadioButton hotHumidPET;
@@ -770,19 +964,22 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lateralHeading;
+    private javax.swing.JLabel lateralLabel;
     private javax.swing.JComboBox<String> lateralPipe;
     private javax.swing.JComboBox<String> lateralType;
+    private javax.swing.JLabel lateralTypeLabel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JComboBox<String> mainPipe;
-    private javax.swing.JComboBox<String> manifold;
+    private javax.swing.JLabel mainPipeLabel;
+    private javax.swing.JComboBox<String> manifoldPipe;
+    private javax.swing.JLabel manifoldPipeLabel;
     private javax.swing.JPanel pipeAndEmiterPanel;
     private javax.swing.JPanel pipeEmitterHeading;
     private javax.swing.JLabel pipeEmitterLabel;
-    private javax.swing.JLabel pipeLabel;
     private javax.swing.JLabel pipeLabel2;
-    private javax.swing.JLabel pipeLabel3;
-    private javax.swing.JLabel pipeLabel4;
-    private javax.swing.JComboBox<String> submain;
+    private javax.swing.JComboBox<String> submainPipe;
+    private javax.swing.JLabel submainPipeLabel;
     private javax.swing.JRadioButton warmDryPET;
     private javax.swing.JRadioButton warmHumidPET;
     // End of variables declaration//GEN-END:variables

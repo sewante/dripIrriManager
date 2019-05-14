@@ -3,3 +3,7 @@
 2019/05/13 23:11:16 Error :models.DripIrriXMLConfig.DripIrriXMLConfig C:\config\pipeConfig.xml (The system cannot find the path specified)
 2019/05/13 23:14:53 Error :models.DripIrriXMLConfig.DripIrriXMLConfig C:\config\pipeConfig.xml (The system cannot find the path specified)
 2019/05/13 23:21:20 Error :models.DripIrriXMLConfig.DripIrriXMLConfig C:\config\pipeConfig.xml (The system cannot find the path specified)
+2019/05/14 08:48:54 Error :models.DripIrriXMLConfig.getDatabaseConnection Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2019/05/14 13:55:31 Error :controllers.UsersController.login Invalid Credentials

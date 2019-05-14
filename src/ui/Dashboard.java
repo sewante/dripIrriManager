@@ -11,6 +11,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 
@@ -22,6 +25,7 @@ import dripirrimanager.NewCrop;
 import dripirrimanager.NewEmitter;
 import dripirrimanager.ErrorLogger;
 import dripirrimanager.DripIrriSystem;
+import dripirrimanager.Field;
 
 /**
  *
@@ -37,6 +41,8 @@ public class Dashboard extends javax.swing.JFrame {
     private ErrorLogger logger;
     private ArrayList<String> pipeCategories;
     private DripIrriSystemController dripIrriController;
+    private Field field;
+    private DripIrriSystem dripIrrigationSystem;
     
     private ArrayList<Float> cropCoefficients;
     
@@ -50,8 +56,8 @@ public class Dashboard extends javax.swing.JFrame {
         newEmitter = new NewEmitter();  //initialize the new emitter object
         emitter = new Emitters();       //initialize the emitter model
         dripIrriController = new DripIrriSystemController();    //initialize the dripIrri controller for the system
+        field = new Field();            //initialize the filed
         logger = ErrorLogger.getLogger();   //initialize the error logger
-        
         
         pipeCategories = null;
         cropCoefficients = null;
@@ -364,7 +370,7 @@ public class Dashboard extends javax.swing.JFrame {
         jSeparator5.setForeground(new java.awt.Color(0, 51, 51));
 
         siteCity.setBackground(new java.awt.Color(255, 255, 255));
-        siteCity.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        siteCity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         siteCity.setForeground(new java.awt.Color(0, 51, 51));
         siteCity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         siteCity.setBorder(null);
@@ -381,7 +387,7 @@ public class Dashboard extends javax.swing.JFrame {
         siteOwnerLabel.setText("Owner");
 
         siteOwner.setBackground(new java.awt.Color(255, 255, 255));
-        siteOwner.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        siteOwner.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         siteOwner.setForeground(new java.awt.Color(0, 51, 51));
         siteOwner.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         siteOwner.setBorder(null);
@@ -397,13 +403,18 @@ public class Dashboard extends javax.swing.JFrame {
         siteContactLabel.setText("Contact");
 
         siteContact.setBackground(new java.awt.Color(255, 255, 255));
-        siteContact.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        siteContact.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         siteContact.setForeground(new java.awt.Color(0, 51, 51));
         siteContact.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         siteContact.setBorder(null);
         siteContact.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 siteContactMouseClicked(evt);
+            }
+        });
+        siteContact.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                siteContactKeyPressed(evt);
             }
         });
 
@@ -619,6 +630,7 @@ public class Dashboard extends javax.swing.JFrame {
         soilType.add(coarseSoilButton);
         coarseSoilButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         coarseSoilButton.setForeground(new java.awt.Color(0, 0, 0));
+        coarseSoilButton.setSelected(true);
         coarseSoilButton.setText("Coarse Soil");
 
         mediumSoilButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -718,6 +730,7 @@ public class Dashboard extends javax.swing.JFrame {
         waterSource.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("City Water");
 
         jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
@@ -774,6 +787,7 @@ public class Dashboard extends javax.swing.JFrame {
         waterQuality.add(waterQualityGood);
         waterQualityGood.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         waterQualityGood.setForeground(new java.awt.Color(0, 0, 0));
+        waterQualityGood.setSelected(true);
         waterQualityGood.setText("Good");
         waterQualityGood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1905,14 +1919,156 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_siteCityLabelActionPerformed
 
     private void siteNextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siteNextBtnActionPerformed
-        // TODO add your handling code here:
         
-        //confirm all the data has been entered
+        /* validate site name */
+        
+        //validate the site name
+        if(siteName.getText().isEmpty()) {
+           
+           getToolkit().beep(); //ring the bell
+           //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Site name.", "Empty Site Name!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the site name lable to red
+           siteNameLabel.setForeground(Color.red);
+           return;
+        }
+        //validate the site address
+        else if(siteAddress.getText().isEmpty()){
+            
+           getToolkit().beep(); //ring the bell
+           //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the Site address.", "Empty Site Address!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the site address lable to red
+           siteAddressLabel.setForeground(Color.red);
+           return;
+        }
+        //validate the site city
+        else if(siteCity.getText().isEmpty()){
+            
+           getToolkit().beep(); //ring the bell
+           //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the City of the site.", "Empty Site City!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the site city lable to red
+           siteCityLabel.setForeground(Color.red);
+           return;
+        }
+        //validate the site owner
+        else if(siteOwner.getText().isEmpty()){
+            
+           getToolkit().beep(); //ring the bell
+           //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the owner of the site.", "Empty Owner!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the site owner lable to red
+           siteOwnerLabel.setForeground(Color.red);
+           return;
+        }
+        //validate the site contact
+        else if(siteContact.getText().isEmpty()){
+            
+           getToolkit().beep(); //ring the bell
+           //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Provide the contact of the site.", "Empty Contact!", JOptionPane.ERROR_MESSAGE);
+           
+           //set the color of the site contact lable to red
+           siteContactLabel.setForeground(Color.red);
+           return;
+        }
+        
+        // validate the length of the contact
+        if((siteContact.getText().length() > 10) || (siteContact.getText().length() < 10)) {
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "contact should be 10 digits.", "Incorrect contact!", JOptionPane.ERROR_MESSAGE);
+            siteContactLabel.setForeground(Color.red);
+            return;
+            
+        }
+        if( ! siteContact.getText().startsWith("07")) {
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "contact should begin with 07", "Incorrect contact!", JOptionPane.ERROR_MESSAGE);
+            siteContactLabel.setForeground(Color.red);
+            return; 
+        }
+        
+        // validate the site dimensions
+        if(! unknownSiteSize.isSelected()) {
+            
+            if(siteLength.getText().isEmpty()) {
+                getToolkit().beep();
+                JOptionPane.showMessageDialog(rootPane, "Provide the site Length.", "Empty Site Length!", JOptionPane.ERROR_MESSAGE);
+                siteLengthLabel.setForeground(Color.red);
+                return; 
+            }
+            else if(siteWidth.getText().isEmpty()) {
+                getToolkit().beep();
+                JOptionPane.showMessageDialog(rootPane, "Provide the site Width.", "Empty Site Width!", JOptionPane.ERROR_MESSAGE);
+                siteWidthLabel.setForeground(Color.red);
+                return;
+            }
+        }
+        String name, city, address, owner, contact;
+        String sourceOfWater, soil, qualityOfWater, typeOfWell = null;
+        float length, width;
         //get all the data from the forms
-        //save the data into an object:Object
-        //save the object as xml
-        //load the next interface to get data about crop PET and pipe choice
-        new ConfigureDripSystem().setVisible(true);
+        try {
+            name = siteName.getText().trim();
+            city = siteCity.getText().trim();
+            address = siteAddress.getText().trim();
+            owner = siteOwner.getText().trim();
+            contact = siteContact.getText().trim();
+            
+            sourceOfWater =  getSelectedButton(waterSource);
+            soil = getSelectedButton(soilType);
+            qualityOfWater = getSelectedButton(waterQuality);
+            
+            // get the well type if the water source is set to Well
+            if(sourceOfWater.equals("Well")) {
+                typeOfWell = (String)wellType.getSelectedItem();
+                // set the type of the well in the DripIrri system
+                field.setFieldWellType(typeOfWell);
+            }
+            
+            // get the site dimansions if the user is sure about them
+            if(! unknownSiteSize.isSelected()) {
+               length = Float.parseFloat(siteLength.getText().trim());
+               width = Float.parseFloat(siteWidth.getText().trim()); 
+            }
+            else {
+                length = 0;
+                width = 0;
+            }
+            
+            /**
+             * Set the field data into the field object
+             */
+            field.setFieldLenght(length);
+            field.setFieldWidth(width);
+            field.setFieldWaterQuality(qualityOfWater);
+            field.setFieldAddress(address);
+            field.setFieldSoilType(soil);
+            field.setFieldWaterSource(sourceOfWater);
+            field.setFieldCity(city);
+            field.setFiledOwner(owner);
+            field.setFieldContatc(contact);
+            field.setFiledName(name);
+            
+            //load the next interface to get data about crop PET and pipe choice
+            new ConfigureDripSystem(field).setVisible(true);
+            
+        }
+        catch(NumberFormatException nfe) {
+            //show a dialog box with the error message
+           JOptionPane.showMessageDialog(rootPane, "Length rate and width "
+                   + "have to be numbers.", "Not A number!", JOptionPane.ERROR_MESSAGE);
+            logger.logError("ui.Dashboard.siteNextBtnActionPerformed "+nfe.getMessage());
+            
+        }
+        catch(Exception e) {
+            logger.logError("ui.Dashboard.siteNextBtnActionPerformed "+e.getMessage());
+        }
     }//GEN-LAST:event_siteNextBtnActionPerformed
 
     private void waterQualityFairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waterQualityFairActionPerformed
@@ -2403,7 +2559,7 @@ public class Dashboard extends javax.swing.JFrame {
             //show the response
             if(message.startsWith("New")){
                 JOptionPane.showMessageDialog(rootPane, message, "Saved Successfully!", JOptionPane.INFORMATION_MESSAGE);
-                  
+                
             }
             else {
                 JOptionPane.showMessageDialog(rootPane, message, "Saving Failed!", JOptionPane.ERROR_MESSAGE);
@@ -2575,6 +2731,24 @@ public class Dashboard extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_siteWidthKeyPressed
+
+    private void siteContactKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_siteContactKeyPressed
+         //ensure that the typed in keys are characters not letters
+        
+        char pressedKey = evt.getKeyChar();
+        
+        if(Character.isLetter(pressedKey)) {
+            //ring bell
+            getToolkit().beep();
+            siteContact.setEditable(false);
+            JOptionPane.showMessageDialog(rootPane, "Fill in digits for Contact", "Not A digit!", JOptionPane.ERROR_MESSAGE);
+            siteContactLabel.setForeground(Color.red);
+        }
+        else {
+            siteContact.setEditable(true);
+            siteContactLabel.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_siteContactKeyPressed
     /**
      * Setting values in the combo box
      */
@@ -2585,6 +2759,20 @@ public class Dashboard extends javax.swing.JFrame {
             categories[i] = values.get(i);
         }
         combbox.setModel(new javax.swing.DefaultComboBoxModel<>(categories));
+    }
+    /**
+     * Getting the value of the selected radio button in a button group
+     */
+    private String getSelectedButton(ButtonGroup buttonGroup) {
+        
+        for(Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+            
+            if(button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null;
     }
     /**
      * @param args the command line arguments
