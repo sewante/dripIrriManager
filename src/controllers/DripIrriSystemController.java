@@ -63,6 +63,13 @@ public class DripIrriSystemController {
     public ArrayList<String> getMainifoldPipes() {
         return new Pipe().fetchBlankPipes("pipemanifold");
     }
+    /**
+     * get the main pipes from the database
+     * @return 
+     */
+    public ArrayList<String> getSubmainPipes() {
+        return new Pipe().fetchBlankPipes("pipesubmain");
+    }
     
     /**
      * get the emitters pipes from the database
@@ -102,6 +109,8 @@ public class DripIrriSystemController {
      */
     // configure the Drip Irrigation system
     public void configureDripIrriSystem(DripIrriSystem dripIrriSystem) {
+        
+        // begin from here ###############################################%%%%%%%%%%%%%%%
         System.out.println(" $ "+dripIrriSystem.getField().getFieldCity());
     }
 }

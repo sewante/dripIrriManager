@@ -30,6 +30,9 @@ public class Crop {
     private Statement categoriesStatement;
     private String message;
     private PreparedStatement cropStatement;
+    private NewCrop newCrop;
+    private String cropCategory;
+    
     private ErrorLogger logger;
     /**
      * The constructor
@@ -41,6 +44,7 @@ public class Crop {
         categoriesStatement = DatabaseManager.getStatement();
         cropCategories = new ArrayList<String>();
         crops = new ArrayList<>();
+        newCrop = new NewCrop();
     }
     
     /**
@@ -97,6 +101,64 @@ public class Crop {
         }
          return crops;
     }
+        
+    /**
+     * Gets the Crop's  data from the database and adds them into the NewCrop object
+     * @param cropName  The name of the crop whose data is required
+     * @return  The crop object 
+     */
+    public NewCrop fetchCrop(String cropName) {
+        String cropSQL = "SELECT cropcategory,name,cropspacing,rowspacing,initialKc,midKc,lateKc,plantingScheme"
+                            + " FROM crop WHERE name='"+cropName+"'";
+        
+        try {
+            Statement cropStatement = DatabaseManager.getStatement();
+            ResultSet cropResult = cropStatement.executeQuery(cropSQL);
+            
+            // if the crop exists then structure the data into the NewCrop object
+            if(cropResult.next()) {
+                newCrop.setCropCategory(fetchCropCategory(cropResult.getInt("cropcategory")));
+                newCrop.setCropName(cropResult.getString("name"));
+                newCrop.setCropSpacig(cropResult.getFloat("cropspacing"));
+                newCrop.setCropCoefficients(cropResult.getFloat("initialKc"), cropResult.getFloat("midKc"), cropResult.getFloat("lateKc"));
+                newCrop.setRowSpacing(cropResult.getFloat("rowspacing"));
+                newCrop.setPlantingScheme(cropResult.getString("plantingScheme"));
+            }
+        }
+        catch(SQLException sqle) {
+            logger.logError("modles.Crop.fetchCrop " + sqle.getMessage());
+        }
+        
+        return newCrop;
+    }    
+    /**
+     * Gets the crop's  category from the crop categories table
+     * @param cropCategoryID    The category ID for the crop.
+     * @return  The name of the category to which the crop belongs.
+     */
+    public String fetchCropCategory(int cropCategoryID) {
+       
+        String categorySQL = "SELECT categoryName FROM cropcategories WHERE categoryId="+cropCategory;
+        
+        try {
+            Statement categoryStatement = DatabaseManager.getStatement();
+            ResultSet categoryResult = categoryStatement.executeQuery(categorySQL);
+            
+            // check if the crop category was really found
+            if(categoryResult.next()) {
+                cropCategory = categoryResult.getString("categoryName");
+            }
+            else {
+                return null;
+            }
+        }
+        catch(SQLException sqle) {
+            logger.logError("models.Crop.fetchCropCategory "+ sqle.getMessage());
+        }
+        
+        return cropCategory;
+    }
+    
     /**
      * Saves the crop data into the database for newly added crop
      * @param newCrop   The new crop object to save

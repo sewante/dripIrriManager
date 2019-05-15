@@ -5,6 +5,11 @@ package dripirrimanager;
  *
  * @author robert
  */
+
+import models.Crop;
+import models.Pipe;
+import models.Emitter;
+
 public class DripIrriSystem {
 
     //pipe data
@@ -16,9 +21,13 @@ public class DripIrriSystem {
     //emitter data
     private NewEmitter emitter;
     private DripLine dripline;
+    private Emitter emitterModel;
+    
+    private Pipe pipeModel;
     
     //the crop data
     private NewCrop crop;
+    private Crop cropModle;
     
     // the fields object
     private Field field;
@@ -38,6 +47,9 @@ public class DripIrriSystem {
         this.submain = submain;
         
         this.field = field;
+        cropModle = new Crop();
+        pipeModel = new Pipe();
+        emitterModel = new Emitter();
     }
     
     /** CONSTRUCTOR
@@ -54,6 +66,8 @@ public class DripIrriSystem {
         this.manifold = manifold;
         this.dripline = dripline;
         this.field = field;
+        cropModle = new Crop();
+        pipeModel = new Pipe();
     }
     /** CONSTRUCTOR
      * constructor for system that require  a lateral blank tubing and emitters
@@ -70,7 +84,10 @@ public class DripIrriSystem {
         this.manifold = manifold;
         this.lateralPipe = lateral;
         this.emitter = emitter;
-        this.field = field; 
+        this.field = field;
+        cropModle = new Crop(); 
+        pipeModel = new Pipe();
+        emitterModel = new Emitter();
     }
     /** CONSTRUCTOR
      * Constructor for systems that require only a dripline (This is suitable for small gardens
@@ -80,21 +97,94 @@ public class DripIrriSystem {
     public DripIrriSystem(DripLine dripline, Field field) {
         this.dripline = dripline;
         this.field = field;
+        cropModle = new Crop();
+        pipeModel = new Pipe();
     }
     /** CONSTRUCTOR
-     * Constructor for systems whose pipe data is not specified but the field alread set up
+     * Constructor for systems whose pipe data is not specified but the field already set up
      * @param field The field/garden in which the drip irrigation system is to be configured
      */
     public DripIrriSystem(Field field) {
         this.field = field;
+        cropModle = new Crop();
+        pipeModel = new Pipe();
+        emitterModel = new Emitter();
     }
     
     /**
      * The Getter methods
      */
+    
+    // get the Filed object
     public Field getField() {
         return field;
     }
+    // get the NewCrop object
+    public NewCrop getCrop() {
+        return crop;
+    }
+    // get the main pipe object
+    public NewPipe getMainPipe() {
+        return mainPipe;
+    }
+    // get the manifold pipe object
+    public NewPipe getManifold() {
+        return manifold;
+    }
+    // get the lateral pipe object
+    public NewPipe getLateralPipe() {
+        return lateralPipe;
+    }
+    // get the submain pipe object 
+    public NewPipe getSubmain() {
+        return submain;
+    }
+    // get the dripline pipe object
+    public DripLine getDripline() {
+        return dripline;
+    }
+    // get the Emitter object
+    public NewEmitter getEmitter() {
+        return emitter;
+    }
+    
+    
+    /**
+     * The Setter methods
+     */
+    // set the crop object
+    public void setCrop(String cropName) {
+        this.crop = cropModle.fetchCrop(cropName);
+    }
+    // set the main pipe object
+    public void setMainPipe(String mainPipe) {
+        
+    }
+    // set the lateral pipe object
+    public void setLateralPipe(String lateralPipe) {
+        
+    }
+    // set the manifold pipe object
+    public void setManifoldPipe(String manifoldPipe) {
+        
+    }
+    //set the dripline pipe object
+    public void  setDriplinePipe(String dripliePipe) {
+        
+    }
+    // set the emitter object
+    public void setEmitter(String emitterName) {
+        
+    }
+    // set the submain pipe object
+    public void setSubmainPipe(String submainPipe) {
+        
+    }
+    
+    
+    /**
+     * Other calculations
+     */
     
     // calculate system runtime
     // calculate plant water requirement

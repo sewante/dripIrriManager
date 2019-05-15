@@ -55,6 +55,11 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         setComboBoxValues(lateralType, dripIrriSysController.getLateralPipeTypes());
         // set the combo box values for the manifold pipe
         setComboBoxValues(manifoldPipe, dripIrriSysController.getMainifoldPipes());
+        // set the combo box values for the main pipe
+        setComboBoxValues(mainPipe, dripIrriSysController.getMainPipes());
+        // set the combo box values for the submain pipe
+        setComboBoxValues(submainPipe, dripIrriSysController.getSubmainPipes());
+        
     }
     
     /** CONSTRUCTOR
@@ -83,6 +88,10 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         setComboBoxValues(lateralType, dripIrriSysController.getLateralPipeTypes());
         // set the combo box values for the manifold pipe
         setComboBoxValues(manifoldPipe, dripIrriSysController.getMainifoldPipes());
+        // set the combo box values for the main pipe
+        setComboBoxValues(mainPipe, dripIrriSysController.getMainPipes());
+        // set the combo box values for the submain pipe
+        setComboBoxValues(submainPipe, dripIrriSysController.getSubmainPipes());
     }
 
     /**
