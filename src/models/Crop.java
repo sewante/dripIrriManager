@@ -138,7 +138,7 @@ public class Crop {
      */
     public String fetchCropCategory(int cropCategoryID) {
        
-        String categorySQL = "SELECT categoryName FROM cropcategories WHERE categoryId="+cropCategory;
+        String categorySQL = "SELECT categoryName FROM cropcategories WHERE categoryId="+cropCategoryID;
         
         try {
             Statement categoryStatement = DatabaseManager.getStatement();

@@ -8,3 +8,8 @@
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
 2019/05/14 13:55:31 Error :controllers.UsersController.login Invalid Credentials
 2019/05/15 19:39:39 Error :controllers.UsersController.login Invalid Credentials
+2019/05/15 22:30:30 Error :models.Pipe.fetchPipe Table 'dripirrimanager.pipemainfold' doesn't exist
+2019/05/15 22:36:05 Error :models.Pipe.fetchPipe Table 'dripirrimanager.pipemainfold' doesn't exist
+2019/05/15 23:06:39 Error :controllers.UsersController.login Invalid Credentials
+2019/05/16 21:32:49 Error :ui.ConfigureDripSystem.ConfigureDripSystem null
+2019/05/16 21:37:28 Error :ui.ConfigureDripSystem.ConfigureDripSystem null

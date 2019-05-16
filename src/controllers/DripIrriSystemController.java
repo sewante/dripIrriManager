@@ -10,8 +10,10 @@ package controllers;
  * @author robert
  */
 
-import dripirrimanager.DripIrriSystem;
 import java.util.ArrayList;
+
+import dripirrimanager.DripIrriSystem;
+import ui.DripWorksheet;
 import models.DripIrriXMLConfig;
 import models.Crop;
 import models.Pipe;
@@ -111,6 +113,10 @@ public class DripIrriSystemController {
     public void configureDripIrriSystem(DripIrriSystem dripIrriSystem) {
         
         // begin from here ###############################################%%%%%%%%%%%%%%%
-        System.out.println(" $ "+dripIrriSystem.getField().getFieldCity());
+        System.out.println(" $ "+dripIrriSystem.calcNumberOfDriplines());
+        
+        // print the system data onto the Drip Irrigation System worksheet
+        new DripWorksheet(dripIrriSystem).setVisible(true);
+        
     }
 }

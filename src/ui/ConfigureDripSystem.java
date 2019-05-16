@@ -13,9 +13,6 @@ import dripirrimanager.DripIrriSystem;
 import dripirrimanager.Field;
 import dripirrimanager.ErrorLogger;
 import controllers.DripIrriSystemController;
-import dripirrimanager.DripLine;
-import dripirrimanager.NewEmitter;
-import dripirrimanager.NewPipe;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -31,7 +28,7 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
     private Field fieldToConfigure;
     private ErrorLogger logger;
     /**
-     * Constructor
+     * Constructor for testing purposes (TO BE REMOVED)
      */
     public ConfigureDripSystem() {
         
@@ -77,6 +74,7 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         lateralPipe.hide();
         
         dripIrriSysController = new DripIrriSystemController();     // initialize the drip irrigation system controller
+        fieldToConfigure = new Field();
         fieldToConfigure = field;
         logger = ErrorLogger.getLogger();
         
@@ -419,6 +417,7 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         );
 
         crop.setBackground(new java.awt.Color(255, 255, 255));
+        crop.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         crop.setForeground(new java.awt.Color(0, 0, 0));
         crop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -493,6 +492,7 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         submainPipeLabel.setText("Submain:");
 
         lateralPipe.setBackground(new java.awt.Color(255, 255, 255));
+        lateralPipe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lateralPipe.setForeground(new java.awt.Color(0, 0, 0));
         lateralPipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -503,6 +503,7 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         lateralLabel.setText("Set Dripline:");
 
         submainPipe.setBackground(new java.awt.Color(255, 255, 255));
+        submainPipe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         submainPipe.setForeground(new java.awt.Color(0, 0, 0));
         submainPipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -513,10 +514,12 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         pipeLabel2.setText("Pipe");
 
         manifoldPipe.setBackground(new java.awt.Color(255, 255, 255));
+        manifoldPipe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         manifoldPipe.setForeground(new java.awt.Color(0, 0, 0));
         manifoldPipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         mainPipe.setBackground(new java.awt.Color(255, 255, 255));
+        mainPipe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         mainPipe.setForeground(new java.awt.Color(0, 0, 0));
         mainPipe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -548,10 +551,12 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
         emitterLable.setText("Set Emitter:");
 
         emitter.setBackground(new java.awt.Color(255, 255, 255));
+        emitter.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         emitter.setForeground(new java.awt.Color(0, 0, 0));
         emitter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lateralType.setBackground(new java.awt.Color(255, 255, 255));
+        lateralType.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lateralType.setForeground(new java.awt.Color(0, 0, 0));
         lateralType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         lateralType.addItemListener(new java.awt.event.ItemListener() {
@@ -786,24 +791,21 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
             fieldToConfigure.setFieldCropGrown(cropGrown);
             
             //package the pipes
-            NewPipe mainpipe = new NewPipe();
-            mainpipe.setPipeModelName(pipeMain);
+            dripIrriSystem = new DripIrriSystem(fieldToConfigure);
             
-            NewPipe pipemanifold = new NewPipe();
-            pipemanifold.setPipeModelName(pipeManifold);
-            
-            NewPipe pipesubmain = new NewPipe();
-            pipesubmain.setPipeModelName(pipeSubmain);
+            dripIrriSystem.setMainPipe(pipeMain);
+            dripIrriSystem.setManifoldPipe(pipeManifold);
+            dripIrriSystem.setSubmainPipe(pipeSubmain);
+            dripIrriSystem.setCrop(cropGrown);
+            dripIrriSystem.setLateralPipeType(typeOfLateral);
             
             /* THIS WILL HAVE TO BE IMPLEMENTED IN ANOTHER WAY TO CATER FOR ALL POSSIBLE CONFIGURATIONS!
                 preferably a configure fucntion needs to be called here to ensure all the possible pipe combinations
                 For now we shall focus on two combinations only i.e with dripline and with blank tubing as lateral
             */
             if(typeOfLateral.equals("Dripline")) {
-                DripLine dripline = new DripLine();
-                dripline.setPipeModelName(pipeLateral);
-                
-                dripIrriSystem = new DripIrriSystem(mainpipe, pipesubmain, pipemanifold, dripline, fieldToConfigure);
+                                
+                dripIrriSystem.setDriplinePipe(pipeLateral);
                 
                 // send the DripIrri system object to the controller
                 dripIrriSysController.configureDripIrriSystem(dripIrriSystem);
@@ -812,26 +814,20 @@ public class ConfigureDripSystem extends javax.swing.JFrame {
                 this.dispose();
             }
             else if(typeOfLateral.equals("Blank Tubing")) {
-                NewEmitter emitterToUse = new NewEmitter();
-                emitterToUse.setEmitterModelName((String)emitter.getSelectedItem());
-                
-                NewPipe lateralTubing = new NewPipe();
-                lateralTubing.setPipeModelName(pipeLateral);
-                
-                dripIrriSystem = new DripIrriSystem(mainpipe, pipesubmain, pipemanifold, lateralTubing, emitterToUse, fieldToConfigure);
+                //set the the blank tubing lateral and emitter for systems wbich use blank tubing
+                dripIrriSystem.setLateralPipe(pipeLateral);
+                dripIrriSystem.setEmitter((String)emitter.getSelectedItem());
                 
                 // send the DripIrri system object to the controller
                 dripIrriSysController.configureDripIrriSystem(dripIrriSystem);
                 
                 // dispose this window
                 this.dispose();
-            }
-                         
+            }            
         }
         catch(Exception e) {
             logger.logError("ui.ConfigureDripSystem.ConfigureDripSystem " + e.getMessage());
         }
-        
     }//GEN-LAST:event_configureActionPerformed
 
     private void lateralTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_lateralTypeItemStateChanged

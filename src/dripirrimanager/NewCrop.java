@@ -14,6 +14,11 @@ import java.util.ArrayList;
 public class NewCrop {
     
     //data for a crop
+    /****************************CONSTANTS OF THE CROP****************/
+    private static final float CANOPYCONSTANT = (float) 0.7854;
+    public static final float SPARSECROPCONSTANT = (float) 0.623;  //constant for calculating sparse crop water requirement
+    /****************************************************************/
+    
     private ArrayList<Float> cropCoefficients;
     private ArrayList<Float> cropDepths;
     private String name;
@@ -99,6 +104,10 @@ public class NewCrop {
     public ArrayList<Float> getCropCoefficients() {
         return cropCoefficients;
     }
+    // get late Kc
+    public float getLateKc() {
+        return lateSeasonKc;
+    }
     
     //get the lowest and highest crop depths
     public ArrayList<Float> getCropDepths() {
@@ -113,5 +122,15 @@ public class NewCrop {
     //get the crop row spacing
     public float getRowSpacing(){
         return rowSpacing;
+    }
+    
+    
+    /**
+     * Other calculations 
+     * @param rootDiameter  The diameter of the root area for the sparse crop like trees and shrubs
+     * @return  The canopy area for the sparse crop
+    */
+    public float getCanopyArea(float rootDiameter) {
+        return (CANOPYCONSTANT * rootDiameter * rootDiameter);
     }
 }

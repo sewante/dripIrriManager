@@ -437,6 +437,7 @@ public class Dashboard extends javax.swing.JFrame {
         siteWidthLabel.setText("Width");
 
         siteLength.setBackground(new java.awt.Color(255, 255, 255));
+        siteLength.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         siteLength.setForeground(new java.awt.Color(0, 0, 0));
         siteLength.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -450,6 +451,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         siteWidth.setBackground(new java.awt.Color(255, 255, 255));
+        siteWidth.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         siteWidth.setForeground(new java.awt.Color(0, 0, 0));
         siteWidth.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -763,6 +765,7 @@ public class Dashboard extends javax.swing.JFrame {
         waterQualitySection.setText("Water Quality");
 
         wellType.setBackground(new java.awt.Color(255, 255, 255));
+        wellType.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         wellType.setForeground(new java.awt.Color(0, 0, 0));
         wellType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -2057,6 +2060,8 @@ public class Dashboard extends javax.swing.JFrame {
             
             //load the next interface to get data about crop PET and pipe choice
             new ConfigureDripSystem(field).setVisible(true);
+            
+            // clear the site fileds
             
         }
         catch(NumberFormatException nfe) {

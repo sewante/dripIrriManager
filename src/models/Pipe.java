@@ -233,10 +233,38 @@ public class Pipe {
     }
     /**
      * Gets the dripline object whose model name is specified
+     * @param model     The model name of the dripline whose data is required
+     * @return  THe dripline object
      */
     public DripLine fetchDripline(String model) {
         dripline = new DripLine();
         
+        String driplineSQL = String.format("SELECT modelName,flowRate,interDiameter,exterDiameter,coilLength,material,cost,emitterSpacing "
+                + "FROM pipedripline WHERE modelName='%s'", model);
+        
+        try {
+            Statement driplineStatement = DatabaseManager.getStatement();
+            ResultSet driplineResult = driplineStatement.executeQuery(driplineSQL);
+            
+            // confirm that the pipe was found and set the pipe object up
+            if(driplineResult.next()) {
+                
+                dripline.setPipeModelName(driplineResult.getString("modelName"));
+                dripline.setPipeFlowRate(driplineResult.getFloat("flowRate"));
+                dripline.setPipeInternalDiameter(driplineResult.getFloat("interDiameter"));
+                dripline.setPipeExternalDiameter(driplineResult.getFloat("exterDiameter"));
+                dripline.setPipeCoilLength(driplineResult.getFloat("coilLength"));
+                dripline.setPipeMaterial(driplineResult.getString("material"));
+                dripline.setPipeCost(driplineResult.getFloat("cost"));
+                dripline.setEmitterSpacing(driplineResult.getFloat("emitterSpacing"));
+            }
+            else {
+                return null;
+            }
+        }
+        catch(SQLException sqle){
+            logger.logError("models.Pipe.fetchDripline "+sqle.getMessage());
+        }
         
         return dripline;
     }

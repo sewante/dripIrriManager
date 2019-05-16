@@ -9,19 +9,20 @@ package dripirrimanager;
  *
  * @author robert
  */
-
+import models.ClimatePET;
 
 public class Field {
     
     /*****************Filed Data *************************/
     private float length;
     private float width;
+    private float soilEmitterSpacing;
     
     private String soilType;
     private String waterSource;
     private String wellType;
     private String waterQuality;
-    private String climatePET;
+    private ClimatePET climatePET;
     private String cropGrown;
     private String name;
     private String owner;
@@ -74,7 +75,7 @@ public class Field {
     }
     // set the climate PET
     public void setFieldClimatePET(String climatePET){
-        this.climatePET = climatePET;
+        this.climatePET = new ClimatePET(climatePET);
     }
     
     // set the field width
@@ -88,14 +89,6 @@ public class Field {
     // set the field soil type
     public void setFieldSoilType(String soilType) {
         this.soilType = soilType;
-    }
-    // get the field's address 
-    public String getFieldAddress() {
-        return address;
-    }
-    // get the field's contact
-    public String getFieldContact() {
-        return contact;
     }
     
     
@@ -112,7 +105,7 @@ public class Field {
         return width;
     }
     // get the field climate PET
-    public String getFieldClimatePET() {
+    public ClimatePET getFieldClimatePET() {
         return climatePET;
     }
     // get the field soil type
@@ -147,12 +140,34 @@ public class Field {
     public String getFieldCity() {
         return city;
     }
+    // get the field's address 
+    public String getFieldAddress() {
+        return address;
+    }
+    // get the field's contact
+    public String getFieldContact() {
+        return contact;
+    }
+    
+    // get the emitter spacing for the soil in inches
+    public float getEmitterSpacingForSoil(String soilType) {
+        if(soilType.equals("Coarse Soil")) {
+            soilEmitterSpacing = (float) 12;
+        }
+        else if(soilType.equals("Medium Soil")) {
+            soilEmitterSpacing = (float) 18;
+        }
+        else if(soilType.equals("Fine Soil")) {
+            soilEmitterSpacing = (float) 24;
+        }
+        return soilEmitterSpacing;
+    }
     
     /**
      * Other calculations on the field
      */
     //calculate the field area
-    public float calculateFieldArea(float legth, float width) {
-        return legth * width;
+    public float calculateFieldArea() {
+        return length * width;
     }
 }
