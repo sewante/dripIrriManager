@@ -46,6 +46,7 @@ public class DripIrriSystem {
     private float approximateCost = 0;
     private float systemRuntime = 0;  // the system run time per day in hours
     private float flowRate;
+    private float numberOfLateralSpaces = 0;
     
     
     /** CONSTRUCTOR
@@ -215,11 +216,38 @@ public class DripIrriSystem {
     // calculate the irrigation interval
     
     // calculate system runtime (number of hours the system should be set to run per day)
-    public float calcSystemRuntime() {
+    public float calcBlankTubingSystemRuntime() {
         
-        float ERD;  
+        float ERD;
+        float temp1 = 0,temp2 = 0;
+        float latSpecing = 0;   // unused (its just to set the lateral spacing)
         if(crop.getPlantScheme().equals("dense")) {
-            ERD = (ERD_CONSTANT * LphToGph(emitter.getEmitterFlowRate())) / (calcEmitterSpacing() * calcActualLateralSpacing());
+            temp1 =  ERD_CONSTANT * LphToGph(emitter.getEmitterFlowRate());
+            latSpecing = calcActualLateralSpacing();    // this sets the lateral spacing
+            temp2 = calcEmitterSpacing() * calcActualLateralSpacing();
+            ERD = temp1 / temp2;
+            systemRuntime = calcWaterRequirement() / calcAdjustedERD(ERD);  // hours
+        }
+        else if(crop.getPlantScheme().equals("sparse")) {
+            systemRuntime = calcWaterRequirement() / LphToGph(calcFlowRate());
+        }
+        return systemRuntime;
+    }
+    // calculate the System run time for dripline
+    public float calcDriplineSystemRuntime() {
+        
+        float ERD = 0;
+        float temp1 = 0,temp2 = 0;
+        float latSpecing = 0;   // unused (its just to set the lateral spacing)
+        
+        if(crop.getPlantScheme().equals("dense")) {
+            temp1 = ERD_CONSTANT * LphToGph(dripline.getPipeFlowRate());
+            
+            latSpecing = calcActualLateralSpacing();    // this sets the lateral spacing
+            
+            temp2 = calcActualLateralSpacing()*calcEmitterSpacing();
+            
+            ERD = temp1 / temp2;
             systemRuntime = calcWaterRequirement() / calcAdjustedERD(ERD);  // hours
         }
         else if(crop.getPlantScheme().equals("sparse")) {
@@ -244,7 +272,7 @@ public class DripIrriSystem {
         return waterRequirement;
     }
     // calculate emitter spacing in square inch
-    public float calcEmitterSpacing() {
+    public synchronized  float calcEmitterSpacing() {
         
         if(lateralPipeType.equals("Dripline")) {
             emitterSpacing = dripline.getEmitterSpacing();
@@ -267,9 +295,9 @@ public class DripIrriSystem {
     // calculate lateral line spaces. These are the number of spaces we expect for laterals eg 5 spaces means we have 5 + 6 rows of plants
     public int calcLateralLineSpaces() {
       
-       actualWidth = meterToInch(field.getFieldWidth()) - EDGE_OFFSET;
+       actualWidth = meterToInch(field.getFieldWidth()) - (float)EDGE_OFFSET;
        
-       float numberOfLateralSpaces = actualWidth / calcEmitterSpacing();
+       numberOfLateralSpaces = actualWidth / calcEmitterSpacing();
        
        return Math.round(numberOfLateralSpaces);
     }
@@ -279,7 +307,7 @@ public class DripIrriSystem {
         return calcLateralLineSpaces() + 1;
     }
     // calculate the actual spacing between laterals in inch
-    public float calcActualLateralSpacing() {
+    public synchronized float calcActualLateralSpacing() {
         return actualWidth / (float)calcLateralLineSpaces();
     }
     // calculate number of crop rows for systems with blank tubing

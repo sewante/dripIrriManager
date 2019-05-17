@@ -11,14 +11,25 @@ package ui;
  */
 
 import dripirrimanager.DripIrriSystem;
+import dripirrimanager.ErrorLogger;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import javax.swing.JOptionPane;
 public class DripWorksheet extends javax.swing.JFrame {
 
-    DripIrriSystem systemConfiguration;
+    private DripIrriSystem systemConfiguration;
+    private ErrorLogger logger;
     /**
      * Creates new form DripWorksheet
      */
     public DripWorksheet() {
         initComponents();
+        logger = ErrorLogger.getLogger();
     }
     /**
      * Overloaded constructor to enable printing of the system data
@@ -27,6 +38,7 @@ public class DripWorksheet extends javax.swing.JFrame {
         
         //initialize the UI
         initComponents();
+        logger = ErrorLogger.getLogger();
         this.systemConfiguration = dripConfiguration;
         showSystemData();
     }
@@ -47,7 +59,7 @@ public class DripWorksheet extends javax.swing.JFrame {
         }
         else {
             String stringArea = formatFloat(systemConfiguration.getField().calculateFieldArea());
-            area.setText(stringArea);
+            area.setText(stringArea+" sq m");
         }
         
         /*SOIL*/
@@ -60,6 +72,7 @@ public class DripWorksheet extends javax.swing.JFrame {
         
         /*CROP*/
         cropName.setText(systemConfiguration.getCrop().getCropName());
+        cropCategory.setText(systemConfiguration.getCrop().getCropCategory());
         
         if(systemConfiguration.getCrop().getPlantScheme().equals("dense")) { 
             waterRequirement.setText(formatFloat(systemConfiguration.calcWaterRequirement())+" inches/day");
@@ -99,16 +112,27 @@ public class DripWorksheet extends javax.swing.JFrame {
             emitterSpacing.hide();
             
             emitterTypeLabel.hide();
-            emitterTypeLabel.hide();
+            emitterType.hide();
             
             // set the lateral tubing only to dripline
             typeOfLateral.setText("Dripline");
             lateralName.setText(systemConfiguration.getDripline().getPipeModelName());
-            lateralFlowRate.setText(formatFloat(systemConfiguration.getDripline().getPipeFlowRate()) + "l/h");
-            lateralLength.setText(formatFloat(systemConfiguration.calcLengthOfLateral()) + "l/h");
+            lateralFlowRate.setText(formatFloat(systemConfiguration.getDripline().getPipeFlowRate()) + " l/h");
             lateralMaterial.setText(systemConfiguration.getDripline().getPipeMaterial());
-            lateralNumber.setText(String.valueOf(systemConfiguration.calcNumberOfDriplines()));
-            lateralSpacing.setText(formatFloat(systemConfiguration.calcActualLateralSpacing()));
+            /*SYSTEM RUNTIME*/
+            if(systemConfiguration.getField().getFieldLength() == 0) {
+
+                systemRunTime.setText("Unspecified");
+                lateralLength.setText("Unspecified");
+                lateralNumber.setText("Unspecified");
+                lateralSpacing.setText("Unspecified");
+            }
+            else {
+                systemRunTime.setText(String.format("%.4f",systemConfiguration.calcDriplineSystemRuntime())+" Hrs");
+                lateralLength.setText(formatFloat(systemConfiguration.calcLengthOfLateral()) + " m");
+                lateralNumber.setText(String.valueOf(systemConfiguration.calcNumberOfDriplines()));
+                lateralSpacing.setText(formatFloat(systemConfiguration.calcActualLateralSpacing())+" inch");
+            }
             
         }
         else if(systemConfiguration.getLateralPipeType().equals("Blank Tubing")) {
@@ -116,23 +140,33 @@ public class DripWorksheet extends javax.swing.JFrame {
             typeOfLateral.setText("Blank Tubing");
             // set the blank tubing
             lateralName.setText(systemConfiguration.getLateralPipe().getPipeModelName());
-            lateralFlowRate.setText(formatFloat(systemConfiguration.getLateralPipe().getPipeFlowRate()) + "l/h");
-            lateralLength.setText(formatFloat(systemConfiguration.calcLengthOfLateral()) + "l/h");
+            lateralFlowRate.setText(formatFloat(systemConfiguration.getLateralPipe().getPipeFlowRate()) + " l/h");
             lateralMaterial.setText(systemConfiguration.getLateralPipe().getPipeMaterial());
-            lateralNumber.setText(String.valueOf(systemConfiguration.calcNumberOfDriplines()));
-            lateralSpacing.setText(formatFloat(systemConfiguration.calcActualLateralSpacing()));
             
             // set the emitter too and then show it
             emitterFlowRate.setText(formatFloat(systemConfiguration.getEmitter().getEmitterFlowRate())+" l/h");
             emitterName.setText(systemConfiguration.getEmitter().getEmitterModelName());
-            emitterNumber.setText(String.valueOf(systemConfiguration.calcNumberOfEmitters()));
-            emitterSpacing.setText(formatFloat(systemConfiguration.calcEmitterSpacing()));
+            emitterSpacing.setText(formatFloat(systemConfiguration.calcEmitterSpacing()) +" inch");
             emitterType.setText(systemConfiguration.getEmitter().getEmitterInletType());
+            /*SYSTEM RUNTIME*/
+            if(systemConfiguration.getField().getFieldLength() == 0){
+
+                systemRunTime.setText("Unspecified");
+                emitterNumber.setText("Unspecified");
+                lateralLength.setText("Unspecified");
+                lateralSpacing.setText("Unspecified");
+                lateralNumber.setText("Unspecified");
+            }
+            else {
+
+                systemRunTime.setText(String.format("%.4f",systemConfiguration.calcBlankTubingSystemRuntime())+" Hrs");
+                emitterNumber.setText(String.valueOf(systemConfiguration.calcNumberOfEmitters()));
+                lateralLength.setText(formatFloat(systemConfiguration.calcLengthOfLateral()) + " m");
+                lateralSpacing.setText(formatFloat(systemConfiguration.calcActualLateralSpacing()) +" inch");
+                lateralNumber.setText(String.valueOf(systemConfiguration.calcNumberOfLaterals()));
+            }
+
         }
-        
-        /*SYSTEM RUNTIME*/
-        systemRunTime.setText(formatFloat(systemConfiguration.calcSystemRuntime())+" H");
-        
         
     }
     
@@ -265,7 +299,7 @@ public class DripWorksheet extends javax.swing.JFrame {
                 .addGroup(headingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameOfSite, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         contentPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -679,15 +713,20 @@ public class DripWorksheet extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contentPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(siteNameLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(siteNameLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(siteNameLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jLabel9)
-                            .addComponent(emitterLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(contentPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(siteNameLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(siteNameLabel11, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(jLabel9)
+                                    .addComponent(emitterLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(siteNameLabel10)
+                                .addGap(18, 18, 18)))
                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(contentPanelLayout.createSequentialGroup()
                                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -696,8 +735,8 @@ public class DripWorksheet extends javax.swing.JFrame {
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
                                                 .addComponent(jLabel8)
                                                 .addGap(99, 99, 99))
-                                            .addComponent(mainName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(mainMaterial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(mainMaterial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(mainName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
                                         .addComponent(mainLength, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -835,9 +874,7 @@ public class DripWorksheet extends javax.swing.JFrame {
                                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))))
                                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(contentPanelLayout.createSequentialGroup()
-                                                .addGap(22, 22, 22)
-                                                .addComponent(siteNameLabel10)
-                                                .addGap(12, 12, 12)
+                                                .addGap(53, 53, 53)
                                                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                     .addComponent(siteNameLabel12)
                                                     .addComponent(mainMaterial)
@@ -854,7 +891,8 @@ public class DripWorksheet extends javax.swing.JFrame {
                                                 .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(submainName)
-                                                        .addComponent(mainName))
+                                                        .addComponent(mainName)
+                                                        .addComponent(siteNameLabel10))
                                                     .addComponent(manifoldName))))
                                         .addGap(30, 30, 30)
                                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -906,7 +944,7 @@ public class DripWorksheet extends javax.swing.JFrame {
                         .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(emitterNumberLabel)
                             .addComponent(emitterNumber))))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         discardBtn.setBackground(new java.awt.Color(255, 255, 255));
@@ -923,28 +961,36 @@ public class DripWorksheet extends javax.swing.JFrame {
         printBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         printBtn.setForeground(new java.awt.Color(0, 0, 0));
         printBtn.setText("Print");
+        printBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainpanelLayout = new javax.swing.GroupLayout(mainpanel);
         mainpanel.setLayout(mainpanelLayout);
         mainpanelLayout.setHorizontalGroup(
             mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(headingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(mainpanelLayout.createSequentialGroup()
-                .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(mainpanelLayout.createSequentialGroup()
                 .addGap(366, 366, 366)
                 .addComponent(discardBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(248, 248, 248)
                 .addComponent(printBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                 .addGap(510, 510, 510))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainpanelLayout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(headingPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contentPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1237, Short.MAX_VALUE))
+                .addContainerGap())
         );
         mainpanelLayout.setVerticalGroup(
             mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainpanelLayout.createSequentialGroup()
-                .addComponent(headingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(headingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(discardBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -971,6 +1017,54 @@ public class DripWorksheet extends javax.swing.JFrame {
         // Close this window
         this.dispose();
     }//GEN-LAST:event_discardBtnActionPerformed
+
+    private void printBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBtnActionPerformed
+        // Print to the pdf the whole form
+
+        PrinterJob printJob = PrinterJob.getPrinterJob();
+        printJob.setJobName(systemConfiguration.getField().getFieldName()+"_worksheet");
+        printJob.setPrintable(new Printable() {
+            @Override
+            public int print(Graphics graphics, PageFormat pageFormat, int pageNum) throws PrinterException {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+                if(pageNum > 0 ) {
+                    return Printable.NO_SUCH_PAGE;
+                }
+
+                Graphics2D graphics2 = (Graphics2D)graphics;
+                graphics2.translate(pageFormat.getImageableX(), pageFormat.getImageableX());
+                graphics2.scale(0.35, 0.45);
+
+                mainpanel.paint(graphics2);
+                return Printable.PAGE_EXISTS;
+            }
+
+        });
+        boolean ok = printJob.printDialog();
+        if(ok) {
+
+            try {
+                printJob.print();   // print the worksheet
+
+                getToolkit().beep(); //ring the bell
+                //show a dialog box with the success message
+                JOptionPane.showMessageDialog(rootPane, "Work sheet printed.", "Printed Successfully", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+            catch(PrinterException pe) {
+                logger.logError("ui.DripWorksheet.printBtnActionPerformed "+pe.getMessage());
+            }
+
+        }
+        else {
+
+            getToolkit().beep(); //ring the bell
+            //show a dialog box with the error message
+            JOptionPane.showMessageDialog(rootPane, "Cannot print worksheet", "Failed to print!", JOptionPane.ERROR_MESSAGE);
+        }
+        this.dispose();
+    }//GEN-LAST:event_printBtnActionPerformed
 
     /**
      * @param args the command line arguments

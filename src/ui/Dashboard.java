@@ -1891,6 +1891,11 @@ public class Dashboard extends javax.swing.JFrame {
         printMenu.setText("Print");
 
         printDripSysInfo.setText("Print Drip System Information");
+        printDripSysInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printDripSysInfoActionPerformed(evt);
+            }
+        });
         printMenu.add(printDripSysInfo);
 
         jMenuBar1.add(printMenu);
@@ -2754,6 +2759,14 @@ public class Dashboard extends javax.swing.JFrame {
             siteContactLabel.setForeground(Color.BLACK);
         }
     }//GEN-LAST:event_siteContactKeyPressed
+
+    private void printDripSysInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printDripSysInfoActionPerformed
+        
+            /** TO BE DONE: check if there are some configured jos in the system and ask user to print one*/
+            //ring bell
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "There are no configured worksheets to print!", "No Configured Drip System!", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_printDripSysInfoActionPerformed
     /**
      * Setting values in the combo box
      */

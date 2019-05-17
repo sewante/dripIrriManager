@@ -111,10 +111,7 @@ public class DripIrriSystemController {
      */
     // configure the Drip Irrigation system
     public void configureDripIrriSystem(DripIrriSystem dripIrriSystem) {
-        
-        // begin from here ###############################################%%%%%%%%%%%%%%%
-        System.out.println(" $ "+dripIrriSystem.calcNumberOfDriplines());
-        
+                
         // print the system data onto the Drip Irrigation System worksheet
         new DripWorksheet(dripIrriSystem).setVisible(true);
         
